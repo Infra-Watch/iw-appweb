@@ -1,0 +1,109 @@
+body {
+    background-image: url(../assets/imagens/fundo-home.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 99%;
+
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+button {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    transition: all 0.3s ease;
+    font-weight: weight;
+    font-style: normal;
+    background-color: rgb(205, 205, 222);
+    color: rgb(0, 135, 135);
+    margin-left: 1325px;
+    padding: 12px 70px;
+    font-size: 70px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: rgb(114, 114, 114);
+    transform: scale(1.35);
+    color: teal;
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    flex-direction: row;
+    font-size: 80px;
+    gap: 500px;
+}
+
+.logo {
+    left: 70px;
+    top: 0px;
+}
+
+.logo img {
+    width: 300px;
+    height: 300px;
+    border-radius: 2px;
+    display: block;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 50px;
+}
+
+.nav-links a {
+    transition: all 0.3s ease;
+    color: lavender;
+    gap: 325px;
+    cursor: pointer;
+}
+
+.nav-links span:hover {
+    transform: scale(1.50);
+    color: teal;
+}
+
+/* #button-login{
+    display: flex;
+    justify-content: fl;
+    gap: 500px;
+} */
+
+.texto-inicio {
+    display: flex;
+    justify-content: center;
+    margin-left: 150px;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.texto-inicio #button-conhecer {
+    padding: 50px 30px;
+    font-size: 70px;
+    border-radius: 10px;
+    margin-top: 100px;
+    margin-left: 0;
+    height: 5vh;
+    width: 12vw;
+}
+
+.texto-inicio span {
+    color: rgb(204, 204, 204);
+    margin-top: 70px;
+    font-size: 70px;
+}
+
+b {
+    font-size: 150px;
+    color: white;
+}
