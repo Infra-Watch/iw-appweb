@@ -39,7 +39,7 @@ b {
 }
 
 /* HOME */
-#container-1 {
+#container-home {
     width: 100%;
     height: 100vh;
     background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
@@ -126,3 +126,21 @@ b {
 }
 
 /* O QUE FAZEMOS */
+#container-info{
+
+}
+
+/* BENEFÍCIOS */
+#container-beneficios{
+
+}
+
+/* TECNOLOGIAS */
+#container-tecnologias{
+
+}
+
+/* CONFORMIDADES */
+#container-conformidades{
+
+}
