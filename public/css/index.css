@@ -1,14 +1,15 @@
+/* TODAS AS TAGS CRUAS SÃO TRATADAS NO COMEÇO POR DEFINIR O GERAL */
+
 body {
-    background-image: url(../assets/imagens/fundo-home.png);
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100%;
-    width: 99%;
+    width: 100%;
+    margin: 0;
 
     font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
+    overflow-x: hidden;
 }
 
 button {
@@ -17,9 +18,9 @@ button {
     transition: all 0.3s ease;
     font-weight: weight;
     font-style: normal;
+
     background-color: rgb(205, 205, 222);
     color: rgb(0, 135, 135);
-    margin-left: 1325px;
     padding: 12px 70px;
     font-size: 70px;
     cursor: pointer;
@@ -32,19 +33,33 @@ button:hover {
     color: teal;
 }
 
+b {
+    font-size: 150px;
+    color: white;
+}
+
+/* HOME */
+#container-1 {
+    width: 100%;
+    height: 100vh;
+    background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
+}
 
 .navbar {
     display: flex;
-    align-items: center;
     padding: 10px 20px;
-    flex-direction: row;
     font-size: 80px;
-    gap: 500px;
+    gap: 15rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
 }
 
 .logo {
     left: 70px;
     top: 0px;
+    margin-left: 100px;
 }
 
 .logo img {
@@ -59,25 +74,32 @@ button:hover {
     justify-content: center;
     align-items: center;
     border-right: 50px;
+    gap: 350px;
+    margin: 0;
 }
 
-.nav-links a {
+.navbar-links a {
     transition: all 0.3s ease;
     color: lavender;
     gap: 325px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.nav-links span:hover {
-    transform: scale(1.50);
+.navbar-links a:hover {
+    transform: scale(1.05);
     color: teal;
+    color: rgb(0, 56, 88);
+    text-decoration: underline;
 }
 
-/* #button-login{
-    display: flex;
-    justify-content: fl;
-    gap: 500px;
-} */
+#button-login {
+    margin-left: 45vw;
+    margin-left: clamp(10px, 40vw, 45vw);
+    height: 5vh;
+    width: 7vw;
+    font-size: 80px;
+}
 
 .texto-inicio {
     display: flex;
@@ -103,7 +125,4 @@ button:hover {
     font-size: 70px;
 }
 
-b {
-    font-size: 150px;
-    color: white;
-}
+/* O QUE FAZEMOS */
