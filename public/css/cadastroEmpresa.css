@@ -10,22 +10,23 @@ body * {
     box-sizing: border-box;
 }
 
-.main-login {
+.main-cadastro {
     width: 100vw;
     height: 100vh;
     display: flex;
 }
 
-.left-login {
+.left-cadastro {
     width: 50vw;
     height: 100vh;
     background: #fff;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    padding-top: 30px;
 }
 
-.right-login {
+.right-cadastro {
     width: 50vw;
     height: 100vh;
     background: url("../assets/imagens/img-cadastro-login.webp") no-repeat center center;
@@ -33,20 +34,20 @@ body * {
     filter: brightness(60%);
 }
 
-.card-login {
-    width: 70%;
+.card-cadastro {
+    width: 80%;
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
-
+    margin-top: 1%;
 }
 
-.card-login>h1 {
+.card-cadastro > h1 {
     color: #000266;
     font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     display: inline-block;
-    padding-bottom: 3px;
+    padding-bottom: 10px;
+    font-size: 1.8rem;
 }
 
 .underline {
@@ -57,13 +58,13 @@ body * {
 .text-field {
     display: flex;
     flex-direction: column;
-    margin: 10px 0px;
+    margin: 6px 0;
     width: 100%;
 }
 
 .top-arrow {
     position: fixed;
-    left: 100px;
+    left: 70px;
     font-size: 30px;
     text-decoration: none;
     color: #000266;
@@ -72,23 +73,32 @@ body * {
 }
 
 .top-arrow:hover{
-    color: #000000;
+    color: #020b1e;
     transition: 0.6s ease-out;
 }
 
-.text-field>input {
+
+.text-field > input,
+.text-field > select {
     width: 100%;
     border: none;
-    padding: 12px;
+    padding: 8px;
     background: #D4D4D4;
     font-size: 10pt;
     outline: none;
+    appearance: none;
 }
 
-.text-field>label {
+.text-field > label {
     color: #000;
     margin-bottom: 2px;
+    font-size: 0.85rem;
 }
+
+.text-field > select {
+    color:  #000000;
+}
+
 
 .button {
     display: inline-block;
@@ -130,36 +140,42 @@ body * {
     right: 0;
 }
 
+.dual-field {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.text-field.small {
+    flex: 1;
+}
+
 .texto {
-    color: #50a19f;
-    font-size: 15px;
+    color: #000266;
+    font-size: 17px;
     cursor: pointer;
-    margin-left: 35%;
+    margin-left: 1px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.texto:hover {
-    color: #01194D;
-    transition: 0.6s ease-out;
-}
-
-@media only screen and (max-width:950px) {
-    .card-login {
+@media only screen and (max-width:950px){
+    .card-cadastro{
         width: 85%;
     }
 }
 
-@media only screen and (max-width:600px) {
-    .main-login {
+@media only screen and (max-width:600px){
+    .main-cadastro{
         flex-direction: column;
     }
 
-    .left-login,
-    .right-login {
+    .left-cadastro, .right-cadastro{
         width: 100%;
         height: auto;
     }
 
-    .card-login {
+    .card-cadastro{
         width: 90%;
         margin: 40px 0;
     }

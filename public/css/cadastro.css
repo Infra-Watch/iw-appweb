@@ -95,6 +95,11 @@ body * {
     font-size: 0.85rem;
 }
 
+.text-field > select {
+    color:  #000000;
+}
+
+
 .button {
     display: inline-block;
     text-align: center;

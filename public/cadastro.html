@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="icon" href="assets/imagens/logo-infrawatch.png">
-    <title>Cadastro InfraWatch</title>
+    <title>Cadastro de Usuário InfraWatch</title>
 </head>
 
 <body>
@@ -14,11 +14,11 @@
         <a href="login.html" class="top-arrow">←</a>
         <div class="left-cadastro">
             <div class="card-cadastro">
-                <h1><span class="underline">Ca</span>dastro</h1>
+                <h1><span class="underline">Ca</span>dastro de Usuário</h1>
 
                 <div class="text-field">
-                    <label for="razao">Razão Social</label>
-                    <input type="text" name="razao" id="razao" placeholder="Digite a razão social da empresa">
+                    <label for="razao">Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite o seu nome">
                 </div>
 
                 <div class="text-field">
@@ -26,29 +26,21 @@
                     <input type="email" name="email" id="email" placeholder="exemplo@dominio.com">
                 </div>
 
-                <div class="text-field">
-                    <label for="cnpj">CNPJ</label>
-                    <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00">
-                </div>
-
                 <div class="dual-field">
                     <div class="text-field small">
                         <label for="token">Token de Acesso</label>
-                        <input type="text" name="token" id="token" placeholder="Informe o token de acesso">
-                    </div>
-                    <div class="text-field small">
-                        <label for="tipo">Tipo de Acesso</label>
-                        <select name="tipo" id="tipo">
-                            <option value="" disabled selected>Selecione Aqui!</option>
-                            <option value="admin">Batatinha</option>
-                            <option value="usuario">Sudo</option>
-                        </select>
+                        <input type="text" name="token" id="token" placeholder="Digite o seu token de acesso">
                     </div>
                 </div>
 
                 <div class="text-field">
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Crie uma senha segura!">
+                    <input type="password" name="senha" id="senha" placeholder="Crie uma senha segura">
+                </div>
+
+                <div class="text-field">
+                    <label for="Confirmasenha">Confirmar senha</label>
+                    <input type="password" name="Confirmasenha" id="Confirmasenha" placeholder="Digite sua senha novamente">
                 </div>
 
                 <button class="button" style="vertical-align:middle"><span>Cadastrar</span></button>
