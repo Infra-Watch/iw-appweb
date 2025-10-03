@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-cadastro {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.left-cadastro {
+    width: 50vw;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+}
+
+.right-cadastro {
+    width: 50vw;
+    height: 100vh;
+    background: url("../assets/imagens/img-cadastro-login.webp") no-repeat center center;
+    background-size: cover;
+    filter: brightness(60%);
+}
+
+.card-cadastro {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.card-cadastro > h1 {
+    color: #000266;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.underline {
+    border-bottom: 3px solid #000000;
+    padding-bottom: 3px;
+}
+
+.text-field {
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0;
+    width: 100%;
+}
+
+.top-arrow {
+    position: fixed;
+    left: 70px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #000266;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.text-field > input,
+.text-field > select {
+    width: 100%;
+    border: none;
+    padding: 8px;
+    background: #D4D4D4;
+    font-size: 10pt;
+    outline: none;
+    appearance: none;
+}
+
+.text-field > label {
+    color: #000;
+    margin-bottom: 2px;
+    font-size: 0.85rem;
+}
+
+.btn-cadastro {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 0px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+    background: #01194D;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+.dual-field {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.text-field.small {
+    flex: 1;
+}
+
+.texto {
+    color: #50a19f;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 35%;
+}
+
+@media only screen and (max-width:950px){
+    .card-cadastro{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width:600px){
+    .main-cadastro{
+        flex-direction: column;
+    }
+
+    .left-cadastro, .right-cadastro{
+        width: 100%;
+        height: auto;
+    }
+
+    .card-cadastro{
+        width: 90%;
+        margin: 40px 0;
+    }
+}
