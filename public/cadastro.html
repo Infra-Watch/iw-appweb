@@ -5,40 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
-    <title>Cadastro - InfraWatch</title>
+    <link rel="icon" href="assets/imagens/logo-infrawatch.png">
+    <title>Cadastro InfraWatch</title>
 </head>
 
 <body>
     <div class="main-cadastro">
-        <a href="#" class="top-arrow">←</a>
+        <a href="login.html" class="top-arrow">←</a>
         <div class="left-cadastro">
             <div class="card-cadastro">
                 <h1><span class="underline">Ca</span>dastro</h1>
 
                 <div class="text-field">
                     <label for="razao">Razão Social</label>
-                    <input type="text" name="razao" id="razao">
+                    <input type="text" name="razao" id="razao" placeholder="Digite a razão social da empresa">
                 </div>
 
                 <div class="text-field">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" placeholder="exemplo@dominio.com">
                 </div>
 
                 <div class="text-field">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" name="cnpj" id="cnpj">
+                    <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00">
                 </div>
 
                 <div class="dual-field">
                     <div class="text-field small">
                         <label for="token">Token de Acesso</label>
-                        <input type="text" name="token" id="token">
+                        <input type="text" name="token" id="token" placeholder="Informe o token de acesso">
                     </div>
                     <div class="text-field small">
                         <label for="tipo">Tipo de Acesso</label>
                         <select name="tipo" id="tipo">
-                            <option value="" disabled selected>Selecione</option>
+                            <option value="" disabled selected>Selecione Aqui!</option>
                             <option value="admin">Batatinha</option>
                             <option value="usuario">Sudo</option>
                         </select>
@@ -47,10 +48,10 @@
 
                 <div class="text-field">
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha">
+                    <input type="password" name="senha" id="senha" placeholder="Crie uma senha segura!">
                 </div>
 
-                <button class="btn-cadastro">Cadastrar</button>
+                <button class="button" style="vertical-align:middle"><span>Cadastrar</span></button>
             </div>
         </div>
         <div class="right-cadastro"></div>
