@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Home InfraWatch</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Doodle+Shadow&family=Special+Gothic+Expanded+One&family=Titan+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="assets/imagens/logo-infrawatch.png">
 </head>
@@ -23,8 +21,7 @@
         <div class="navbar">
 
             <div class="logo">
-                <a href="index.html">
-                    <img src="assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+                <a href="index.html"> <img src="assets/imagens/logo-infrawatch.png" alt="InfraWatch">
                 </a>
             </div>
 
@@ -36,39 +33,43 @@
             </div>
 
             <button type="button" id="button-login"> Login </button>
-
         </div>
 
         <div class="texto-inicio">
 
-            <b>Precisão em terra <br>
-                para segurança no ar.
-            </b>
-
-            <span>FDPS monitorado, tráfego otimizado.</span>
-
+            <b> Precisão em terra <br>
+                para segurança no ar. </b>
+            <br>
+            <span>FDPS monitorado, tráfego otimizado. </span>
+            <br>
             <button id="button-conhecer"> Conheça o sistema </button>
-
         </div>
+
+        <div class="efeito-overlay"></div>
+
     </div>
 
     <!-- O QUE FAZEMOS -->
+
     <div id="container-info">
-
+        
+        <b id="pergunta"> O que fazemos? </b>
+        
         <div class="informacoes">
-            <span class="pergunta"> O que fazemos? </span>
 
-            <div class="imagem-informacao">
-                <img src="" alt="">
+            <div id="imagem-informacao">
+                <img src="assets/imagens/img-oquefazemos.jpg" alt="">
             </div>
 
-            <div class="texto-informacao">
-                Em um setor onde a segurança é a prioridade <br>
-                máxima, garantir que o sistema de processamento de <br>
-                dados de voo (FDPS) opere sem falhas é fundamental. <br>
-                Nossa missão pe proteger o seu FDPS, monitorando em tempo <br>
-                real o hardware que o sustenta, para que você possa focar <br>
-                no que realmente impora: a segurança do espaço aéreo.
+            <div id="texto-informacao">
+                <p>
+                    Em um setor onde a segurança é a prioridade <br>
+                    máxima, garantir que o sistema de processamento de <br>
+                    dados de voo (FDPS) opere sem falhas é fundamental. <br>
+                    proteger o seu FDPS, monitorando em tempo <br>
+                    real o hardware que o sustenta, para que você possa focar <br>
+                    no que realmente impora: a segurança do espaço aéreo.
+                </p>
             </div>
         </div>
 
@@ -77,117 +78,120 @@
     <!-- BENEFÍCIOS -->
 
     <div id="container-beneficios">
-        <span class="texto-beneficios"> Benefísios com a solução </span>
+        <span id="titulo-beneficos"> Benefísios com a solução </span>
 
-        <div class="bloco-texto">
-            <span class="titulo-texto"> Continuidade Operacional </span>
-            <img class="icone-texto" alt="">
-            <span class="conteudo-texto"> </span>
+        <div class="textos">
+            <span id="titulos-textos"> Continuidade Operacional </span>
+            <img id="icones-textos" alt="">
+
+            <p class="conteudo-texto">
+                Garanta que seu sistema FDPS <br>
+                funcione sem interrupções, evitando <br>
+                atrasos, desvios de voos e perdas <br>
+                financeiras massivas.
+            </p>
         </div>
-        <div class="bloco-texto">
-            <span class="titulo-texto"> Análise Preditiva de Falhas </span>
-            <img class="icone-texto" alt="">
-            <span class="conteudo-texto"> </span>
+
+        <div class="textos">
+            <span id="titulos-textos"> Análise Preditiva de Falhas </span>
+            <img id="icones-textos" alt="">
+
+            <p class="conteudo-texto">
+                Identifique a falha de um servidor ou <br>
+                componente de rede antes que ela <br>
+                cause uma interrupção em cascata.
+            </p>
         </div>
-        <div class="bloco-texto">
-            <span class="titulo-texto"> Redução de Custos de Manutenção </span>
-            <img class="icone-texto" alt="">
-            <span class="conteudo-texto"> </span>
+
+        <div class="textos">
+            <span id="titulos-textos"> Redução de Cursos de Manutenção </span>
+            <img id="icones-textos" alt="">
+
+            <p class="conteudo-texto">
+                Otimize a manutenção de sua <br>
+                infraestrutura com base em dados <br>
+                concretos evitando a troca <br>
+                desnecessária de componentes e <br>
+                reduzindo os custos operacionais.
+            </p>
         </div>
+
+
     </div>
+
 
     <!-- TECNOLOGIAS -->
+
     <div id="container-tecnologias">
-        <span class="titulo-tecnologias"> Nossa tecnologia por dentro </span>
 
-        <div class="bloco-tecnologia">
-            <img class="tecnologias-imagem" alt="">
-            <span class="texto-tecnologia">
-                Seu hardware com problemas <br>
-                de gerenciamento dos componentes.
-            </span>
-        </div>
+        <span id="titulo-tecnologias"> Nossa tecnologia por dentro </span>
 
-        <div class="bloco-tecnologia">
-            <img class="tecnologias-imagem" alt="">
-            <span class="texto-tecnologia">
-                Nossa aplicação será <br>
-                instalada no software de seu <br>
-                servidor.
-            </span>
-        </div>
+        <img id="tecnologias-imagem" alt="">
+        <span id="texto-tecnologia">
+            Seu hardware com problemas <br> de
+            gerenciamento dos componetes.
+        </span>
 
-        <div class="bloco-tecnologia">
-            <img class="tecnologias-imagem" alt="">
-            <span class="texto-tecnologia">
-                A aplicação da InfraWatch <br>
-                consegue monitorar os seus <br>
-                componentes de hardware e <br>
-                transformar suas informações <br>
-                em dashboards.
-            </span>
-        </div>
+        <img id="tecnologias-imagem" alt="">
+        <span id="texto-tecnologia">
+            Nossa aplicação será <br> instalada no software de seu <br> servidor.
+        </span>
 
-        <div class="bloco-tecnologia">
-            <img class="tecnologias-imagem" alt="">
-            <span class="texto-tecnologia">
-                O monitoramento te <br>
-                possibilita a tomada de <br>
-                decisões mais assertivas.
-            </span>
-        </div>
+        <img id="tecnologias-imagem" alt="">
+        <span id="texto-tecnologia"> A aplicação da InfraWatch <br>
+            consegue monitorar os seus <br>
+            componetes de hardware e <br> transformar suas informações <br> em dashboards.
+        </span>
+
+        <img id="tecnologias-imagem" alt="">
+        <span id="texto-tecnologia">
+            O monitoramento te <br>
+            possibilita a tomada de <br>
+            decisões mais acertivos.
+        </span>
+
 
     </div>
 
-    <!-- CONFORMIDADES -->
+    <!-- COFORMIDADES -->
+
     <div id="container-conformidades">
+        <span id="titulo-conformidades"> Conformidade e regulamentação </span>
 
-        <span class="titulo-conformidades"> Conformidade e regulamentação </span>
+        <div id="coformidade-conteudos">
 
-        <div class="conformidade-conteudos">
-
-            <div class="conformidade-conteudo">
-                <span class="titulo-conteudo"> Rastreabilidade e Integrabilidade dos Dados</span>
-
-                <p class="conformidade-texto">
+            <div id="coformidade-conteudo"> <span id="titulo-conteudo-1"> Rastreabilidade e Integrabilidade dos
+                    Dados</span>
+                <p id="conformidade-texto">
                     Nosso sistema assegura a integridade completa dos dados monitorados. <br>
-                    Cada evento, alteração a métrica de desempenho é registrada com <br>
-                    carimbo de tempo paara uma rastreabilidade total, essencial <br>
-                    para auditorias e investigações de incidentes.
+                    Cada evento, alteração a métrica de desempenho é registrada com <br> carimbo de tempo paara uma
+                    rastreabilidade total, essencial <br> para auditorias e investigações de incidentes.
                 </p>
             </div>
 
-            <div class="conformidade-conteudo">
-                <span class="titulo-conteudo"> Suporte a Auditorias de Segurança </span>
-
-                <p class="conformidade-texto">
-                    Fornecemos ferramentas de geração de relatórios que simplificam o processo de auditoria. <br>
-                    Você pode facilmente extrair e apresentar dados detalhados que comprovem a saúde e a <br>
-                    estabilidade de sua infraestrutura FDPS a auditores externos.
+            <div id="coformidade-conteudo"> <span id="titulo-conteudo-2"> Suporte a Auditorias de Segurança </span>
+                <p id="conformidade-texto">
+                    Fornecemos ferramentas de geração de relatórios que simplificam o processo
+                    de auditoria. <br> Você pode facilmente extrair e apresentar dados detalhados que comprovem a saúde
+                    e a <br> estabilidade de sua infraestrutura FDPS a auditores externos.
                 </p>
             </div>
 
-            <div class="conformidade-conteudo">
-                <span class="titulo-conteudo"> Sobre nós </span>
-
-                <p class="conformidade-texto">
-                    Nós nascemos da compreensão de que a segurança e a fluidez do tráfego <br> aéreo
-                    dependem de uma infraestrutura robusta e infalível em solo. <br>
-                    Nossa missão é proteger o Sistema de Processamento de Dados de Voo (FDPS), <br>
-                    o coração tecnológico que guia e monitora cada aeronave, garantindo que ele <br>
-                    opere com precisão e resiliência absolutas.<br>
+            <div id="conformidade-conteudo"> <span id="titulo-conteudo-2"> Sobre nós </span>
+                <p id="conformidade-texto">
+                    Nós nascemos da compreensão de que a segurança e a fluidez do tráfego <br>
+                    aéreo dependem de uma infraestrutura robusta e infalível em solo. <br> Nossa missão é proteger o
+                    Sistema de Processamento de Dados de Voo (FDPS), <br> o coração tecnológico que guia e monitora cada
+                    aeronave, garantindo que ele <br> opere com precisão e resiliência absolutas.<br>
                 </p>
             </div>
 
-            <div class="palavras-chave">
-                <span class="palavra-chave"> Segurança </span>
-                <span class="palavra-chave"> Precisão </span>
-                <span class="palavra-chave"> Integridade </span>
-                <span class="palavra-chave"> Inovação </span>
+            <div id="palavras-chave">
+                <span id="palavra-chave"> Segurança </span> <span id="palavra-chave"> Precisão </span>
+                <span id="palavra-chave"> Integridade </span>
+                <span id="palavra-chave"> Inovação </span>
             </div>
-
         </div>
-
     </div>
 
     <!-- EQUIPE -->
@@ -229,7 +233,7 @@
     <div id="container-formulario">
 
         <img id="formulario-logo" src="" alt="">
-        
+
         <div class="formulario-informacoes">
             <span class="formulario-titulo-informacao"> Email </span>
             <span class="formulario-informacao"> infrawatch@contatoIW.com </span>
@@ -262,6 +266,7 @@
         </div>
 
     </div>
+    <!-- </div> -->
 
 </body>
 
