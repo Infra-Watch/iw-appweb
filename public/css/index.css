@@ -4,11 +4,26 @@ body {
     width: 100%;
     margin: 0;
 
-    font-family: "Josefin Sans", sans-serif;
+    /* font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal; */
+
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+
+    /* font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
-    font-style: normal;
+    font-style: normal; */
+
 }
+
 
 button {
     font-family: "Josefin Sans", sans-serif;
@@ -16,6 +31,7 @@ button {
     transition: all 0.3s ease;
     font-weight: bold;
     font-style: normal;
+
 
     background-color: rgb(205, 205, 222);
     color: rgb(0, 135, 135);
@@ -32,10 +48,13 @@ button:hover {
 }
 
 #container-home {
+    min-width: 320px;
     width: 100%;
+    /* max-width: 1300px;  */
     height: 100vh;
     position: relative;
     background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
+    margin: auto;
 }
 
 .navbar {
@@ -54,6 +73,8 @@ button:hover {
 .logo img {
     width: clamp(2rem, 110px, 7rem);
     height: clamp(2rem, 110px, 7rem);
+    border: solid white 1px;
+    border-radius: 200px;
 }
 
 .navbar-links {
@@ -202,7 +223,7 @@ button:hover {
     position: absolute;
     color: rgb(255, 255, 255);
     font-size: clamp(2rem, 3vw, 5rem);
-    top: 7vh;
+    top: 5vh;
     left: 7vw;
 }
 
@@ -234,12 +255,13 @@ button:hover {
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 0;
+    padding: 0.9vh;
 }
 
 .textos img {
-    width: 5vw;
-    height: 10vh;
+    width: 4vw;
+    height: 8vh;
+    margin-left: 1vw;
 }
 
 #titulos-textos {
@@ -484,11 +506,10 @@ button:hover {
     justify-content: center;
     flex-direction: row;
     background-color: #001f22;
-    border: solid 1px white;
-    border-radius: 7px;
     color: white;
     margin-top: 10vh;
-    padding-top: 10vh;
+    /* padding-top: 10vh; */
+    height: 80vh;
 }
 
 #titulo-formulario {
@@ -537,11 +558,11 @@ button:hover {
 #inp_nome_empresa,
 #inp_email_empresa,
 #inp_mensagem_empresa {
-    width: 15vw;
+    width: 25vw;
 }
 
 #inp_mensagem_empresa {
-    height: 15vh;
+    height: 25vh;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -551,4 +572,14 @@ button:hover {
     margin-top: 3vh;
     color: white;
     background-color: #036a7a;
+}
+
+/* RESPONSIVIDADE DOS CONTAINERS */
+
+@media screen and (max-width: 1250px) {
+
+    /* NAVBAR */
+    .navbar-links {
+        display: none;
+    }
 }
