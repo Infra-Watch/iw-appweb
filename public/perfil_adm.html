@@ -1,86 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boas-Vindas InfraWatch</title>
-    <link rel="stylesheet" href="css/perfil_adm.css">
+    <title>Boas-Vindas | InfraWatch</title>
+    <link rel="stylesheet" href="css/perfil.css">
     <link rel="icon" href="assets/imagens/logo-infrawatch.png">
 </head>
 
 <body>
     <div id="container-home">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"> <img src="assets/imagens/logo-infrawatch.png" alt="InfraWatch">
-            </a>
-        </div>
-
-         <div class="navbar-links">
-                <a href="index.html"> Home </a>
-                <a href=""> Serviços </a>
-                <a href=""> Sobre nós </a>
-                <a href=""> Contato </a>
-            </div>
-        </div>
-        <div class="texto-inicio">
-            <h1>Boas Vindas!</h1>
-            </div>
-        <div id="container-beneficios">
-        <div class="textos">
-           <div class="cabecalho-texto">
-                <h2 id="titulos-textos">Homepage</h2>
-                <img id="icones-textos" src="assets/imagens/logo-infrawatch.png">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+                </a>
             </div>
 
-            <p class="conteudo-texto">
-                Acesso a página home do nosso site.
-            </p>
-        </div>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="#">Serviços</a>
+                <a href="#">Sobre nós</a>
+                <a href="#">Contato</a>
+                <a href="#">Configurações</a>
+            </div>
+        </nav>
 
-        <div class="textos">
-            <div class="cabecalho-texto">
-                <h2 id="titulos-textos">Dashboard</h2>
-                <img id="icones-textos" src="assets/imagens/logo-infrawatch.png">
+        <section class="texto-inicio">
+            <h1>Boas-vindas, administrador!</h1>
+            <p>Selecione uma das opções para continuar sua navegação.</p>
+        </section>
+
+        <section id="container-beneficios">
+            <div class="card">
+                <h2>Dashboard</h2>
+                <p>Acompanhe métricas em tempo real e consulte o histórico de capturas do sistema.</p>
+                <a href="#" class="botao-acessar">Acessar</a>
+            </div>
+            <div class="card">
+                <h2>Gerenciamento de Token</h2>
+                <p>Crie, renove ou desative tokens de autenticação utilizados pelas empresas clientes.</p>
+                <a href="#" class="botao-acessar">Acessar</a>
             </div>
 
-            <p class="conteudo-texto">
-                Acesso aos históricos de captura e acompanhamento em tempo real.
-            </p>
-        </div>
-        <div class="textos">
-            <div class="cabecalho-texto">
-                <h2 id="titulos-textos">Perfil de Usuário</h2>
-                <img id="icones-textos" src="assets/imagens/logo-infrawatch.png">
+            <div class="card">
+                <h2>Gerenciamento de Máquinas e Componentes</h2>
+                <p>Adicione, edite ou remova máquinas e componentes monitorados vinculados às empresas cadastradas.</p>
+                <a href="#" class="botao-acessar">Acessar</a>
             </div>
-
-            <p class="conteudo-texto">
-                Acesso as configurações de perfil de usuário.
-            </p>
-        </div>
-        <div class="textos">
-            <div class="cabecalho-texto">
-                <h2 id="titulos-textos">Gerenciamento de Tokens</h2>
-                <img id="icones-textos" src="assets/imagens/logo-infrawatch.png">
-            </div>
-
-            <p class="conteudo-texto">
-                Acesso ao gerenciamento de tokens.
-            </p>
-        </div>
-        <div class="textos">
-            <div class="cabecalho-texto">
-                <h2 id="titulos-textos">Gerenciamento de Máquinas e Componentes</h2>
-                <img id="icones-textos" src="assets/imagens/logo-infrawatch.png">
-            </div>
-
-            <p class="conteudo-texto">
-                Acesso ao gerenciamento das máquinas e os componentes.
-            </p>
-        </div>
-        </div>
-    </div>
+        </section>
     </div>
 </body>
 </html>
