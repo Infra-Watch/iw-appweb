@@ -24,8 +24,13 @@ body {
 
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
-button {
+
+button, 
+#button-login{
     font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     transition: all 0.3s ease;
@@ -39,12 +44,18 @@ button {
     cursor: pointer;
     border: none;
     z-index: 1;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-button:hover {
+button:hover,
+#button-login:hover {
     background-color: rgb(114, 114, 114);
     transform: scale(1.10);
     color: rgb(255, 255, 255);
+    align-items: center;
 }
 
 #container-home {
@@ -179,7 +190,6 @@ button:hover {
 }
 
 .informacoes:hover {
-    width: 70.5vw;
     height: 52vh;
 }
 
@@ -537,6 +547,7 @@ button:hover {
 .formulario-icone {
     height: 6vh;
     width: 3vw;
+    padding: 1vh;
 }
 
 .formulario-informacoes {
@@ -575,11 +586,3 @@ button:hover {
 }
 
 /* RESPONSIVIDADE DOS CONTAINERS */
-
-@media screen and (max-width: 1250px) {
-
-    /* NAVBAR */
-    .navbar-links {
-        display: none;
-    }
-}
