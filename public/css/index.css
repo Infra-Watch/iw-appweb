@@ -276,6 +276,7 @@ button:hover,
 
 #titulos-textos {
     color: rgba(255, 255, 255, 0.555);
+    font-size: clamp(1.5rem, 2rem, 4rem);
 }
 
 /* TECNOLOGIAS */
@@ -341,14 +342,17 @@ button:hover,
 
 #container-conformidades h3 {
     color: rgba(255, 255, 255, 0.555);
+    font-size: clamp(1rem, 1.5rem, 3.5rem);
+
 }
 
 #container-conformidades img {
-    width: 20vw;
+    width: 18vw;
     height: auto;
     display: flex;
-    border-radius: 7px;
+    border-radius: 25px;
     justify-content: end;
+    padding: 1vw;
 }
 
 #conformidade-imagem {
