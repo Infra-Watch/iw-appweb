@@ -26,14 +26,6 @@ body * {
     padding-top: 30px;
 }
 
-.right-cadastro {
-    width: 50vw;
-    height: 100vh;
-    background: url("../assets/imagens/img-cadastro-login.webp") no-repeat center center;
-    background-size: cover;
-    filter: brightness(60%);
-}
-
 .card-cadastro {
     width: 80%;
     display: flex;
@@ -179,4 +171,132 @@ body * {
         width: 90%;
         margin: 40px 0;
     }
+}
+    .geral {
+    width: 100%;
+    margin-top: 5vh;
+    padding: 0 5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.titulo {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000266;
+}
+
+.ipt_pesquisa {
+    width: 40%;
+    height: 40px;
+    border-radius: 30px;
+    padding: 0 20px;
+    background-color: #D4D4D4;
+    border: 2px solid #000266;
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+}
+
+.btn_pesquisa {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #000266;
+}
+
+.usuarios {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.labels {
+    width: 100%;
+    margin-top: 2vh;
+    height: 40px;
+    justify-content: space-evenly;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    color: #000266;
+}
+
+.labels p {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: 700;
+}
+
+.user-infos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    background-color: #F4F4F4;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 5px;
+    color: #000;
+}
+
+.id-user,
+.nome-user,
+.email-user,
+.data-user {
+    text-align: center;
+}
+
+.id-user {
+    width: 10%;
+}
+
+.nome-user {
+    width: 20%;
+}
+
+.email-user {
+    width: 20%;
+}
+
+.data-user {
+    width: 20%;
+}
+
+.btn-excluir {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #01194D;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-excluir:hover {
+    background-color: #000266;
 }
