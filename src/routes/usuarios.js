@@ -11,4 +11,28 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/buscar/:id", function (req, res) {
+    usuarioController.buscarPorId(req, res);
+});
+
+router.put("/atualizarNome", function (req,res) {
+    usuarioController.atualizarNome(req,res);
+});
+
+router.put("/atualizarEmail", function (req,res) {
+    usuarioController.atualizarEmail(req,res);
+});
+
+router.put("/atualizarSenha", function (req,res) {
+    usuarioController.atualizarSenha(req,res);
+});
+
+router.put("/atualizarCategoriaAcesso", function (req,res) {
+    usuarioController.atualizarCategoriaAcesso(req,res);
+});
+
+router.delete("/remover/:id", function (req,res) {
+    usuarioController.remover(req, res);
+});
+
 module.exports = router;
