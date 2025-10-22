@@ -15,7 +15,7 @@ router.get("/buscarPorId/:idUsuario/:idEmpresa", function (req, res) {
     usuarioController.buscarPorId(req, res);
 });
 
-router.get("/buscarPorEmpresaECategoria/:id", function (req, res) {
+router.get("/buscarPorEmpresaECategoria/:idEmpresa/:idCategoria", function (req, res) {
     usuarioController.buscarPorEmpresaECategoria(req, res);
 });
 
