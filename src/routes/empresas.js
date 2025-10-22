@@ -7,11 +7,11 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
-router.get("/buscar/:id", function (req, res) {
+router.get("/buscar/:idEmpresa", function (req, res) {
   empresaController.buscarPorId(req, res);
 });
 
-router.delete("/remover/:id", function (req, res) {
+router.delete("/remover/:idEmpresa", function (req, res) {
   empresaController.remover(req, res);
 });
 

@@ -131,9 +131,11 @@ function buscarPorEmpresaECategoria(req, res){
 }
 
 
+
 module.exports = {
     cadastrar,
     autenticar,
     buscarPorId,
-    buscarPorEmpresaECategoria
+    buscarPorEmpresaECategoria,
+
 }
