@@ -36,16 +36,16 @@ function cadastrar(req, res){
 }
 
 function autenticar(req, res) {
-    var usuario = req.body.usuarioServer;
+    var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    if (usuario == undefined) {
-        res.status(400).send("Seu usuario está undefined!");
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(usuario, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -54,16 +54,7 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        res.json({
-                            id: resultadoAutenticar[0].idUsuario,
-                            nome: resultadoAutenticar[0].nome,
-                            sobrenome: resultadoAutenticar[0].sobrenome,
-                            username: resultadoAutenticar[0].username,
-                            telefonecelular: resultadoAutenticar[0].telefoneCelular,
-                            cpf: resultadoAutenticar[0].cpf,
-                            email: resultadoAutenticar[0].email
-
-                        });
+                        res.json(resultadoAutenticar);
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -84,6 +75,6 @@ function autenticar(req, res) {
 }
 
 module.exports = {
-    autenticar,
     cadastrar,
+    autenticar,
 }
