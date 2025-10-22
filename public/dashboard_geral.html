@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dashboard Geral | InfraWatch</title>
+    <link rel="stylesheet" href="css/dashboard_geral.css">
+    <link rel="icon" href="assets/imagens/logo-infrawatch.png">
+</head>
+
+<body>
+
+    <!-- PAINEL DA ESQUERDA -->
+    <aside id="painel-esquerda">
+
+        <img id="logo" src="assets/imagens/logo-infrawatch.png">
+
+        <nav>
+            <a href="dashboard_geral.html" id="tela-atual">
+                <img src="assets/imagens/grafico-de-barras-branco.png">
+                Painel Geral </a>
+
+            <a href="dashboard_detalhada.html">
+                <img src="assets/imagens/filtro.png">
+                Detalhes </a>
+
+            <a href="perfil_usuario.html">
+                <img src="assets/imagens/saida.png">
+                Voltar </a>
+        </nav>
+
+    </aside>
+
+    <div id="conteudo-geral">
+
+        <header id="cabecalho">
+            <h1> Painel de Desempenho do Sistema </h1>
+            <h1> Empresa X </h1>
+        </header>
+
+        <!-- KPIS -->
+        <section id="kpis">
+
+            <article class="kpi">
+                <img class="icons" src="assets/imagens/verificado.png">
+
+                <div id="conteudo-kpi">
+                    <h2> (qtd maquinas ativas) </h2>
+                    <p> Máquinas Ativas </p>
+                </div>
+            </article>
+
+            <article class="kpi">
+                <img class="icons" src="assets/imagens/pra-cima.png">
+
+                <div id="conteudo-kpi">
+                    <h2> (%) </h2>
+                    <p> Taxa de ... </p>
+                </div>
+            </article>
+
+
+            <article class="kpi">
+                <img class="icons" src="assets/imagens/sinal-de-aviso.png">
+
+                <div id="conteudo-kpi">
+                    <h2> Quantidade de Máquinas: (%) </h2>
+                    <p> Maior Criticidade agora </p>
+                </div>
+            </article>
+
+            <article class="kpi">
+                <img class="icons" src="assets/imagens/alarme.png ">
+
+                <div id="conteudo-kpi">
+                    <h2> Quantidade de Máquinas: (%) </h2>
+                    <p> Maior Criticidade agora </p>
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- PAINEL GERAL DE MÁQUINAS -->
+        <main id="main-painel-geral">
+
+            <section class="maquinas">
+
+                <article class="card-maquina">
+                    <h3> Máquina 1
+                        <img class="status-bolinha" src="assets/imagens/circulo-verde.png" alt="Status Estável">
+                    </h3>
+                    <p> Status: <span id="stts_ok"> Estável </span> </p>
+                </article>
+
+                <article class="card-maquina">
+                    <h3> Máquina 2
+                        <img class="status-bolinha" src="assets/imagens/circulo-amarelo.png" alt="Status Instável">
+                    </h3>
+                    <p> Status: <span id="stts_perigo"> Instável </span> </p>
+                </article>
+
+                <article class="card-maquina">
+                    <h3> Máquina 3
+                        <img class="status-bolinha" src="assets/imagens/circulo-vermelha.png" alt="Status Crítico">
+                    </h3>
+                    <p> Status: <span id="stts_critico"> Crítico </span> </p>
+                </article>
+
+            </section>
+
+            <!-- ALERTAS -->
+            <section id="alertas">
+
+                <p>Últimos Alertas:</p>
+
+                <article class="alerta">
+                    <p> ... </p>
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
