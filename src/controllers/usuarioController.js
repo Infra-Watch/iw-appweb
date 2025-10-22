@@ -74,7 +74,37 @@ function autenticar(req, res) {
 
 }
 
+function buscarPorId(req, res){
+    var idUsuario = req.params.idUsuario;
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("O idEmpresa está undefined!");
+    } else {
+        usuarioModel.buscarPorId(idUsuario, idEmpresa)
+            .then(
+                function (resultado) {
+                    if (resultado.length > 0) {
+                        res.status(200).json(resultado);
+                    } else {
+                        res.status(404).send("Nenhum usuário encontrado com os parâmetros informados.");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao buscar o usuário por ID! Erro:", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     cadastrar,
     autenticar,
+    buscarPorId,
 }
