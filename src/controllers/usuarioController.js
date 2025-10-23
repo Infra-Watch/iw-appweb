@@ -44,17 +44,23 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-
         usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                    if (resultadoAutenticar.length == 1) {
+                    
+                    if (resultadoAutenticar.length > 0) {
                         console.log(resultadoAutenticar);
-
-                        res.json(resultadoAutenticar);
+                        res.json({
+                            idUsuario: resultadoAutenticar[0][0].idUsuario,
+                            idEmpresa: resultadoAutenticar[0][0].idEmpresa,
+                            idCategoria: resultadoAutenticar[0][0].idCategoria,
+                            nome: resultadoAutenticar[0][0].nome,
+                            email: resultadoAutenticar[0][0].email,
+                            status_ativacao: resultadoAutenticar[0][0].status_ativacao,
+                            permissoes: resultadoAutenticar[0][0].permissoes,
+                        });
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
