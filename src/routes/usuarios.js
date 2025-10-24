@@ -11,8 +11,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.get("/buscar/:id", function (req, res) {
+router.get("/buscarPorId/:idUsuario/:idEmpresa", function (req, res) {
     usuarioController.buscarPorId(req, res);
+});
+
+router.get("/buscarPorEmpresaECategoria/:idEmpresa/:idCategoria", function (req, res) {
+    usuarioController.buscarPorEmpresaECategoria(req, res);
 });
 
 router.put("/atualizarNome", function (req,res) {

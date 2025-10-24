@@ -19,12 +19,6 @@ body {
         "wdth" 100;
 }
 
-/* ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-} */
-
 nav {
     display: flex;
     flex-direction: column;
@@ -91,20 +85,28 @@ a img {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    width: auto;
+    width: 100%;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }
 
 #cabecalho h1 {
+    margin-bottom: 0;
     color: #043b4d;
+}
+
+#maquina-exibe {
+    margin-left: 1.5rem;
+    padding: 0.5rem;
+    width: 35vw;
+    border: 2px solid #464646;
+    border-radius: 10px;
 }
 
 
 /* KPIS */
 #kpis {
     display: flex;
-    justify-content: center;
     flex-direction: row;
     gap: 20px;
     width: auto;
@@ -114,8 +116,8 @@ a img {
 
 .kpi {
     display: flex;
-    align-items: center;
-    flex-direction: row;
+    justify-content: start;
+    flex-direction: column;
 
     width: 19vw;
     height: 15vh;
@@ -125,15 +127,18 @@ a img {
     font-size: clamp(0.9rem, 1rem, 2.5rem);
 }
 
-.icons {
-    margin-left: 0;
-    width: clamp(3rem, 50px, 7rem);
-    height: clamp(3rem, 50px, 7rem);
+.kpi h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 #conteudo-kpi {
     margin-left: 25px;
 }
+
 
 /* PAINEL GERAL */
 #main-painel-geral {
@@ -143,72 +148,56 @@ a img {
 }
 
 
-
-/* MÁQUINAS */
-.maquinas {
+/* GRÁFICOS */
+.graficos {
     display: flex;
     flex-direction: row;
-    width: auto;
+    width: 63vw;
     height: auto;
-    gap: 1.5vw;
+    gap: 1vw;
     padding: 1.5rem 1.5rem 0 1.5rem;
     flex-wrap: wrap;
-    font-size: clamp(1rem, 1.2rem, 3rem);
+    /* font-size: clamp(1rem, 1.2rem, 3rem); */
 }
 
-.maquinas h3 {
-    font-size: clamp(1.2rem, 1.5rem, 3rem);
-    font-weight: bold;
+.graficos p {
+    font-size: clamp(0.5rem, 1rem, 3rem);
+}
+
+.grafico-gauge-chart {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0;
-}
-
-.card-maquina {
+    justify-content: center;
     border: 2px solid rgb(110, 110, 110);
     border-radius: 10px;
-    padding: 1.5rem;
-    width: 29vw;
+    padding: 0.5rem;
+    width: 15vw;
     height: 20vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-.card-maquina p {
-    padding-bottom: 1rem;
-    border-bottom: 4.5px solid rgba(110, 110, 110, 0.723);
-}
-
-.status-bolinha {
-    width: 3rem;
-    height: 3rem;
-}
-
-
-#stts_ok {
-    font-weight: bold;
-    color: rgb(12, 142, 12);
-
-}
-
-#stts_perigo {
-    font-weight: bold;
-    color: rgb(220, 224, 0);
-}
-
-#stts_critico {
-    font-weight: bold;
-    color: rgb(229, 0, 0);
+.card-grafico {
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(110, 110, 110);
+    border-radius: 10px;
+    padding: 0.5rem;
+    width: 21vw;
+    height: 20vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 
 /* ALERTAS */
 #alertas {
     display: flex;
+    flex-direction: column;
+    margin-top: 18px;
     width: 25%;
     height: auto;
     gap: 10px;
-    flex-direction: column;
     padding: 1.5rem 1.5rem 1.5rem 0;
+
+    color: black;
 }
 
 .alerta {
