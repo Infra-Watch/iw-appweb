@@ -120,7 +120,7 @@ a img {
     flex-direction: column;
 
     width: 19vw;
-    height: 15vh;
+    height: 13vh;
     border: 2px solid #464646;
     border-radius: 10px;
     padding: 5px;
@@ -177,13 +177,23 @@ a img {
 
 .card-grafico {
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
     border: 2px solid rgb(110, 110, 110);
     border-radius: 10px;
     padding: 0.5rem;
     width: 21vw;
     height: 20vh;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+#chart-apex{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: auto;
+    height: auto;
 }
 
 

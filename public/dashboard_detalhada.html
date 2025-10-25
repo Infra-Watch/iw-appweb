@@ -88,7 +88,7 @@
 
                     <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
 
-                    <div id="chart-apex"></div>
+                    <div id="chart-apex-temp"></div>
 
                 </article>
 
@@ -96,7 +96,7 @@
 
                     <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
 
-                    <!-- <div id="chart-apex"></div> -->
+                    <div id="chart-apex-freq"></div>
 
                 </article>
 
@@ -123,34 +123,43 @@
 
 <script>
 
-    let el = document.getElementById("chart-apex");
-    let options = {
+    let grafico_1 = document.getElementById("chart-apex-temp");
+    let options_1 = {
         chart: {
             type: 'line',
-
+            width: 300,
+            height: 110,
+            animations: {
+                enabled: true,
+                easing: 'linear',
+                dynamicAnimation: {
+                    speed: 1000
+                }
+            }
         },
         series: [{
             name: 'Temperatura CPU',
-            data: [10, 35, 30, 50],
+            data: [10, 35, 30, 50, 82, 35, 65, 120],
         }]
     };
 
-    let chart = new ApexCharts(el, options);
-    chart.render();
+    let chart_1 = new ApexCharts(grafico_1, options_1);
+    chart_1.render();
 
-    // let el = document.getElementById("chart-apex");
+    let grafico_2 = document.getElementById("chart-apex-freq");
+    let options_2 = {
+        chart: {
+            type: 'line',
+            width: 300,
+            height: 110,
+        },
+        series: [{
+            name: 'Frequência da CPU (MHz)',
+            data: [10, 35, 30, 50, 82, 35, 65, 120],
+        }]
+    };
 
-    // let options = {
-    //     chart: {
-    //         type: 'line'
-    //     },
-    //     series: [{
-    //         name: 'Temperatura CPU',
-    //         data: [10, 35, 30, 50]
-    //     }]
-    // };
-
-    // let chrt = new ApexCharts(el, options);
-    // chrt.render();
+    let chart_2 = new ApexCharts(grafico_2, options_2);
+    chart_2.render();
 
 </script>
