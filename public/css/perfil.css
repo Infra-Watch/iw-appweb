@@ -10,10 +10,10 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 99%;
     font-size: 15px;
     gap: 1rem;
-    padding: 1rem 0;
+    padding:  0 1rem 0 0;
 }
 
 .logo {

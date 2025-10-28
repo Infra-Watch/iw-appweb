@@ -5,94 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dashboard Geral | InfraWatch</title>
-    <link rel="stylesheet" href="css/dashboard_geral.css">
+    <link rel="stylesheet" href="./css/dashboard_geral.css">
     <link rel="icon" href="assets/imagens/logo-infrawatch.png">
 </head>
 
 <body>
 
-    <!-- PAINEL DA ESQUERDA -->
-    <aside id="painel-esquerda">
-        
-        <a href="login.html">
-            <img id="logo" src="assets/imagens/logo-infrawatch.png">
-        </a>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+            </a>
+        </div>
 
-        <nav>
-            <a href="dashboard_geral.html" id="tela-atual">
-                <img src="assets/imagens/grafico-de-barras-branco.png">
-                Painel Geral </a>
+        <div class="navbar-links">
+            <div id="links">
+                <a href="index.html"> Home </a>
+                <a href="login.html"> Login </a>
+                <a href="html user perfil adm/perfil_adm.html"> Página Inical</a>
+                <a href="dashboard_geral.html" class="pagina-atual"> Dashboard </a>
+            </div>
 
-            <a href="dashboard_detalhada.html">
-                <img src="assets/imagens/filtro-preto.png">
-                Detalhes </a>
+            <div id="conta">
+                <a href="index.html" class="minha-conta">
+                    Minha Conta
+                    <img src="./assets/imagens/minha-conta.png" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
 
-            <a href="perfil_usuario.html">
-                <img src="assets/imagens/saida.png">
-                Voltar </a>
-        </nav>
 
-    </aside>
+    <header id="cabecalho">
+        <h1> Painel de Desempenho do Sistema </h1>
+        <h1> Empresa X </h1>
+    </header>
 
     <div id="conteudo-geral">
 
-        <header id="cabecalho">
-            <h1> Painel de Desempenho do Sistema </h1>
-            <h1> Empresa X </h1>
-        </header>
-
-        <!-- KPIS -->
-        <section id="kpis">
-
-            <article class="kpi">
-            
-                <img class="icons" src="assets/imagens/verificado.png">
-
-                <div id="conteudo-kpi">
-                    <h1> 3/3 </h1>
-                    <p> Máquinas Ativas </p>
-                </div>
-            
-            </article>
-
-            <article class="kpi">
-            
-                <img class="icons" src="assets/imagens/pra-cima.png">
-
-                <div id="conteudo-kpi">
-                    <h2> 51,79 Mbps</h2>
-                    <p> Tráfego total de dados </p>
-                </div>
-            
-            </article>
-
-
-            <article class="kpi">
-            
-                <img class="icons" src="assets/imagens/sinal-de-aviso.png">
-
-                <div id="conteudo-kpi">
-                    <h2> Máquina <span id="maq_maior_criticidade"> 2 </span> </h2>
-                    <p> Maior Criticidade agora </p>
-                </div>
-            
-            </article>
-
-            <article class="kpi">
-
-                <img class="icons" src="assets/imagens/alarme.png ">
-
-                <div id="conteudo-kpi">
-                    <h2> Alertas: <span id="qtd_ultimos_alertas"> 2 </span> </h2>
-                    <p> Últimas 24 horas </p>
-                </div>
-
-            </article>
-
-        </section>
-
         <!-- PAINEL GERAL DE MÁQUINAS -->
         <main id="main-painel-geral">
+
+            <!-- KPIS -->
+            <section id="kpis">
+
+                <article class="kpi">
+
+                    <img class="icons" src="assets/imagens/verificado.png">
+
+                    <div id="conteudo-kpi">
+                        <h1> 3/3 </h1>
+                        <p> Máquinas Ativas </p>
+                    </div>
+
+                </article>
+
+                <article class="kpi">
+
+                    <img class="icons" src="assets/imagens/trafego-da-web.png">
+
+                    <div id="conteudo-kpi">
+                        <h2> 51,79 Mbps</h2>
+                        <p> Tráfego total de dados </p>
+                    </div>
+
+                </article>
+
+
+                <article class="kpi">
+
+                    <img class="icons" src="assets/imagens/sinal-de-aviso.png">
+
+                    <div id="conteudo-kpi">
+                        <h2> Máquina <span id="maq_maior_criticidade"> 3 </span> </h2>
+                        <p> Maior Criticidade - Hora: <span id="horario"> 15:00 </span></p>
+
+                    </div>
+
+                </article>
+
+            </section>
 
             <section class="maquinas">
 
@@ -119,18 +112,41 @@
 
             </section>
 
-            <!-- ALERTAS -->
-            <section id="alertas">
-
-                <p>Últimos Alertas:</p>
-
-                <article class="alerta">
-                    <p> ... </p>
-                </article>
-
-            </section>
-
         </main>
+
+        <!-- ALERTAS -->
+        <section id="alertas">
+
+            <article class="kpi">
+
+                <img class="icons" src="assets/imagens/alarme.png ">
+
+                <div id="conteudo-kpi">
+                    <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 1 </span> </h2>
+                    <p> Tempo: últimas 24 horas </p>
+                </div>
+            </article>
+
+            <p>Todos os últimos alertas:</p>
+
+            <article class="alerta">
+                <p>
+                    Máquina: <span id="maquina_alerta"> 3 </span> <br>
+                    Componente crítico: <span id="componente_critico"> CPU </span> <br>
+                    Registro de pico: <span id="registro_pico"> 95% </span> <br>
+                </p>
+            </article>
+
+             <article class="alerta">
+                <p>
+                    Máquina: <span id="maquina_alerta"> 2 </span> <br>
+                    Componente crítico: <span id="componente_critico"> RAM </span> <br>
+                    Registro de pico: <span id="registro_pico"> 97% </span> <br>
+                </p>
+            </article>
+
+
+        </section>
 
     </div>
 

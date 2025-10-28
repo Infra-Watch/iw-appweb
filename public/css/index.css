@@ -96,6 +96,7 @@ button:hover,
 
 .navbar {
     display: flex;
+    /* justify-content: center; */
     align-items: center;
     width: 100%;
     font-size: clamp(1rem, 1.5rem, 5rem);
@@ -103,15 +104,12 @@ button:hover,
 }
 
 .logo {
-    padding-left: 3vw;
     top: 0px;
 }
 
 .logo img {
-    width: clamp(2rem, 110px, 7rem);
+    width: clamp(5rem, 500px, 12rem);
     height: clamp(2rem, 110px, 7rem);
-    border: solid white 1px;
-    border-radius: 200px;
 }
 
 .navbar-links {
