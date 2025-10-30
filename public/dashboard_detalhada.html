@@ -31,7 +31,7 @@
             </div>
 
             <div id="conta">
-                
+
                 <a href="index.html" class="minha-conta">
                     Minha Conta
                     <img src="./assets/imagens/minha-conta.png" alt="">
@@ -69,6 +69,8 @@
 
                         <p> Uso de <span id="componente"> CPU </span> % </p>
 
+                        <div id="chart-apex-gauge-cpu"></div>
+
                     </article>
 
                     <article class="card-grafico">
@@ -88,12 +90,14 @@
                     </article>
 
                 </div>
-                
+
                 <div class="graficos-componentes">
-                    
+
                     <article class="grafico-gauge-chart">
 
                         <p> Uso de <span id="componente"> Rede </span> % </p>
+
+                        <div id="chart-apex-gauge-rede"></div>
 
                     </article>
 
@@ -129,6 +133,7 @@
                         <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 2 </span> </h2>
                         <p> Tempo: últimas 24 horas </p>
                     </div>
+                    
                 </article>
 
                 <p>Todos os últimos alertas:</p>
@@ -148,74 +153,8 @@
 
     </div>
 
+    <script src="js/graficos.js"></script>
+
 </body>
 
 </html>
-
-<script>
-
-// GRÁFICO 1
-    let grafico_1 = document.getElementById("chart-apex-temp-cpu");
-    let options_1 = {
-        chart: {
-            type: 'area',
-            width: 300,
-            height: 110,
-        },
-        series: [{
-            name: 'Temperatura CPU',
-            data: [10, 35, 30, 50, 82, 35, 65, 120],
-        }]
-    };
-    let chart_1 = new ApexCharts(grafico_1, options_1);
-    chart_1.render();
-
-    // GRÁFICO 2
-    let grafico_2 = document.getElementById("chart-apex-freq-cpu");
-    let options_2 = {
-        chart: {
-            type: 'line',
-            width: 300,
-            height: 110,
-        },
-        series: [{
-            name: 'Frequência da CPU (MHz)',
-            data: [10, 35, 30, 50, 82, 35, 65, 120],
-        }]
-    };
-    let chart_2 = new ApexCharts(grafico_2, options_2);
-    chart_2.render();
-
-    // GRÁFICO 3
-    let grafico_3 = document.getElementById("chart-apex-env-mbps");
-    let options_3 = {
-        chart: {
-            type: 'radialBar',
-            width: 300,
-            height: 110,
-        },
-        series: [{
-            name: 'Mbps Enviados',
-            data: [50, 56, 45, 39, 52, 45, 55, 50],
-        }]
-    };
-    let chart_3 = new ApexCharts(grafico_3, options_3);
-    chart_3.render();
-
-    // GRÁFICO 4
-    let grafico_4 = document.getElementById("chart-apex-rec-mbps");
-    let options_4 = {
-        chart: {
-            type: 'radialBar',
-            width: 300,
-            height: 110,
-        },
-        series: [{
-            name: 'Mbps Recebidos',
-            data: [51, 54, 46, 49, 50, 55, 53, 50],
-        }]
-    };
-    let chart_4 = new ApexCharts(grafico_4, options_4);
-    chart_4.render();
-
-</script>
