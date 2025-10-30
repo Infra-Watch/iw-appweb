@@ -19,9 +19,9 @@ let options_gauge_cpu = {
                 margin: 5, // margin is in pixels
                 dropShadow: {
                     enabled: true,
-                    color: '#ff0000ff',
-                    opacity: 0,
-                    
+
+                    color: '#444',
+                    opacity: 1,
                 }
             },
             dataLabels: {
@@ -40,8 +40,7 @@ let options_gauge_cpu = {
             top: -10
         }
     },
-    colors: ["#9900a3ff"],
-
+    colors: ["#ff0000ff"],
     labels: ['Average Results'],
 };
 let chart_gauge = new ApexCharts(gauge_cpu, options_gauge_cpu);
