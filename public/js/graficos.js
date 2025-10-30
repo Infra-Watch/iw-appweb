@@ -2,10 +2,10 @@
 // GRÁFICO GAUGE CHART CPU
 let gauge_cpu = document.getElementById("chart-apex-gauge-cpu");
 let options_gauge_cpu = {
-    series: [76],
+    series: [95],
     chart: {
         type: 'radialBar',
-        offsetY: -20,
+        offsetY: -30,
         sparkline: {
             enabled: true
         }
@@ -19,9 +19,9 @@ let options_gauge_cpu = {
                 margin: 5, // margin is in pixels
                 dropShadow: {
                     enabled: true,
-
-                    color: '#444',
-                    opacity: 1,
+                    color: '#ff0000ff',
+                    opacity: 0,
+                    
                 }
             },
             dataLabels: {
@@ -89,7 +89,7 @@ let options_gauge_rede = {
     series: [76],
     chart: {
         type: 'radialBar',
-        offsetY: -20,
+        offsetY: -30,
         sparkline: {
             enabled: true
         }
