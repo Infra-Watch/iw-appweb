@@ -53,7 +53,7 @@
     </header>
 
     <div id="titulo-maq">
-        <h1 id="maquina-exibe"> Máquina em exibição: <span id="maquina_exibicao"> 01 </span> </h1>
+        <h1 id="maquina-exibe"> Máquina em exibição: <span id="maquina_exibicao"> 03 </span> </h1>
     </div>
 
     <div id="conteudo-geral">
@@ -138,14 +138,7 @@
                         Máquina: <span id="maquina_alerta"> 3 </span> <br>
                         Componente crítico: <span id="componente_critico"> CPU </span> <br>
                         Registro de pico: <span id="registro_pico"> 95% </span> <br>
-                    </p>
-                </article>
-
-                <article class="alerta">
-                    <p>
-                        Máquina: <span id="maquina_alerta"> 2 </span> <br>
-                        Componente crítico: <span id="componente_critico"> RAM </span> <br>
-                        Registro de pico: <span id="registro_pico"> 97% </span> <br>
+                        Momento: Ás <span id="momento_pico"> 14h41min </span>
                     </p>
                 </article>
 
@@ -161,19 +154,13 @@
 
 <script>
 
+// GRÁFICO 1
     let grafico_1 = document.getElementById("chart-apex-temp-cpu");
     let options_1 = {
         chart: {
-            type: 'line',
+            type: 'area',
             width: 300,
             height: 110,
-            animations: {
-                enabled: true,
-                easing: 'linear',
-                dynamicAnimation: {
-                    speed: 1000
-                }
-            }
         },
         series: [{
             name: 'Temperatura CPU',
@@ -183,6 +170,7 @@
     let chart_1 = new ApexCharts(grafico_1, options_1);
     chart_1.render();
 
+    // GRÁFICO 2
     let grafico_2 = document.getElementById("chart-apex-freq-cpu");
     let options_2 = {
         chart: {
@@ -198,10 +186,11 @@
     let chart_2 = new ApexCharts(grafico_2, options_2);
     chart_2.render();
 
+    // GRÁFICO 3
     let grafico_3 = document.getElementById("chart-apex-env-mbps");
     let options_3 = {
         chart: {
-            type: 'line',
+            type: 'radialBar',
             width: 300,
             height: 110,
         },
@@ -211,12 +200,13 @@
         }]
     };
     let chart_3 = new ApexCharts(grafico_3, options_3);
-    chart_2.render();
+    chart_3.render();
 
+    // GRÁFICO 4
     let grafico_4 = document.getElementById("chart-apex-rec-mbps");
     let options_4 = {
         chart: {
-            type: 'line',
+            type: 'radialBar',
             width: 300,
             height: 110,
         },
@@ -226,6 +216,6 @@
         }]
     };
     let chart_4 = new ApexCharts(grafico_4, options_4);
-    chart_2.render();
+    chart_4.render();
 
 </script>
