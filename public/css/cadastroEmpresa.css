@@ -33,18 +33,20 @@ body * {
     margin-top: 1%;
 }
 
-.card-cadastro > h1 {
-    color: #000266;
-    font-weight: 700;
-    margin-bottom: 7px;
-    display: inline-block;
-    padding-bottom: 7px;
-    font-size: 1.8rem;
+.card-cadastro h1 {
+  color: #000266;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: inline-block;
+  padding-bottom: 7px;
+  font-size: 1.8rem;
+  margin-top: 20px;
 }
 
 .underline {
-    border-bottom: 3px solid #000000;
-    padding-bottom: 3px;
+  border-bottom: 3px solid #000;
+  padding-bottom: 3px;
+  color: inherit; 
 }
 
 .text-field {
@@ -106,7 +108,7 @@ body * {
     color: #fff;
     background: #01194D;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .button span {
@@ -333,4 +335,18 @@ body * {
         width: 90%;
         margin: 30px auto;
     }
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -7,17 +7,18 @@ body {
     color: #000266;
 }
 
+/* NAVBAR */
 .navbar {
     display: flex;
     align-items: center;
-    width: 99%;
+    justify-content: space-between;
+    width: 98%;
     font-size: 15px;
-    gap: 1rem;
-    padding:  0 1rem 0 0;
+    /* padding: 0 1rem 0 0; */
 }
 
 .logo {
-    padding-left: 3vw;
+    padding-left: 4vw;
 }
 
 .logo img {
@@ -27,21 +28,70 @@ body {
 
 .navbar-links {
     display: flex;
-    justify-content: center;
-    gap: 5rem;
-    padding-left: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    /* margin-left: 3rem; */
 }
 
 .navbar-links a {
+    display: flex;
+    flex-direction: row;
     transition: all 0.3s ease;
-    color: #5a61a1; 
+    color: #5a61a1;
     cursor: pointer;
     text-decoration: none;
 }
 
 .navbar-links a:hover {
-    color: #000266;
+    color: #000266 !important;
     text-decoration: underline;
+    transform: scale(1.05);
+
+}
+
+#links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    padding-left: 5rem;
+}
+
+#conta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 3vw;
+    gap: 20px;
+}
+
+.navbar-links a.pagina-atual {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #353960;
+}
+
+.minha-conta img {
+    display: flex;
+    justify-content: center;
+    width: clamp(10px, 20px, 30px);
+    height: clamp(10px, 20px, 30px);
+    margin-left: 5px;
+}
+
+#suporte-jira{
+display: flex;
+    justify-content: center;
+    width: clamp(20px, 40px, 40px);
+    height: clamp(20px, 40px, 40px);
+}
+
+.pagina-atual {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
 }
 
 #container-home {

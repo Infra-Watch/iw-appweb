@@ -5,616 +5,599 @@ html {
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    margin: 0;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
 
-    /* font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal; */
-
-
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
-
-    /* font-family: "Josefin Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal; */
-
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
+/* === BOTÕES === */
+button,
+#button-login,
+#button-cadastro {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-style: normal;
 
-button, 
-#button-login{
-    font-family: "Josefin Sans", sans-serif;
-    font-optical-sizing: auto;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    font-style: normal;
-
-
-    background-color: rgb(205, 205, 222);
-    color: rgb(0, 135, 135);
-    font-size: clamp(1rem, 2vw, 2rem);
-    cursor: pointer;
-    border: none;
-    z-index: 1;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  background-color: rgb(205, 205, 222);
+  color: rgb(0, 135, 135);
+  font-size: clamp(1rem, 2vw, 2rem);
+  cursor: pointer;
+  border: none;
+  z-index: 1;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
-#button-conhecer{
-    font-family: "Josefin Sans", sans-serif;
-    font-optical-sizing: auto;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    font-style: normal;
-
-
-    background-color: rgb(205, 205, 222);
-    color: rgb(0, 135, 135);
-    font-size: clamp(1rem, 2vw, 2rem);
-    cursor: pointer;
-    border: none;
-    z-index: 1;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 7px;
-    width: 20vw;
-    border-radius: 7px;
+/* Botões principais no topo */
+#button-login,
+#button-cadastro {
+  height: 5vh;
+  width: 7vw;
+  font-size: clamp(1rem, 1.3vw, 2rem);
 }
 
+/* Ajuste de posição */
+#button-login {
+  margin-left: 15vw;
+}
 
+#button-cadastro {
+  margin-left: 1vw;
+}
+
+/* Hover padronizado */
 button:hover,
 #button-login:hover,
+#button-cadastro:hover,
 #button-conhecer:hover {
-    background-color: rgb(114, 114, 114);
-    transform: scale(1.10);
-    color: rgb(255, 255, 255);
-    align-items: center;
+  background-color: rgb(114, 114, 114);
+  transform: scale(1.10);
+  color: rgb(255, 255, 255);
 }
 
+/* Botão "Conheça o sistema" */
+#button-conhecer {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-style: normal;
+
+  background-color: rgb(205, 205, 222);
+  color: rgb(0, 135, 135);
+  font-size: clamp(1rem, 2vw, 2rem);
+  cursor: pointer;
+  border: none;
+  z-index: 1;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 7px;
+  width: 20vw;
+  border-radius: 7px;
+}
+
+/* === HOME === */
 #container-home {
-    min-width: 320px;
-    width: 100%;
-    /* max-width: 1300px;  */
-    height: 100vh;
-    position: relative;
-    background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
-    margin: auto;
+  min-width: 320px;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
+  margin: auto;
 }
 
 .navbar {
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    width: 100%;
-    font-size: clamp(1rem, 1.5rem, 5rem);
-    gap: 1rem;
-}
-
-.logo {
-    top: 0px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: clamp(1rem, 1.5rem, 5rem);
+  gap: 1rem;
 }
 
 .logo img {
-    width: clamp(5rem, 500px, 12rem);
-    height: clamp(2rem, 110px, 7rem);
+  width: clamp(5rem, 500px, 12rem);
+  height: clamp(2rem, 110px, 7rem);
 }
 
 .navbar-links {
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
-    padding-left: 5rem;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding-left: 5rem;
 }
 
 .navbar-links a {
-    transition: all 0.3s ease;
-    color: lavender;
-    gap: 325px;
-    cursor: pointer;
-    text-decoration: none;
+  transition: all 0.3s ease;
+  color: lavender;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .navbar-links a:hover {
-    transform: scale(1.05);
-    color: teal;
-    color: rgb(0, 56, 88);
-    text-decoration: underline;
-}
-
-#button-login {
-    margin-left: 30vw;
-    height: 5vh;
-    width: 7vw;
-    align-items: center;
-    font-size: clamp(1rem, 1.3vw, 2rem);
+  transform: scale(1.05);
+  color: rgb(0, 56, 88);
+  text-decoration: underline;
 }
 
 .texto-inicio {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-left: 4rem;
-    height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 4rem;
+  height: 80vh;
 }
 
 .texto-inicio b {
-    font-size: clamp(2rem, 3vw, 5rem);
-    color: white;
+  font-size: clamp(2rem, 3vw, 5rem);
+  color: white;
 }
 
 .texto-inicio button {
-    padding: 5px 30px;
-    font-size: clamp(1rem, 1.4vw, 2rem);
-    border-radius: 10px;
-    margin-top: 100px;
-    height: 7vh;
-    width: 20vw;
+  padding: 5px 30px;
+  font-size: clamp(1rem, 1.4vw, 2rem);
+  border-radius: 10px;
+  margin-top: 100px;
+  height: 7vh;
+  width: 20vw;
 }
 
 .texto-inicio span {
-    color: rgb(204, 204, 204);
-    margin-top: 0.8rem;
-    font-size: clamp(1rem, 2vw, 2rem);
+  color: rgb(204, 204, 204);
+  margin-top: 0.8rem;
+  font-size: clamp(1rem, 2vw, 2rem);
 }
 
 .efeito-overlay-1 {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, transparent, #001114);
-    pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, #001114);
+  pointer-events: none;
 }
 
-/* O QUE FAZEMOS */
+/* === O QUE FAZEMOS === */
 #container-info {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 80vh;
-    background-color: #001114;
-    padding-top: 15vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  background-color: #001114;
+  padding-top: 15vh;
 }
 
 #pergunta {
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: clamp(2rem, 3vw, 5rem);
-    top: 7vh;
-    left: 7vw;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: clamp(2rem, 3vw, 5rem);
+  top: 7vh;
+  left: 7vw;
 }
 
 .informacoes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70vw;
-    height: 50vh;
-    border-radius: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    background-color: white;
-    padding: 3vh 3vw;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.352);
-    transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 50vh;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: white;
+  padding: 3vh 3vw;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.352);
+  transition: all 0.3s ease;
 }
 
 .informacoes:hover {
-    height: 52vh;
+  height: 52vh;
 }
 
 #imagem-informacao {
-    width: 50%;
-    height: auto;
+  width: 50%;
+  height: auto;
 }
 
 #imagem-informacao img {
-    width: 30em;
-    height: auto;
-    display: flex;
-    border-radius: 7px;
-    /* justify-content: end; */
+  width: 30em;
+  height: auto;
+  display: flex;
+  border-radius: 7px;
 }
 
 #texto-informacao {
-    color: rgb(0, 0, 0);
-    font-size: clamp(0.5rem, 1.5rem, 4rem);
-    margin-left: 2vw;
+  color: rgb(0, 0, 0);
+  font-size: clamp(0.5rem, 1.5rem, 4rem);
+  margin-left: 2vw;
 }
 
-/* BENEFÍCIOS */
+/* === BENEFÍCIOS === */
 #container-beneficios {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 80vh;
-    background-color: #001114;
-    gap: 2vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+  background-color: #001114;
+  gap: 2vw;
 }
 
 #container-beneficios p {
-    font-size: clamp(1rem, 1.5rem, 3.5rem);
-    color: rgba(255, 255, 255, 0.958);
+  font-size: clamp(1rem, 1.5rem, 3.5rem);
+  color: rgba(255, 255, 255, 0.958);
 }
 
 #titulo-beneficos {
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: clamp(2rem, 3vw, 5rem);
-    top: 5vh;
-    left: 7vw;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: clamp(2rem, 3vw, 5rem);
+  top: 5vh;
+  left: 7vw;
 }
 
 #titulo-beneficos span {
-    text-decoration: underline 3px;
-    text-underline-offset: 10px;
+  text-decoration: underline 3px;
+  text-underline-offset: 10px;
 }
 
 .textos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(145deg, #00343c, #001f22);
-    border-radius: 10px;
-    padding: 1rem;
-    height: 45vh;
-    width: 27vw;
-    color: white;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-    margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(145deg, #00343c, #001f22);
+  border-radius: 10px;
+  padding: 1rem;
+  height: 45vh;
+  width: 27vw;
+  color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+  margin-top: 2vh;
 }
 
 .textos:hover {
-    transform: translateY(-15px);
-    transition: all 0.3s ease;
+  transform: translateY(-15px);
+  transition: all 0.3s ease;
 }
 
 .cabecalho-texto {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding: 0.9vh;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.9vh;
 }
 
 .textos img {
-    width: 4vw;
-    height: 8vh;
-    margin-left: 1vw;
+  width: 4vw;
+  height: 8vh;
+  margin-left: 1vw;
 }
 
 #titulos-textos {
-    color: rgba(255, 255, 255, 0.555);
-    font-size: clamp(1.5rem, 2rem, 4rem);
+  color: rgba(255, 255, 255, 0.555);
+  font-size: clamp(1.5rem, 2rem, 4rem);
 }
 
-/* TECNOLOGIAS */
+/* === TECNOLOGIAS === */
 #container-tecnologias {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 70vh;
-    background-color: #001114;
-    gap: 2vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70vh;
+  background-color: #001114;
+  gap: 2vw;
 }
 
 #titulo-tecnologias {
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: clamp(2rem, 3vw, 5rem);
-    top: 7vh;
-    left: 7vw;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: clamp(2rem, 3vw, 5rem);
+  top: 7vh;
+  left: 7vw;
 }
 
 #titulo-tecnologias span {
-    text-decoration: underline 3px;
-    text-underline-offset: 10px;
+  text-decoration: underline 3px;
+  text-underline-offset: 10px;
 }
 
 .conteudo-tecnologia {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 16vw;
-    height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 16vw;
+  height: auto;
 }
 
 .conteudo-tecnologia img {
-    width: 10vw;
-    height: 20vh;
+  width: 10vw;
+  height: 20vh;
 }
 
 .conteudo-tecnologia p {
-    color: white;
-
+  color: white;
 }
 
 .seta-separacao img {
-    width: 5vw;
-    height: 10vh;
+  width: 5vw;
+  height: 10vh;
 }
 
-/* CONFORMIDADES */
+/* === CONFORMIDADES === */
 #container-conformidades {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 120vh;
-    background-color: #ffffff;
-    padding-top: 15vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 120vh;
+  background-color: #ffffff;
+  padding-top: 15vh;
 }
 
 #container-conformidades h3 {
-    color: rgba(255, 255, 255, 0.555);
-    font-size: clamp(1rem, 1.5rem, 3.5rem);
-
+  color: rgba(255, 255, 255, 0.555);
+  font-size: clamp(1rem, 1.5rem, 3.5rem);
 }
 
 #container-conformidades img {
-    width: 18vw;
-    height: auto;
-    display: flex;
-    border-radius: 25px;
-    justify-content: end;
-    padding: 1vw;
+  width: 18vw;
+  height: auto;
+  display: flex;
+  border-radius: 25px;
+  justify-content: end;
+  padding: 1vw;
 }
 
 #conformidade-imagem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #titulo-conformidades {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: clamp(2rem, 3vw, 5rem);
-    top: 7vh;
-    left: 7vw;
+  position: absolute;
+  color: rgb(0, 0, 0);
+  font-size: clamp(2rem, 3vw, 5rem);
+  top: 7vh;
+  left: 7vw;
 }
 
 #container-conformidades span {
-    text-decoration: underline 3px;
-    text-underline-offset: 10px;
+  text-decoration: underline 3px;
+  text-underline-offset: 10px;
 }
 
 #conformidade-conteudos-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    margin-top: 10vh;
-    gap: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 10vh;
+  gap: 4vw;
 }
 
 .conformidade-conteudo-geral-1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: solid 1px black;
-    width: 40vw;
-    height: 40vh;
-    background: linear-gradient(145deg, #00343c, #001f22);
-    color: white;
-    padding: 1vw;
-    border-radius: 7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: solid 1px black;
+  width: 40vw;
+  height: 40vh;
+  background: linear-gradient(145deg, #00343c, #001f22);
+  color: white;
+  padding: 1vw;
+  border-radius: 7px;
 }
 
 #conformidade-conteudos-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    margin: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin: 5vh;
 }
 
 .conformidade-conteudo-geral-2 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 90vw;
-    height: 40vh;
-    color: rgb(0, 0, 0);
-    padding: 1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90vw;
+  height: 40vh;
+  color: rgb(0, 0, 0);
+  padding: 1vw;
 }
 
 .conformidade-conteudo {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .conformidade-conteudo h1 {
-    color: black;
+  color: black;
 }
 
 #txt-sobrenos {
-    font-size: clamp(1rem, 1.5rem, 3.5rem);
+  font-size: clamp(1rem, 1.5rem, 3.5rem);
 }
 
 #palavras-chave {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    gap: 10vw;
-    background-color: #6565657a;
-    color: #001f22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  gap: 10vw;
+  background-color: #6565657a;
+  color: #001f22;
 }
 
 #palavra-chave {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
-/* EQUIPE */
+/* === EQUIPE === */
 #container-equipe {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 5vw;
-    width: 100%;
-    height: 90vh;
-    background-color: #ffffff;
-    margin-top: 15vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  width: 100%;
+  height: 90vh;
+  background-color: #ffffff;
+  margin-top: 15vh;
 }
 
 .integrante {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 25vw;
-    height: 38vh;
-    background-color: #002b2f;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    color: white;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 38vh;
+  background-color: #002b2f;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .integrante:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
 }
 
 .image-integrante {
-    position: absolute;
-    top: -5vh;
-    width: 8vw;
-    height: 8vw;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: -5vh;
+  width: 8vw;
+  height: 8vw;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .nome-integrante {
-    margin-top: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .cargo-integrante {
-    font-size: 1rem;
-    opacity: 0.9;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
 .nome-integrante::after {
-    content: "";
-    display: block;
-    width: 50%;
-    height: 1px;
-    background-color: white;
-    margin: 0.5rem auto;
-    opacity: 0.7;
+  content: "";
+  display: block;
+  width: 50%;
+  height: 1px;
+  background-color: white;
+  margin: 0.5rem auto;
+  opacity: 0.7;
 }
 
-/* FORMULÁRIO */
-
+/* === FORMULÁRIO === */
 #container-formulario {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    background-color: #001f22;
-    color: white;
-    margin-top: 10vh;
-    /* padding-top: 10vh; */
-    height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #001f22;
+  color: white;
+  margin-top: 10vh;
+  height: 80vh;
 }
 
 #titulo-formulario {
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: clamp(2rem, 3vw, 5rem);
-    margin-top: -55vh;
-    left: 7vw;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: clamp(2rem, 3vw, 5rem);
+  margin-top: -55vh;
+  left: 7vw;
 }
 
 #titulo-formulario span {
-    text-decoration: underline 3px;
-    text-underline-offset: 10px;
+  text-decoration: underline 3px;
+  text-underline-offset: 10px;
 }
 
-
 #formulario-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30vw;
-    height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 55vh;
 }
 
 .formulario-icone {
-    height: 6vh;
-    width: 3vw;
-    padding: 1vh;
+  height: 6vh;
+  width: 3vw;
+  padding: 1vh;
 }
 
 .formulario-informacoes {
-    display: flex;
-    flex-direction: column;
-    padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  padding: 3vw;
 }
 
 .formulario-titulo-informacao,
 .nome-input {
-    margin-top: 3vh;
+  margin-top: 3vh;
 }
 
 .inputs-formulario {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #inp_nome_empresa,
 #inp_email_empresa,
 #inp_mensagem_empresa {
-    width: 25vw;
-    height: 4vh;
-    border-radius: 7px;
+  width: 25vw;
+  height: 4vh;
+  border-radius: 7px;
 }
 
 #inp_mensagem_empresa {
-    height: 25vh;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 7px;
+  height: 25vh;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 7px;
 }
 
 #button-mensagem {
-    height: 3vh;
-    font-size: clamp(0.5rem, 1rem, 4rem);
-    margin-top: 3vh;
-    color: white;
-    background-color: #036a7a;
-    align-items: center;
+  height: 3vh;
+  font-size: clamp(0.5rem, 1rem, 4rem);
+  margin-top: 3vh;
+  color: white;
+  background-color: #036a7a;
+  align-items: center;
 }
 
 /* RESPONSIVIDADE DOS CONTAINERS */
