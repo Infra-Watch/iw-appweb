@@ -53,7 +53,7 @@ botao_cadastrar_usuario.addEventListener('click', () => {
 			console.log('resposta: ', resposta);
 
 			if (resposta.ok) {
-				exibeConfirmacao('Cadastro realizado com sucesso! Redirecionando para o login...');
+				alert('Cadastro realizado com sucesso! Redirecionando para o login...');
 				setTimeout(() => {
 					window.location.href = 'login.html';
 				}, '2000');
@@ -63,5 +63,6 @@ botao_cadastrar_usuario.addEventListener('click', () => {
 		})
 		.catch(function (resposta) {
 			console.log(`#ERRO: ${resposta}`);
+			alert(`#ERRO: ${resposta}`);
 		});
 });

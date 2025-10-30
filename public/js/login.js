@@ -30,8 +30,19 @@ const entrar = (emailVar, senhaVar) => {
                     sessionStorage.STATUS_ATIVACAO = json.status_ativacao;
                     sessionStorage.PERMISSOES= json.permissoes;
 
+					alert(`Login realizado com sucesso!\nBoas Vindas ${sessionStorage.NOME_USUARIO}!`)
 					setTimeout(() => {
-						window.location = 'index.html';
+						switch (sessionStorage.PERMISSOES) {
+							case '1000':
+								window.location = './html_colaborador_infrawatch/perfil_colaborador.html';
+								break;
+							case '0111':
+								window.location = './html_user_perfil_adm/perfil_adm.html';
+								break;
+							default:
+								window.location = 'index.html';
+								break;
+						}
 					}, 1000);
 				});
 			} else {
