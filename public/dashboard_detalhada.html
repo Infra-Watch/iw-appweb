@@ -14,90 +14,139 @@
 
 <body>
 
-    <!-- PAINEL DA ESQUERDA -->
-    <aside id="painel-esquerda">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+            </a>
+        </div>
 
-        <a href="login.html">
-            <img id="logo" src="assets/imagens/logo-infrawatch.png">
-        </a>
+        <div class="navbar-links">
+            <div id="links">
+                <a href="index.html"> Home </a>
+                <a href="login.html"> Login </a>
+                <a href="html user perfil adm/perfil_adm.html"> Página Inical</a>
+                <a href="dashboard_geral.html"> Dashboard </a>
+            </div>
 
-        <nav>
-            <a href="dashboard_geral.html">
-                <img src="assets/imagens/grafico-de-barras-preto.png">
-                Painel Geral </a>
+            <div id="conta">
+                
+                <a href="index.html" class="minha-conta">
+                    Minha Conta
+                    <img src="./assets/imagens/minha-conta.png" alt="">
+                </a>
 
-            <a href="dashboard_detalhada.html" id="tela-atual">
-                <img src="assets/imagens/filtro-branco.png">
-                Detalhes </a>
+                <a href="" id="suporte-jira">
+                    <!-- Suporte Jira -->
+                    <img src="assets/imagens/jira.png" alt="">
+                </a>
 
-            <a href="perfil_usuario.html">
-                <img src="assets/imagens/saida.png">
-                Voltar </a>
-        </nav>
+            </div>
+        </div>
+    </nav>
 
-    </aside>
+
+    <header id="cabecalho">
+        <h1> Painel de Desempenho do Sistema </h1>
+        <h1> Empresa X </h1>
+    </header>
+
+    <div id="titulo-maq">
+        <h1 id="maquina-exibe"> Máquina em exibição: <span id="maquina_exibicao"> 01 </span> </h1>
+    </div>
 
     <div id="conteudo-geral">
 
-        <header id="cabecalho">
-            <h1> Painel de Desempenho do Sistema </h1>
-            <h1> Empresa X </h1>
-        </header>
-
-        <h1 id="maquina-exibe"> Máquina em exibição: <span id="maquina_exibicao"> 01 </span> </h1>
-
-        <!-- KPIS -->
-        <section id="kpis">
-
-            <article class="kpi">
-
-                <p> Serviços Ativos </p>
-                <h1> 21.9393 </h1>
-
-            </article>
-
-            <article class="kpi">
-
-                <p> Processos </p>
-                <h1> 21.9393 </h1>
-
-            </article>
-
-
-            <article class="kpi">
-
-                <p> Threads </p>
-                <h1> 21.9393 </h1>
-
-            </article>
-
-        </section>
-
-        <!-- PAINEL COM GRÁFICOS -->
-        <main id="main-painel-geral">
+        <!-- GRÁFICOS -->
+        <main id="main-painel-graficos">
 
             <section class="graficos">
 
-                <article class="grafico-gauge-chart">
+                <div class="graficos-componentes">
 
-                    <p> Uso de <span id="componente"> CPU </span> % </p>
+                    <article class="grafico-gauge-chart">
 
+                        <p> Uso de <span id="componente"> CPU </span> % </p>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
+
+                        <div id="chart-apex-temp-cpu"></div>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
+
+                        <div id="chart-apex-freq-cpu"></div>
+
+                    </article>
+
+                </div>
+                
+                <div class="graficos-componentes">
+                    
+                    <article class="grafico-gauge-chart">
+
+                        <p> Uso de <span id="componente"> Rede </span> % </p>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Nível de <span id="componente"> Mbps Envidados </span> </p>
+
+                        <div id="chart-apex-env-mbps"></div>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Nível de <span id="componente"> Mbps Recebidos </span> </p>
+
+                        <div id="chart-apex-rec-mbps"></div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ALERTAS -->
+            <section id="alertas">
+
+                <article class="kpi">
+
+                    <img class="icons" src="assets/imagens/alarme.png ">
+
+                    <div id="conteudo-kpi">
+                        <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 2 </span> </h2>
+                        <p> Tempo: últimas 24 horas </p>
+                    </div>
                 </article>
 
-                <article class="card-grafico">
+                <p>Todos os últimos alertas:</p>
 
-                    <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
-
-                    <div id="chart-apex-temp"></div>
-
+                <article class="alerta">
+                    <p>
+                        Máquina: <span id="maquina_alerta"> 3 </span> <br>
+                        Componente crítico: <span id="componente_critico"> CPU </span> <br>
+                        Registro de pico: <span id="registro_pico"> 95% </span> <br>
+                    </p>
                 </article>
 
-                <article class="card-grafico">
-
-                    <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
-
-                    <div id="chart-apex-freq"></div>
-
+                <article class="alerta">
+                    <p>
+                        Máquina: <span id="maquina_alerta"> 2 </span> <br>
+                        Componente crítico: <span id="componente_critico"> RAM </span> <br>
+                        Registro de pico: <span id="registro_pico"> 97% </span> <br>
+                    </p>
                 </article>
 
             </section>
@@ -106,24 +155,13 @@
 
     </div>
 
-    <!-- ALERTAS -->
-    <section id="alertas">
-
-        <p>Últimos Alertas:</p>
-
-        <article class="alerta">
-            <p> ... </p>
-        </article>
-
-    </section>
-
 </body>
 
 </html>
 
 <script>
 
-    let grafico_1 = document.getElementById("chart-apex-temp");
+    let grafico_1 = document.getElementById("chart-apex-temp-cpu");
     let options_1 = {
         chart: {
             type: 'line',
@@ -142,11 +180,10 @@
             data: [10, 35, 30, 50, 82, 35, 65, 120],
         }]
     };
-
     let chart_1 = new ApexCharts(grafico_1, options_1);
     chart_1.render();
 
-    let grafico_2 = document.getElementById("chart-apex-freq");
+    let grafico_2 = document.getElementById("chart-apex-freq-cpu");
     let options_2 = {
         chart: {
             type: 'line',
@@ -158,8 +195,37 @@
             data: [10, 35, 30, 50, 82, 35, 65, 120],
         }]
     };
-
     let chart_2 = new ApexCharts(grafico_2, options_2);
+    chart_2.render();
+
+    let grafico_3 = document.getElementById("chart-apex-env-mbps");
+    let options_3 = {
+        chart: {
+            type: 'line',
+            width: 300,
+            height: 110,
+        },
+        series: [{
+            name: 'Mbps Enviados',
+            data: [50, 56, 45, 39, 52, 45, 55, 50],
+        }]
+    };
+    let chart_3 = new ApexCharts(grafico_3, options_3);
+    chart_2.render();
+
+    let grafico_4 = document.getElementById("chart-apex-rec-mbps");
+    let options_4 = {
+        chart: {
+            type: 'line',
+            width: 300,
+            height: 110,
+        },
+        series: [{
+            name: 'Mbps Recebidos',
+            data: [51, 54, 46, 49, 50, 55, 53, 50],
+        }]
+    };
+    let chart_4 = new ApexCharts(grafico_4, options_4);
     chart_2.render();
 
 </script>

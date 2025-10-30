@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dashboard Detalhes | InfraWatch</title>
+    <link rel="stylesheet" href="css/dashboard_detalhada.css">
+    <link rel="icon" href="assets/imagens/logo-infrawatch.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+</head>
+
+<body>
+
+    <!-- PAINEL DA ESQUERDA -->
+    <aside id="painel-esquerda">
+
+        <a href="login.html">
+            <img id="logo" src="assets/imagens/logo-infrawatch.png">
+        </a>
+
+        <nav>
+            <a href="dashboard_geral.html">
+                <img src="assets/imagens/grafico-de-barras-preto.png">
+                Painel Geral </a>
+
+            <a href="dashboard_detalhada.html" id="tela-atual">
+                <img src="assets/imagens/filtro-branco.png">
+                Detalhes </a>
+
+            <a href="perfil_usuario.html">
+                <img src="assets/imagens/saida.png">
+                Voltar </a>
+        </nav>
+
+    </aside>
+
+    <div id="conteudo-geral">
+
+        <header id="cabecalho">
+            <h1> Painel de Desempenho do Sistema </h1>
+            <h1> Empresa X </h1>
+        </header>
+
+        <h1 id="maquina-exibe"> Máquina em exibição: <span id="maquina_exibicao"> 01 </span> </h1>
+
+        <!-- KPIS -->
+        <section id="kpis">
+
+            <article class="kpi">
+
+                <p> Serviços Ativos </p>
+                <h1> 21.9393 </h1>
+
+            </article>
+
+            <article class="kpi">
+
+                <p> Processos </p>
+                <h1> 21.9393 </h1>
+
+            </article>
+
+
+            <article class="kpi">
+
+                <p> Threads </p>
+                <h1> 21.9393 </h1>
+
+            </article>
+
+        </section>
+
+        <!-- PAINEL COM GRÁFICOS -->
+        <main id="main-painel-geral">
+
+            <section class="graficos">
+
+                <article class="grafico-gauge-chart">
+
+                    <p> Uso de <span id="componente"> CPU </span> % </p>
+
+                </article>
+
+                <article class="card-grafico">
+
+                    <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
+
+                    <div id="chart-apex-temp"></div>
+
+                </article>
+
+                <article class="card-grafico">
+
+                    <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
+
+                    <div id="chart-apex-freq"></div>
+
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ALERTAS -->
+    <section id="alertas">
+
+        <p>Últimos Alertas:</p>
+
+        <article class="alerta">
+            <p> ... </p>
+        </article>
+
+    </section>
+
+</body>
+
+</html>
+
+<script>
+
+    let grafico_1 = document.getElementById("chart-apex-temp");
+    let options_1 = {
+        chart: {
+            type: 'line',
+            width: 300,
+            height: 110,
+            animations: {
+                enabled: true,
+                easing: 'linear',
+                dynamicAnimation: {
+                    speed: 1000
+                }
+            }
+        },
+        series: [{
+            name: 'Temperatura CPU',
+            data: [10, 35, 30, 50, 82, 35, 65, 120],
+        }]
+    };
+
+    let chart_1 = new ApexCharts(grafico_1, options_1);
+    chart_1.render();
+
+    let grafico_2 = document.getElementById("chart-apex-freq");
+    let options_2 = {
+        chart: {
+            type: 'line',
+            width: 300,
+            height: 110,
+        },
+        series: [{
+            name: 'Frequência da CPU (MHz)',
+            data: [10, 35, 30, 50, 82, 35, 65, 120],
+        }]
+    };
+
+    let chart_2 = new ApexCharts(grafico_2, options_2);
+    chart_2.render();
+
+</script>

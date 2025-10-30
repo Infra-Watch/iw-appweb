@@ -28,10 +28,16 @@
             </div>
 
             <div id="conta">
+                
                 <a href="index.html" class="minha-conta">
                     Minha Conta
                     <img src="./assets/imagens/minha-conta.png" alt="">
                 </a>
+
+                <a href="" id="suporte-jira">
+                    <img src="assets/imagens/jira.png" alt="">
+                </a>
+
             </div>
         </div>
     </nav>
@@ -52,7 +58,7 @@
 
                 <article class="kpi">
 
-                    <img class="icons" src="assets/imagens/verificado.png">
+                    <img class="icons" src="assets/imagens/computador-portatil.png">
 
                     <div id="conteudo-kpi">
                         <h1> 3/3 </h1>
@@ -86,6 +92,33 @@
                 </article>
 
             </section>
+
+            <!-- MODAL -->
+            <button id="abrir-modal">
+                
+                <img src="assets/imagens/procurar (1).png">
+            </button>
+
+            <dialog id="modal">
+                <article>
+
+                    <header>
+                        <h1 id="titulo_modal"> Máquinas Disponíveis </h1>
+                        <p> Escolha a máquina que deseja ver os detalhes </p>
+                    </header>
+
+                    <section class="maquinas_disponiveis">
+
+                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 1 </span> </a>
+                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 2 </span> </a>
+                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 3 </span> </a>
+
+                    </section>
+
+                    <button id="fechar-modal"> Fechar </button>
+
+                </article>
+            </dialog>
 
             <section class="maquinas">
 
@@ -122,7 +155,7 @@
                 <img class="icons" src="assets/imagens/alarme.png ">
 
                 <div id="conteudo-kpi">
-                    <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 1 </span> </h2>
+                    <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 2 </span> </h2>
                     <p> Tempo: últimas 24 horas </p>
                 </div>
             </article>
@@ -137,7 +170,7 @@
                 </p>
             </article>
 
-             <article class="alerta">
+            <article class="alerta">
                 <p>
                     Máquina: <span id="maquina_alerta"> 2 </span> <br>
                     Componente crítico: <span id="componente_critico"> RAM </span> <br>
@@ -145,10 +178,12 @@
                 </p>
             </article>
 
-
         </section>
 
     </div>
+
+    <script src="./js/modal_dash.js"></script>
+
 
 </body>
 
