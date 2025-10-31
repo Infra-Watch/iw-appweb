@@ -43,7 +43,7 @@ const entrar = (emailVar, senhaVar) => {
 								window.location = 'index.html';
 								break;
 						}
-					}, 1000);
+					}, 10);
 				});
 			} else {
 				exibeErro('Login e/ou senha inválidos!');

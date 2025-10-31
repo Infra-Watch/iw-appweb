@@ -31,10 +31,6 @@ botao_cadastrar_usuario.addEventListener('click', () => {
 	} else if (!senhasIguais) {
 		exibeErro('As senhas devem ser iguais!');
 		return false;
-	} else {
-		setTimeout(() => {
-			divMsgErro.style.display = 'none';
-		}, 4000);
 	}
 
 	fetch('/usuarios/cadastrar', {
@@ -56,7 +52,7 @@ botao_cadastrar_usuario.addEventListener('click', () => {
 				alert('Cadastro realizado com sucesso! Redirecionando para o login...');
 				setTimeout(() => {
 					window.location.href = 'login.html';
-				}, '2000');
+				}, '2');
 			} else {
 				throw 'Houve um erro ao tentar realizar o cadastro!';
 			}
