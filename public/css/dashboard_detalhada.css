@@ -146,9 +146,11 @@ body {
     flex-direction: row;
     width: 63vw;
     height: auto;
+    max-height: 55vh;
     gap: 1vw;
     padding-right: 2.5rem;
     flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 .graficos p {
@@ -160,6 +162,7 @@ body {
     flex-direction: row;
     gap: 15px;
     padding: 1.5rem;
+    width: 60vw;
 
     border: 2px solid rgb(110, 110, 110);
     border-radius: 10px;

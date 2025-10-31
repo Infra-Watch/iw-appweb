@@ -65,6 +65,7 @@
 
             <section class="graficos">
 
+                <!-- SIMULAÇÃO CPU -->
                 <div class="graficos-componentes">
 
                     <article class="grafico-gauge-chart">
@@ -93,6 +94,7 @@
 
                 </div>
 
+                <!-- SIMULAÇÃO REDE -->
                 <div class="graficos-componentes">
 
                     <article class="grafico-gauge-chart">
@@ -116,6 +118,35 @@
                         <p> Nível de <span id="componente"> Mbps Recebidos </span> </p>
 
                         <div id="chart-apex-rec-mbps"></div>
+
+                    </article>
+
+                </div>
+
+                <!-- SIMULAÇÃO RAM -->
+                <div class="graficos-componentes">
+
+                    <article class="grafico-gauge-chart">
+
+                        <p> Uso da Memória <span id="componente"> RAM </span> </p>
+
+                        <div id="chart-apex-gauge-ram"></div>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Memória <span id="componente"> RAM </span> - Em uso </p>
+
+                        <div id="chart-apex-uso-ram"></div>
+
+                    </article>
+
+                    <article class="card-grafico">
+
+                        <p> Memória <span id="componente"> RAM </span> - Espaço diponível </p>
+
+                        <div id="chart-apex-disp-ram"></div>
 
                     </article>
 
@@ -145,7 +176,7 @@
                         Máquina: <span id="maquina_alerta"> 3 </span> <br>
                         Componente crítico: <span id="componente_critico"> CPU </span> <br>
                         Registro de pico: <span id="registro_pico"> 95% </span> <br>
-                        Momento: Ás <span id="momento_pico"> 13h30min </span>
+                        Momento: <span id="momento_pico"> 13h53min </span>
                     </p>
                 </article>
 
