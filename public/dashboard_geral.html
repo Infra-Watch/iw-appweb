@@ -2,192 +2,160 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Dashboard Geral | InfraWatch</title>
-    <link rel="stylesheet" href="./css/dashboard_geral.css">
-    <link rel="icon" href="assets/imagens/logo-infrawatch.png">
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Geral | InfraWatch</title>
+  <link rel="stylesheet" href="./css/dashboard_geral.css">
+  <link rel="icon" href="assets/imagens/logo-infrawatch.png">
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
-            </a>
-        </div>
-
-        <div class="navbar-links">
-            <div id="links">
-                <a href="index.html"> Home </a>
-                <a href="login.html"> Login </a>
-                <a href="html_user_perfil_adm/perfil_adm.html"> Página Inical</a>
-                <a href="dashboard_geral.html" class="pagina-atual"> Dashboard </a>
-            </div>
-
-            <div id="conta">
-
-                <a href="index.html" class="minha-conta">
-                    Minha Conta
-                    <img src="./assets/imagens/minha-conta.png" alt="">
-                </a>
-                <a href="" id="suporte-jira">
-                    <img src="assets/imagens/jira.png" alt="">
-                </a>
-
-                <p> Data: <span id="date"> 31/10/2025 </span> </p>
-
-            </div>
-        </div>
-    </nav>
-
-
-    <header id="cabecalho">
-        <h1> Painel de Desempenho do Sistema </h1>
-        <h1>  Empresa GRU Tecnologia S.A </h1>
-    </header>
-
-    <div id="conteudo-geral">
-
-        <!-- PAINEL GERAL DE MÁQUINAS -->
-        <main id="main-painel-geral">
-
-            <!-- KPIS -->
-            <section id="kpis">
-
-                <article class="kpi">
-
-                    <img class="icons" src="assets/imagens/computador-portatil.png">
-
-                    <div id="conteudo-kpi">
-                        <h1> 3/3 </h1>
-                        <p> Máquinas Ativas </p>
-                    </div>
-
-                </article>
-
-                <article class="kpi">
-
-                    <img class="icons" src="assets/imagens/trafego-da-web.png">
-
-                    <div id="conteudo-kpi">
-                        <h2> 51,79 Mbps</h2>
-                        <p> Tráfego total de dados </p>
-                    </div>
-
-                </article>
-
-
-                <article class="kpi">
-
-                    <img class="icons" src="assets/imagens/sinal-de-aviso.png">
-
-                    <div id="conteudo-kpi">
-                        <h2> Máquina <span id="maq_maior_criticidade"> 3 </span> </h2>
-                        <p> Maior Criticidade - Hora: <span id="horario"> 15:00 </span></p>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-            <!-- MODAL -->
-            <button id="abrir-modal">
-                <i class='bx  bxs-filter'></i>
-            </button>
-
-            <dialog id="modal">
-                <article>
-
-                    <header>
-                        <h1 id="titulo_modal"> Máquinas Disponíveis </h1>
-                        <p> Escolha a máquina que deseja ver os detalhes </p>
-                    </header>
-
-                    <section class="maquinas_disponiveis">
-
-                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 1 </span> </a>
-                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 2 </span> </a>
-                        <a href="dashboard_detalhada.html"> <span id="maq_disponivel"> Máquina 3 </span> </a>
-
-                    </section>
-
-                    <button id="fechar-modal"> Fechar </button>
-
-                </article>
-            </dialog>
-
-            <section class="maquinas">
-
-                <article class="card-maquina">
-                    <h3> Máquina 1
-                        <img class="status-bolinha" src="assets/imagens/circulo-verde.png" alt="Status Estável">
-                    </h3>
-                    <p> Status: <span id="stts_ok"> Estável </span> </p>
-                </article>
-
-                <article class="card-maquina">
-                    <h3> Máquina 2
-                        <img class="status-bolinha" src="assets/imagens/circulo-amarelo.png" alt="Status Instável">
-                    </h3>
-                    <p> Status: <span id="stts_perigo"> Instável </span> </p>
-                </article>
-
-                <article class="card-maquina">
-                    <h3> Máquina 3
-                        <img class="status-bolinha" src="assets/imagens/circulo-vermelha.png" alt="Status Crítico">
-                    </h3>
-                    <p> Status: <span id="stts_critico"> Crítico </span> </p>
-                </article>
-
-            </section>
-
-        </main>
-
-        <!-- ALERTAS -->
-        <section id="alertas">
-
-            <article class="kpi">
-
-                <img class="icons" src="assets/imagens/alarme.png ">
-
-                <div id="conteudo-kpi">
-                    <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 2 </span> </h2>
-                    <p> Tempo: últimas 24 horas </p>
-                </div>
-            </article>
-
-            <p>Todos os últimos alertas:</p>
-
-            <article class="alerta">
-                <p>
-                    Máquina: <span id="maquina_alerta"> 3 </span> <br>
-                    Componente crítico: <span id="componente_critico"> CPU </span> <br>
-                    Registro de pico: <span id="registro_pico"> 95% </span> <br>
-                    Momento: <span id="momento_pico"> 14h41min </span>
-                </p>
-            </article>
-
-            <article class="alerta">
-                <p>
-                    Máquina: <span id="maquina_alerta"> 2 </span> <br>
-                    Componente crítico: <span id="componente_critico"> RAM </span> <br>
-                    Registro de pico: <span id="registro_pico"> 97% </span> <br>
-                    Momento: <span id="momento_pico"> 13h47min </span>
-                </p>
-            </article>
-
-        </section>
-
+  <!-- ===== NAVBAR LATERAL ===== -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html">
+        <img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+      </a>
     </div>
 
-    <script src="./js/modal_dash.js"></script>
+    <ul class="sidebar-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="html_user_perfil_adm/perfil_adm.html">Página Inicial</a></li>
+      <li><a href="dashboard_geral.html" class="active">Dashboard</a></li>
+    </ul>
 
+    <div class="sidebar-bottom">
+      <a href="index.html" class="minha-conta">
+        <img src="./assets/imagens/minha-conta.png" alt=""> Minha Conta
+      </a>
+      <a href="">
+        <img id="suporte-jira" src="assets/imagens/jira.png" alt="">
+      </a>
+      <p>Data: <span id="date">31/10/2025</span></p>
+    </div>
+  </nav>
 
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <header id="cabecalho">
+    <h1>Painel de Desempenho do Sistema</h1>
+    <h1>Empresa GRU Tecnologia S.A</h1>
+  </header>
+
+  <div id="conteudo-geral">
+
+    <!-- ===== PAINEL GERAL ===== -->
+    <main id="main-painel-geral">
+
+      <!-- KPIs -->
+      <section id="kpis">
+        <article class="kpi">
+          <img class="icons" src="assets/imagens/computador-portatil.png">
+          <div id="conteudo-kpi">
+            <h1>3/3</h1>
+            <p>Máquinas Ativas</p>
+          </div>
+        </article>
+
+        <article class="kpi">
+          <img class="icons" src="assets/imagens/trafego-da-web.png">
+          <div id="conteudo-kpi">
+            <h2>51,79 Mbps</h2>
+            <p>Tráfego total de dados</p>
+          </div>
+        </article>
+
+        <article class="kpi">
+          <img class="icons" src="assets/imagens/sinal-de-aviso.png">
+          <div id="conteudo-kpi">
+            <h2>Máquina <span id="maq_maior_criticidade">3</span></h2>
+            <p>Maior Criticidade - Hora: <span id="horario">15:00</span></p>
+          </div>
+        </article>
+      </section>
+
+      <!-- MODAL -->
+      <button id="abrir-modal">
+        <i class='bx bxs-filter'></i>
+      </button>
+
+      <dialog id="modal">
+        <article>
+          <header>
+            <h1 id="titulo_modal">Máquinas Disponíveis</h1>
+            <p>Escolha a máquina que deseja ver os detalhes</p>
+          </header>
+
+          <section class="maquinas_disponiveis">
+            <a href="dashboard_detalhada.html"><span>Máquina 1</span></a>
+            <a href="dashboard_detalhada.html"><span>Máquina 2</span></a>
+            <a href="dashboard_detalhada.html"><span>Máquina 3</span></a>
+          </section>
+
+          <button id="fechar-modal">Fechar</button>
+        </article>
+      </dialog>
+
+      <!-- MÁQUINAS -->
+      <section class="maquinas">
+        <article class="card-maquina">
+          <h3>Máquina 1
+            <img class="status-bolinha" src="assets/imagens/circulo-verde.png" alt="Status Estável">
+          </h3>
+          <p>Status: <span id="stts_ok">Estável</span></p>
+        </article>
+
+        <article class="card-maquina">
+          <h3>Máquina 2
+            <img class="status-bolinha" src="assets/imagens/circulo-amarelo.png" alt="Status Instável">
+          </h3>
+          <p>Status: <span id="stts_perigo">Instável</span></p>
+        </article>
+
+        <article class="card-maquina">
+          <h3>Máquina 3
+            <img class="status-bolinha" src="assets/imagens/circulo-vermelha.png" alt="Status Crítico">
+          </h3>
+          <p>Status: <span id="stts_critico">Crítico</span></p>
+        </article>
+      </section>
+    </main>
+
+    <!-- ===== ALERTAS ===== -->
+    <section id="alertas">
+      <article class="kpi">
+        <img class="icons" src="assets/imagens/alarme.png">
+        <div id="conteudo-kpi">
+          <h2>Alertas Totais: <span id="qtd_ultimos_alertas">2</span></h2>
+          <p>Tempo: últimas 24 horas</p>
+        </div>
+      </article>
+
+      <p>Todos os últimos alertas:</p>
+
+      <article class="alerta">
+        <p>
+          Máquina: <span>3</span> <br>
+          Componente crítico: <span>CPU</span> <br>
+          Registro de pico: <span>95%</span> <br>
+          Momento: <span>14h41min</span>
+        </p>
+      </article>
+
+      <article class="alerta">
+        <p>
+          Máquina: <span>2</span> <br>
+          Componente crítico: <span>RAM</span> <br>
+          Registro de pico: <span>97%</span> <br>
+          Momento: <span>13h47min</span>
+        </p>
+      </article>
+    </section>
+  </div>
+
+  <script src="./js/modal_dash.js"></script>
 </body>
 
 </html>

@@ -34,10 +34,13 @@ const entrar = (emailVar, senhaVar) => {
 					setTimeout(() => {
 						switch (sessionStorage.PERMISSOES) {
 							case '1000':
-								window.location = './html_colaborador_infrawatch/perfil_colaborador.html';
+								window.location = './html_colaborador_infrawatch/cadastro_empresa.html';
 								break;
 							case '0111':
-								window.location = './html_user_perfil_adm/perfil_adm.html';
+								window.location = '/dashboard_geral.html';
+								break;
+								case '0011':
+								window.location = '/dashboard_geral.html';
 								break;
 							default:
 								window.location = 'index.html';
