@@ -25,7 +25,8 @@ const entrar = (emailVar, senhaVar) => {
 
 					sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.ID_EMPRESA = json.idEmpresa;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.NOME_USUARIO = json.nome_usuario;
+                    sessionStorage.NOME_EMPRESA = json.nome_empresa;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.STATUS_ATIVACAO = json.status_ativacao;
                     sessionStorage.PERMISSOES= json.permissoes;
