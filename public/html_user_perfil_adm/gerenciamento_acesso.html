@@ -29,14 +29,31 @@
         </div>
 
         <div class="text-field">
-          <label for="cnpj">Empresa</label>
-          <input type="text" name="cnpj" id="cnpj" placeholder="Digite o nome da empresa" />
+          <label for="data">Data de Expiração</label>
+          <input type="date" name="data" id="data" />
         </div>
 
-        <div class="text-field">
-          <label for="cnpj">Código de Permissões</label>
-          <input type="number" name="cnpj" id="cnpj" placeholder="Digite o código de permissões" />
-        </div>
+        <div class="permissoes">
+    <h3>Permissões</h3>
+
+    <label class="switch-container">
+        <input type="checkbox">
+        <span class="switch"></span>
+        <span class="label-text">Visualizar dashboard</span>
+    </label>
+
+    <label class="switch-container">
+        <input type="checkbox">
+        <span class="switch"></span>
+        <span class="label-text">Gerenciamento de máquinas</span>
+    </label>
+
+    <label class="switch-container">
+        <input type="checkbox">
+        <span class="switch"></span>
+        <span class="label-text">Gerenciamento de acessos</span>
+    </label>
+</div>
 
 
         <button class="button" style="vertical-align: middle">
@@ -55,10 +72,10 @@
 
         <div class="usuarios">
           <div class="labels">
-            <p style="width: 20%">idEmpresa</p>
             <p style="width: 20%">Nome</p>
+              <p style="width: 20%">Descrição</p>
             <p style="width: 20%">Código</p>
-             <p style="width: 20%">Expiração</p>
+             <p style="width: 25%">Expiração</p>
             <p style="margin-right: 6%">Status</p>
           </div>
 

@@ -11,6 +11,63 @@ body * {
     box-sizing: border-box;
 }
 
+.permissoes {
+    font-family: Arial, sans-serif;
+}
+
+.permissoes h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.switch-container input {
+    display: none;
+}
+
+.switch {
+    width: 34px;
+    height: 18px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.switch::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.switch-container input:checked + .switch {
+    background-color: #4CAF50;
+}
+
+.switch-container input:checked + .switch::before {
+    transform: translateX(16px);
+}
+
+.label-text {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+
 /* Layout principal */
 .main-cadastro {
     width: 100vw;
