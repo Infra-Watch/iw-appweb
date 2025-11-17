@@ -8,8 +8,7 @@ router.post("/cadastrar", function (req, res) {
 });
 
 router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
-    // maquinaController.buscarPorEmpresa(req, res);
-    const idEmpresa = req.params.idEmpresa;
+    maquinaController.buscarPorEmpresa(req, res);
 });
 
 router.get("/buscarPorMaquina/:idEmpresa/:idMaquina", function (req, res) {

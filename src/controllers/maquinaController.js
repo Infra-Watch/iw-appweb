@@ -43,6 +43,15 @@ function buscarPorEmpresa(req, res) {
         default:
             break;
     }
+
+    maquinaModel.buscarPorEmpresa(idEmpresa)
+    .then((response) => {
+        console.log(response.data)
+        res.json(response)
+    })
+    .catch((error) => {
+        res.status(500).json(error.sqlMessage)
+    })
 }
 
 function buscarPorMaquina(req, res) {

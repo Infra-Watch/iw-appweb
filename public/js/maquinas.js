@@ -1,14 +1,15 @@
 const lista_maquinas = document.querySelector('maquinas');
 function exibeErro(str) {alert(str)}
 
-const exibirMaquinas = (idEmpresa) => {
-	fetch(`/buscarPorEmpresa/${idEmpresa}`
-	// , {
-	// 	method: 'GET',
-	// 	headers: {
-	// 		'Content-Type': 'application/json',
-	// 	}
-	// }
+function exibirMaquinas () {
+	let idEmpresa = sessionStorage.ID_EMPRESA;
+	fetch(`maquinas/buscarPorEmpresa/${idEmpresa}`
+	, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	}
 	)
 		.then((resposta) => {
 			if (resposta.ok) {
@@ -36,6 +37,6 @@ window.addEventListener('load', () => {
 		exibeErro('Todos os campos devem ser preenchidos!');
 		return false;
 	} else {
-		exibirMaquinas(idEmpresa);
+		exibirMaquinas();
 	}
 });
