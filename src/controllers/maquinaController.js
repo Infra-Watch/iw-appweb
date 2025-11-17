@@ -17,7 +17,20 @@ function cadastrar(req, res) {
             break;
         default:
             break;
+    
     }
+    maquinaModel.cadastrar(idEmpresa,macAddress,apelido)
+    .then((resposta) => {
+        res.json(resposta)
+    })
+    .catch(function(erro){
+        console.log(erro)
+        console.log(
+            "Erro ao cadastrar máquina: ",
+            erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage)
+    });
 }
 
 function buscarPorEmpresa(req, res) {
