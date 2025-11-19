@@ -1,8 +1,60 @@
 const lista_maquinas = document.querySelector('.maquinas');
-function exibeErro(str) {alert(str)}
+const idEmpresa = sessionStorage.ID_EMPRESA;
 
-function exibirMaquinas () {
+window.addEventListener('load', () => {
 	let idEmpresa = sessionStorage.ID_EMPRESA;
+
+	if (idEmpresa == '') {
+		exibeErro('Todos os campos devem ser preenchidos!');
+		return false;
+	} else {
+		plotarDashboard();
+	}
+});
+
+function plotarDashboard () {
+	exibirMaquinas();
+	exibirKpis();	
+};
+
+
+function exibirKpis() {
+	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/1`
+		, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}
+		)
+			.then((resposta) => {
+				if (resposta.ok) {
+					console.log(resposta);
+					return resposta.json();
+				} else {
+					exibeErro('Não foi possível exibir máquinas');
+					return resposta.text().then(texto => console.error(texto));
+					
+				}
+			})
+			.then((json) => {
+				if(!json)return;
+				let kpis = json[0][0];
+				let query_status = json[1];
+				console.log(kpis)
+				console.log(query_status)
+				document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
+				document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
+				document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
+				document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
+				console.log(json);
+				console.log(JSON.stringify(json));
+			})
+			.catch((erro) => {
+				console.log(erro);
+			});
+}
+function exibirMaquinas() {
 	fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`
 	, {
 		method: 'GET',
@@ -49,53 +101,7 @@ function exibirMaquinas () {
 		.catch((erro) => {
 			console.log(erro);
 		});
-
-	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/1`
-	, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		}
-	}
-	)
-		.then((resposta) => {
-			if (resposta.ok) {
-				console.log(resposta);
-				return resposta.json();
-			} else {
-				exibeErro('Não foi possível exibir máquinas');
-				return resposta.text().then(texto => console.error(texto));
-				
-			}
-		})
-		.then((json) => {
-			if(!json)return;
-			let kpis = json[0][0];
-			let query_status = json[1];
-			console.log(kpis)
-			console.log(query_status)
-			document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
-			document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
-			document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
-			document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
-			console.log(json);
-			console.log(JSON.stringify(json));
-		})
-		.catch((erro) => {
-			console.log(erro);
-		});
-};
-
-window.addEventListener('load', () => {
-	let idEmpresa = sessionStorage.ID_EMPRESA;
-
-	if (idEmpresa == '') {
-		exibeErro('Todos os campos devem ser preenchidos!');
-		return false;
-	} else {
-		exibirMaquinas();
-	}
-});
+}
 
 function elem_bolinha(qtd_alertas, ativacao) {
 	let str = '';
@@ -123,3 +129,5 @@ function elem_status(qtd_alertas, ativacao) {
 	}
 	return str
 };
+
+function exibeErro(str) {alert(str)}
