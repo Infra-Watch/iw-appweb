@@ -1,5 +1,6 @@
 const lista_maquinas = document.querySelector('.maquinas');
 const idEmpresa = sessionStorage.ID_EMPRESA;
+const intervalo = sessionStorage.INTERVALO_DIAS;
 
 window.addEventListener('load', () => {
 	let idEmpresa = sessionStorage.ID_EMPRESA;
@@ -14,12 +15,13 @@ window.addEventListener('load', () => {
 
 function plotarDashboard () {
 	exibirMaquinas();
-	exibirKpis();	
+	exibirKpis();
+	exibirAlertas();
 };
 
 
 function exibirKpis() {
-	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/1`
+	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/${intervalo}`
 		, {
 			method: 'GET',
 			headers: {
@@ -29,10 +31,9 @@ function exibirKpis() {
 		)
 			.then((resposta) => {
 				if (resposta.ok) {
-					console.log(resposta);
 					return resposta.json();
 				} else {
-					exibeErro('Não foi possível exibir máquinas');
+					exibeErro('Não foi possível exibir KPIs');
 					return resposta.text().then(texto => console.error(texto));
 					
 				}
@@ -41,17 +42,13 @@ function exibirKpis() {
 				if(!json)return;
 				let kpis = json[0][0];
 				let query_status = json[1];
-				console.log(kpis)
-				console.log(query_status)
 				document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
 				document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
 				document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
 				document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
-				console.log(json);
-				console.log(JSON.stringify(json));
 			})
 			.catch((erro) => {
-				console.log(erro);
+				console.error(erro);
 			});
 }
 function exibirMaquinas() {
@@ -74,8 +71,8 @@ function exibirMaquinas() {
 		})
 		.then((json) => {
 			if(!json)return;
-			maquinas = json[0];
-			query_status = json[1];
+			let maquinas = json[0];
+			let query_status = json[1];
 			if (maquinas.length > 0) {
 				maquinas.forEach(maquina => {
 					let alertas = maquina.qtd_alertas_24h;
@@ -99,8 +96,51 @@ function exibirMaquinas() {
 			}
 		})
 		.catch((erro) => {
-			console.log(erro);
+			console.error(erro);
 		});
+}
+
+function exibirAlertas() {
+	fetch(`/alertas/buscarPorEmpresa/${idEmpresa}/${intervalo}`
+	, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	})
+	.then((response) => {
+		console.log(response)
+		if (response.ok) {
+			return response.json();
+		} else {
+			exibeErro('Não foi possível exibir alertas');
+			return response.text().then(texto => console.error(texto));
+		}
+	})
+	.then((json) => {
+		if(!json)return;
+		let alertas = json[0];
+		let query_status = json[1];
+		console.log(alertas)
+		alertas.forEach((alerta) => {
+			document.getElementById('lista-alertas').innerHTML += `
+            <article class="alerta">
+              <p id="alerta_${alerta.idAlerta}">
+                Máquina: <span>${alerta.maquina}}</span> <br>
+                Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
+                Componente: <span>${alerta.componente}</span> <br>
+                Registro: <span>${alerta.leitura}</span> <br>
+                Horário: <span>${alerta.data_hora}</span>
+              </p>
+            </article>
+			`
+		})
+		console.log(json)
+		console.log(JSON.stringify(json))
+	})
+	.catch((error) => {
+		console.error(error);
+	})
 }
 
 function elem_bolinha(qtd_alertas, ativacao) {
@@ -129,5 +169,14 @@ function elem_status(qtd_alertas, ativacao) {
 	}
 	return str
 };
+
+function cor_alerta(nivel){
+	if (nivel == 2) {
+		return 'red'
+	}
+	if (nivel == 1) {
+		return 'yellow'
+	}
+}
 
 function exibeErro(str) {alert(str)}

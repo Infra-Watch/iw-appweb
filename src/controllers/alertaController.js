@@ -2,6 +2,7 @@ var alertaModel = require("../models/alertaModel")
 
 function buscarPorEmpresa(req, res) {
     var idEmpresa = req.params.idEmpresa;
+    var intervalo = req.params.intervalo;
 
     switch (undefined) {
         case idEmpresa:
@@ -11,7 +12,7 @@ function buscarPorEmpresa(req, res) {
             break;
     }
 
-    alertaModel.buscarPorEmpresa(idEmpresa)
+    alertaModel.buscarPorEmpresa(idEmpresa, intervalo)
     .then((response) => {
         console.log(response.data)
         res.json(response)

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var alertaController = require("../controllers/alertaController");
 
-router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
+router.get("/buscarPorEmpresa/:idEmpresa/:intervalo", function (req, res) {
     alertaController.buscarPorEmpresa(req, res);
 });
 
