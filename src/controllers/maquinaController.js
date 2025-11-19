@@ -54,6 +54,31 @@ function buscarPorEmpresa(req, res) {
     })
 }
 
+function buscarKpisGeral(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var intervalo = req.params.intervalo;
+
+    switch (undefined) {
+        case idEmpresa:
+            res.status(400).send("id Empresa está undefined!");
+            break;
+        case intervalo:
+            res.status(400).send("id Empresa está undefined!");
+            break;
+        default:
+            break;
+    }
+
+    maquinaModel.buscarKpisGeral(idEmpresa, intervalo)
+    .then((response) => {
+        console.log(response.data)
+        res.json(response)
+    })
+    .catch((error) => {
+        res.status(500).json(error.sqlMessage)
+    })
+}
+
 function buscarPorMaquina(req, res) {
     var idEmpresa = req.params.idEmpresa;
     var idMaquina = req.params.idMaquina;
@@ -149,5 +174,6 @@ module.exports = {
     atualizarStatus,
     atualizarMacaddress,
     atualizarApelido,
-    remover
+    remover,
+    buscarKpisGeral
 }

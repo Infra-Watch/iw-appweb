@@ -13,7 +13,6 @@ function exibirMaquinas () {
 	)
 		.then((resposta) => {
 			if (resposta.ok) {
-				console.log(resposta);
 				return resposta.json();
 			} else {
 				exibeErro('Não foi possível exibir máquinas');
@@ -25,10 +24,6 @@ function exibirMaquinas () {
 			if(!json)return;
 			maquinas = json[0];
 			query_status = json[1];
-			console.log(maquinas);
-			console.log(query_status);
-			console.log(json);
-			console.log(JSON.stringify(json));
 			if (maquinas.length > 0) {
 				maquinas.forEach(maquina => {
 					let alertas = maquina.qtd_alertas_24h;
@@ -42,7 +37,6 @@ function exibirMaquinas () {
 					cardTitle.innerHTML += elem_bolinha(alertas, ativacao);
 	
 					card.innerHTML += elem_status(alertas, ativacao);
-					console.log(maquina.nome_maquina)
 				});
 			} else {
 				let card = lista_maquinas.appendChild(document.createElement("article"));
@@ -51,6 +45,41 @@ function exibirMaquinas () {
 				let cardTitle = card.appendChild(document.createElement("h3"));
 				cardTitle.textContent = "Você ainda não possui máquinas monitoradas"
 			}
+		})
+		.catch((erro) => {
+			console.log(erro);
+		});
+
+	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/1`
+	, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	}
+	)
+		.then((resposta) => {
+			if (resposta.ok) {
+				console.log(resposta);
+				return resposta.json();
+			} else {
+				exibeErro('Não foi possível exibir máquinas');
+				return resposta.text().then(texto => console.error(texto));
+				
+			}
+		})
+		.then((json) => {
+			if(!json)return;
+			let kpis = json[0][0];
+			let query_status = json[1];
+			console.log(kpis)
+			console.log(query_status)
+			document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
+			document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
+			document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
+			document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
+			console.log(json);
+			console.log(JSON.stringify(json));
 		})
 		.catch((erro) => {
 			console.log(erro);
