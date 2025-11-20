@@ -3,9 +3,7 @@ const idEmpresa = sessionStorage.ID_EMPRESA;
 const intervalo = sessionStorage.INTERVALO_DIAS;
 
 window.addEventListener('load', () => {
-	let idEmpresa = sessionStorage.ID_EMPRESA;
-
-	if (idEmpresa == '') {
+	if (idEmpresa == undefined) {
 		exibeErro('Todos os campos devem ser preenchidos!');
 		return false;
 	} else {
@@ -126,11 +124,11 @@ function exibirAlertas() {
 			document.getElementById('lista-alertas').innerHTML += `
             <article class="alerta">
               <p id="alerta_${alerta.idAlerta}">
-                Máquina: <span>${alerta.maquina}}</span> <br>
+                Máquina: <span>${alerta.maquina}</span> <br>
                 Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
                 Componente: <span>${alerta.componente}</span> <br>
                 Registro: <span>${alerta.leitura}</span> <br>
-                Horário: <span>${alerta.data_hora}</span>
+                Horário: <span>${dataFormatada(alerta.data_hora)}</span>
               </p>
             </article>
 			`
@@ -177,6 +175,11 @@ function cor_alerta(nivel){
 	if (nivel == 1) {
 		return 'yellow'
 	}
+}
+
+function dataFormatada (dataString) {
+	const data = new Date(dataString);
+	return data.toLocaleString();
 }
 
 function exibeErro(str) {alert(str)}
