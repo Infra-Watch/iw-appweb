@@ -15,37 +15,35 @@ function buscarPorId(req, res) {
 }
 
 function cadastrar(req, res) {
-  var razaosocial = req.body.razaosocialServer;
-  var nomefantasia = req.body.nomefantasiaServer;
-  var inscestadual = req.body.inscestadualServer;
+  var razaosocial = req.body.razaoSocialServer;
+  var nomefantasia = req.body.nomeFantasiaServer;
   var cnpj = req.body.cnpjServer;
-  var cep = req.body.cepServer;
-  var uf = req.body.ufServer;
+  var estado = req.body.estadoServer;
   var cidade = req.body.cidadeServer;
-  var bairro = req.body.bairroServer;
-  var logradouro = req.body.logradouroServer;
+  var cep = req.body.cepServer;
   var numero = req.body.numeroServer;
   var complemento = req.body.complementoServer;
-  var codigo_ativacao = Number((Math.random()*65536).toFixed()).toString(16);
+  var nome = req.body.nomeServer;
+  var email = req.body.emailServer;
+  var telefone = req.body.telefoneServer;
+  //  var codigo_ativacao = Number((Math.random()*65536).toFixed()).toString(16);
 
-  empresaModel.buscarDuplicidade(cnpj, inscestadual,razaosocial).then((resultado) => {
-    if (resultado.length > 0) {
-      res
-        .status(401)
-        .json({ mensagem: `a empresa já existe` });
-    } else {
-      empresaModel.cadastrarEmpresa(razaosocial, nomefantasia, inscestadual, cnpj, codigo_ativacao).then(() => {
-        empresaModel.buscarFkEmpresa(cnpj).then((resposta) => {
-          var fkEmpresa = resposta[0].idEmpresa;
-          empresaModel.cadastrarEndereco(fkEmpresa, cep, uf, cidade, bairro,  logradouro, numero, complemento).then((resultado) => {
-            res.status(201).json(resultado);
-          })
-      })
-      })
-    }
-  });
+  empresaModel.cadastrarEmpresa(
+    razaosocial,
+    nomefantasia, 
+    cnpj, 
+    estado, 
+    cidade, 
+    cep, 
+    numero, 
+    complemento, 
+    nome, 
+    email, 
+    telefone)
+    .then(() => {
+      
+  })
 }
-
 
 module.exports = {
   buscarPorId,

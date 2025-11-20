@@ -18,9 +18,8 @@ function buscarDuplicidade(cnpj, inscestadual, razaosocial) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrarEmpresa(razaosocial, nomefantasia, inscestadual, cnpj, codigo_ativacao) {
-  var instrucaoSql = `INSERT INTO empresa VALUES 
-(default, '${razaosocial}', '${nomefantasia}', '${inscestadual}', '${cnpj}', '${codigo_ativacao}')`;
+function cadastrarEmpresa(razaosocial, nomefantasia, cnpj, estado, cidade, cep, numero, complemento, nome, email, telefone) {
+  var instrucaoSql = `CALL cadastrar_empresa ('${razaosocial}', '${nomefantasia}', '${cnpj}', '${estado}', '${cidade}', '${cep}', '${numero}', '${complemento}', '${nome}', '${email}', '${telefone}')`;
 
   return database.executar(instrucaoSql);
 }

@@ -22,12 +22,12 @@
 
           <div class="text-field">
             <label for="razao">Razão Social</label>
-            <input type="text" id="razao" placeholder="Digite a razão social da empresa" required />
+            <input type="text" id="razaosocial" placeholder="Digite a razão social da empresa" required />
           </div>
 
           <div class="text-field">
             <label for="fantasia">Nome Fantasia</label>
-            <input type="text" id="fantasia" placeholder="Digite o nome fantasia da empresa" required />
+            <input type="text" id="nomefantasia" placeholder="Digite o nome fantasia da empresa" required />
           </div>
 
           <div class="text-field">
@@ -87,7 +87,7 @@
             <button type="button" class="button" id="btnVoltar" style="background: gray;">
               <span>Voltar</span>
             </button>
-            <button type="submit" class="button">
+            <button type="submit" class="button" id="btnCadastrar" onclick="cadastrarEmpresa()">
               <span>Cadastrar</span>
             </button>
           </div>
@@ -117,4 +117,4 @@
   </div>
 </body>
 </html>
-<script src="../js/cadastroEmpresa.js"></script>
+<script src="../js/cadastroEmpresa.js" defer></script>
