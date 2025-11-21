@@ -4,6 +4,7 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
+    overflow-y: auto;
 }
 
 body * {
@@ -266,6 +267,13 @@ body * {
     padding: 0 10px;
     border-radius: 5px;
     color: #000;
+}
+
+#lista-empresas{
+    width: 100%;
+    height: 60%;
+    margin: 0;
+    overflow-y: auto;
 }
 
 /* Colunas da listagem */

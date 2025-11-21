@@ -1,7 +1,12 @@
 var database = require("../database/config");
 
+function buscarTodas() {
+  var instrucaoSql = `CALL buscar_empresas_geral();`;
+  return database.executar(instrucaoSql);
+}
+
 function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
+  var instrucaoSql = `CALL buscar_empresa(${id})`;
 
   return database.executar(instrucaoSql);
 }
@@ -36,4 +41,12 @@ function buscarFkEmpresa(cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarDuplicidade, buscarPorId, cadastrarEmpresa, cadastrarEndereco, buscarFkEmpresa, listar };
+module.exports = {
+  buscarTodas,
+  buscarDuplicidade,
+  buscarPorId,
+  cadastrarEmpresa,
+  cadastrarEndereco,
+  buscarFkEmpresa,
+  listar
+};

@@ -7,6 +7,10 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
+router.get("/buscarTodas", function (req, res) {
+  empresaController.buscarTodas(req, res);
+});
+
 router.get("/buscar/:idEmpresa", function (req, res) {
   empresaController.buscarPorId(req, res);
 });

@@ -1,19 +1,5 @@
 var empresaModel = require("../models/empresaModel");
 
-function listar(req, res) {
-  empresaModel.listar().then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
-function buscarPorId(req, res) {
-  var id = req.params.id;
-
-  empresaModel.buscarPorId(id).then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
 function cadastrar(req, res) {
   var razaosocial = req.body.razaoSocialServer;
   var nomefantasia = req.body.nomeFantasiaServer;
@@ -45,8 +31,40 @@ function cadastrar(req, res) {
   })
 }
 
+function buscarTodas(req, res) {
+    empresaModel.buscarTodas()
+    .then((response) => {
+        console.log(response.data)
+        res.json(response)
+    })
+    .catch((error) => {
+        res.status(500).json(error.sqlMessage)
+    })
+}
+
+function buscarPorId(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    switch (undefined) {
+        case idEmpresa:
+            res.status(400).send("id Empresa está undefined!");
+            break;
+        default:
+            break;
+    }
+
+    empresaModel.buscarPorId(idEmpresa)
+    .then((response) => {
+        console.log(response.data)
+        res.json(response)
+    })
+    .catch((error) => {
+        res.status(500).json(error.sqlMessage)
+    })
+}
+
 module.exports = {
   buscarPorId,
+  buscarTodas,
   cadastrar,
-  listar,
 };
