@@ -17,8 +17,12 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var maquinasRouter = require("./src/routes/maquinas");
+<<<<<<< HEAD
 var alertasRouter = require("./src/routes/alertas");
 
+=======
+var acessosRouter = require("./src/routes/acessos");
+>>>>>>> 8553859 (✨ feat: gerenciamento_acesso | criando cadastro de novo usuario)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,8 +33,13 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
+<<<<<<< HEAD
 app.use("/maquinas", maquinasRouter);
 app.use("/alertas", alertasRouter);
+=======
+app.use("/maquina", maquinasRouter);
+app.use("/acessos", acessosRouter);
+>>>>>>> 8553859 (✨ feat: gerenciamento_acesso | criando cadastro de novo usuario)
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -41,7 +50,11 @@ app.listen(PORTA_APP, function () {
     #######  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##      ##     
     ### ###  ##       ##  ##            ## ##    ##  ##     ##     ##  ##             ####      ##     ##      
     ##   ##  ######   #####             ####     ##  ##     ##     ##  ##              ##      ####    ######  
-    \n\n\n                                                                                                 
+    \n
+    E
+    \n
+    
+    
     Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
     Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
     \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
