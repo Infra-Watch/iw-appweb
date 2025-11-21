@@ -107,7 +107,6 @@ function exibirAlertas() {
 		}
 	})
 	.then((response) => {
-		console.log(response)
 		if (response.ok) {
 			return response.json();
 		} else {
@@ -119,7 +118,6 @@ function exibirAlertas() {
 		if(!json)return;
 		let alertas = json[0];
 		let query_status = json[1];
-		console.log(alertas)
 		alertas.forEach((alerta) => {
 			document.getElementById('lista-alertas').innerHTML += `
             <article class="alerta">
@@ -133,8 +131,6 @@ function exibirAlertas() {
             </article>
 			`
 		})
-		console.log(json)
-		console.log(JSON.stringify(json))
 	})
 	.catch((error) => {
 		console.error(error);
