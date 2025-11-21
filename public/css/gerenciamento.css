@@ -199,7 +199,6 @@ body * {
 
 .geral {
     width: 100%;
-    margin-top: 5vh;
     padding: 0 5%;
     font-family: 'Roboto', sans-serif;
 }
@@ -281,6 +280,11 @@ body * {
     padding: 0 10px;
     border-radius: 5px;
     color: #000;
+}
+
+.status-bolinha {
+    width: 1rem;
+    height: 1rem;
 }
 
 /* Colunas da listagem */

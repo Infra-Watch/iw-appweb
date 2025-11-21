@@ -98,6 +98,7 @@ function cadastrarEmpresa() {
 
       if (resposta.ok) {
         alert('Cadastro realizado com sucesso!');
+        window.location.reload();
       } else {
         throw 'Houve um erro ao tentar realizar o cadastro!';
       }

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/gerenciamento.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="../assets/imagens/logo-infrawatch.png" />
   <title>Gerenciamento de Máquinas</title>
 </head>
@@ -40,58 +41,21 @@
           <input type="text" class="ipt_pesquisa" id="ipt_pesquisa" onkeydown="pesquisarUser()" />
           <button class="btn_pesquisa"><i class="bi bi-search"></i></button>
         </div>
-
         <div class="usuarios">
           <div class="labels">
-            <p style="width: 20%">MacAddress</p>
             <p style="width: 20%">Apelido</p>
-            <p style="margin-right: 6%">Status</p>
+            <p style="width: 20%">MacAddress</p>
+            <p style="width: 10%">Status</p>
+            <p style="width: 10%">Mais</p>
           </div>
-
-          <div class="user-infos" id="txt_users"></div>
         </div>
       </div>
+
+      <div id="lista-maquinas" class="geral"></div>
     </div>
   </div>
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 </body>
-<script>
-  function cadastrarMaquina() {
-      const idEmpresa = sessionStorage.ID_EMPRESA;
-      const macaddress = document.getElementById('razao').value;
-      const apelido = document.getElementById('fantasia').value;
-
-      if(!macaddress || !apelido){
-        alert("Preencha todos os campos");
-        return;
-      }
-
-      fetch("/maquinas/cadastrar", {
-          method : "POST",
-          headers: {
-            "Content-Type":"application/json"
-          },
-          body: JSON.stringify({
-            idEmpresaServer:idEmpresa,
-            macAddressServer:macaddress,
-            apelidoServer:apelido
-          }),
-      })
-
-        .then(function (resposta) {
-        console.log('resposta: ', resposta);
-
-          if (resposta.ok) {
-            alert('Máquina realizada com sucesso');
-          }else {
-            alert("Não foi possível cadastrar a máquina, tente novamente")
-          }
-      })
-      .catch(erro => console.error("Erro ao realizar o fetch:", erro));
-
-  }
-
-</script>
-
+<script src="../js/gerenciamento_maquinas.js"></script>
 </html>
