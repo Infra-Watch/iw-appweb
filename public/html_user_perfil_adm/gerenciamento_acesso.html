@@ -33,27 +33,27 @@
           <h3>Permissões</h3>
 
           <label class="switch-container">
-            <input type="checkbox" class="perm" id="4">
+            <input type="checkbox" class="perm">
             <span class="switch"></span>
             <span class="label-text">Visualizar dashboard</span>
           </label>
 
           <label class="switch-container">
-            <input type="checkbox" class="perm" id="2">
+            <input type="checkbox" class="perm">
             <span class="switch"></span>
             <span class="label-text">Gerenciamento de máquinas</span>
           </label>
 
           <label class="switch-container">
-            <input type="checkbox" class="perm" id="1">
+            <input type="checkbox" class="perm">
             <span class="switch"></span>
             <span class="label-text">Gerenciamento de acessos</span>
           </label>
         </div>
 
 
-        <button class="button" style="vertical-align: middle">
-          <span onclick="cadastrar()">Cadastrar</span>
+        <button class="button" style="vertical-align: middle"  onclick="cadastrar()">
+          <span>Cadastrar</span>
         </button>
       </div>
     </div>
@@ -87,62 +87,4 @@
 </body>
 
 </html>
-
-<script>
-
-  function cadastrar() {
-
-    const nome_acesso = document.getElementById('nome_acesso').value;
-    const descricao = document.getElementById('descricao').value;
-    const fkEmpresa = sessionStorage.getItem("ID_EMPRESA");
-
-    const checkboxes = document.querySelectorAll('.perm');
-    const peloMenosUmMarcado = Array.from(checkboxes).some(cb => cb.checked);
-
-
-    var codigo = "0";
-
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-        codigo += cb.id;
-      }
-    });
-
-    if (!nome_acesso || !descricao) {
-      alert("Preencha todos os campos");
-      return;
-    }
-
-    if (!peloMenosUmMarcado) {
-      alert("Selecione pelo menos uma permissão.");
-      return;
-    }
-
-    fetch("/acessos/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nomeAcessoServer: nome_acesso,
-        descricaoServer: descricao,
-        codPermissoesServer: codigo,
-        fkEmpresaServer: fkEmpresa
-      }),
-    })
-
-      .then(function (resposta) {
-        console.log('resposta: ', resposta);
-
-        if (resposta.ok) {
-          alert('Cadastro realizada com sucesso');
-        } else {
-          alert("Não foi possível realizar cadastro, tente novamente!")
-        }
-      })
-      .catch(erro => console.error("Erro ao realizar o fetch:", erro));
-
-  }
-
-
-</script>
+<script src="/public/js/gerenciamento_acessos.js"></script>
