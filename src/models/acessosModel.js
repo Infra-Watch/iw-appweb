@@ -8,6 +8,13 @@ function cadastrar(nome_acesso, descricao, codigo, fkEmpresa) {
     return database.executar(instrucaoSql, [nome_acesso, descricao, codigo, fkEmpresa]);
 }
 
+function buscarPorEmpresa(idEmpresa) {
+  var instrucaoSql = `CALL buscar_categoria_acesso(${idEmpresa})`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    buscarPorEmpresa
 };

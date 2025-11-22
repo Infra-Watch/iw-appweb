@@ -36,6 +36,28 @@ function cadastrar(req, res) {
         });
 }
 
+function buscarPorEmpresa(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    switch (undefined) {
+        case idEmpresa:
+            res.status(400).send("id Empresa está undefined!");
+            break;
+        default:
+            break;
+    }
+
+    acessosModel.buscarPorEmpresa(idEmpresa)
+    .then((response) => {
+        console.log(response.data)
+        res.json(response)
+    })
+    .catch((error) => {
+        res.status(500).json(error.sqlMessage)
+    })
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    buscarPorEmpresa
 }
