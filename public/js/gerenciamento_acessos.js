@@ -5,7 +5,8 @@ window.addEventListener('load', () => {
 })
 
 function cadastrar() {
-
+    
+    let checkboxes = document.querySelectorAll('.perm');
     const nome_acesso = document.getElementById('nome_acesso').value;
     const descricao = document.getElementById('descricao').value;
     const peloMenosUmMarcado = Array.from(checkboxes).some(cb => cb.checked);
@@ -38,7 +39,8 @@ function cadastrar() {
         console.log('resposta: ', resposta);
 
         if (resposta.ok) {
-          alert('Cadastro realizada com sucesso');
+            alert('Cadastro realizada com sucesso');
+            window.location.reload();
         } else {
           alert("Não foi possível realizar cadastro, tente novamente!")
         }
@@ -66,24 +68,24 @@ function exibirCategorias() {
     })
     .then((json) => {
         if(!json)return;
-        let maquinas = json[0];
+        let categorias = json[0];
         let query_status = json[1];
         console.log(json)
-        console.log(maquinas)
-        if (maquinas.length > 0) {
-            maquinas.forEach(maquina => {
+        console.log(categorias)
+        if (categorias.length > 0) {
+            categorias.forEach(categoria => {
             
-                console.log(JSON.parse(maquina.chaves_geradas))
-                // document.getElementById('lista-maquinas').innerHTML+=`
-                //     <div class="usuarios">
-                //     <div class="labels">
-                //         <p style="width: 20%">${maquina.nome_maquina}</p>
-                //         <p style="width: 20%">${maquina.mac_address}</p>
-                //         <p style="width: 10%">${interpretarStatus(maquina.ativacao)}</p>
-                //         <p style="width: 10%" onclick="configurarMaquina(${maquina.idMaquina})"><i class="fa-solid fa-ellipsis"></i></p>
-                //     </div>
-                //     </div>
-                // `
+                console.log(JSON.parse(categoria.chaves_geradas))
+                document.getElementById('lista-acessos').innerHTML+=`
+                    <div class="usuarios">
+                        <div class="labels">
+                            <p style="width: 20%">${categoria.categoria}</p>
+                            <p style="width: 20%">${categoria.descricao}</p>
+                            <p style="width: 20%">${categoria.permissoes}</p>
+                            <p style="width: 20%" onclick="configurarCategoria(${categoria.idCategoria_acesso})"><i class="fa-solid fa-ellipsis"></i></p>
+                        </div>
+                    </div>
+                `
             });
         } else {
 
@@ -95,7 +97,7 @@ function exibirCategorias() {
 }
 
 function gerarCodigoPermissoes() {
-    const checkboxes = document.querySelectorAll('.perm');
+    let checkboxes = document.querySelectorAll('.perm');
     var codigo = "0";
 
     checkboxes.forEach(cb => {
@@ -105,6 +107,7 @@ function gerarCodigoPermissoes() {
         codigo += '0';
       }
     });
+    return codigo;
 }
 
 function exibeErro(str) {
