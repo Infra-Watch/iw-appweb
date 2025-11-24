@@ -127,13 +127,13 @@ body {
 
 #cabecalho h1 {
     color: #043b4d;
-    margin-top: 0;
-    padding-top: 0;
+    margin-top: 1%;
+    padding-top: 1%;
 
 }
 
 #titulo-maq {
-    width: 90%;
+    width: 93%;
 }
 
 #maquina-exibe {
@@ -152,6 +152,7 @@ body {
     width: 100%;
     flex-direction: row;
     gap: 2.5vw;
+    padding-top: 2%;
 }
 
 .graficos {
