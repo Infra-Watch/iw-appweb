@@ -1,603 +1,943 @@
-/* TODAS AS TAGS CRUAS SÃO TRATADAS NO COMEÇO SCRIPT POR DEFINIR O GERAL */
-
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-}
-
-/* === BOTÕES === */
-button,
-#button-login,
-#button-cadastro {
-  font-family: "Josefin Sans", sans-serif;
-  font-optical-sizing: auto;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  font-style: normal;
-
-  background-color: rgb(205, 205, 222);
-  color: rgb(0, 135, 135);
-  font-size: clamp(1rem, 2vw, 2rem);
-  cursor: pointer;
-  border: none;
-  z-index: 1;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-/* Botões principais no topo */
-#button-login,
-#button-cadastro {
-  height: 5vh;
-  width: 7vw;
-  font-size: clamp(1rem, 1.3vw, 2rem);
-}
-
-/* Ajuste de posição */
-#button-login {
-  margin-left: 15vw;
-}
-
-#button-cadastro {
-  margin-left: 1vw;
-}
-
-/* Hover padronizado */
-button:hover,
-#button-login:hover,
-#button-cadastro:hover,
-#button-conhecer:hover {
-  background-color: rgb(114, 114, 114);
-  transform: scale(1.10);
-  color: rgb(255, 255, 255);
-}
-
-/* Botão "Conheça o sistema" */
-#button-conhecer {
-  font-family: "Josefin Sans", sans-serif;
-  font-optical-sizing: auto;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  font-style: normal;
-
-  background-color: rgb(205, 205, 222);
-  color: rgb(0, 135, 135);
-  font-size: clamp(1rem, 2vw, 2rem);
-  cursor: pointer;
-  border: none;
-  z-index: 1;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 7px;
-  width: 20vw;
-  border-radius: 7px;
-}
-
-/* === HOME === */
-#container-home {
-  min-width: 320px;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
-  margin: auto;
+    width: 100%;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; 
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 .navbar {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  font-size: clamp(1rem, 1.5rem, 5rem);
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between; 
+    padding: 1rem 0; 
+    position: fixed; 
+    top: 0;          
+    z-index: 1000;   
+    background-color: #00111498; 
 }
 
 .logo img {
-  width: clamp(5rem, 500px, 12rem);
-  height: clamp(2rem, 110px, 7rem);
+    width: clamp(80px, 20vw, 150px);
+    height: auto;
+    margin-left: 2vw;
 }
 
 .navbar-links {
-  display: flex;
-  justify-content: center;
-  gap: 5rem;
-  padding-left: 5rem;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8rem;
+    padding-left: 3rem;
+    margin: 0;
 }
 
-.navbar-links a {
-  transition: all 0.3s ease;
-  color: lavender;
-  cursor: pointer;
-  text-decoration: none;
+.navbar-links li a { 
+    transition: all 0.3s ease;
+    color: lavender;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
 }
 
-.navbar-links a:hover {
-  transform: scale(1.05);
-  color: rgb(0, 56, 88);
-  text-decoration: underline;
+.navbar-links li a:hover {
+    transform: scale(1.05);
+    color: rgb(0, 56, 88);
+    text-decoration: underline;
+}
+
+.mobile-nav-item {
+    display: none; 
+}
+
+.navbar-botoes-desktop {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-left: auto;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+    margin-right: 2vw;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+button,
+#button-login,
+#button-cadastro,
+#button-login-mobile,
+#button-cadastro-mobile {
+    font-family: "Josefin Sans", sans-serif;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-style: normal;
+
+    background-color: rgb(205, 205, 222);
+    color: rgb(0, 135, 135);
+    cursor: pointer;
+    border: none;
+    z-index: 1;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 0.5rem 1rem; 
+}
+
+#button-conhecer {
+    background-color: rgb(205, 205, 222);
+    color: rgb(0, 135, 135);
+    padding: 10px 15px; 
+    width: 10vw; 
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+#button-login,
+#button-cadastro {
+    height: 3vh;
+    width: 4vw; 
+    font-size: 1.1rem;
+    border-radius: 4px;
+}
+
+
+
+#button-cadastro {
+    margin-right: 2vw; 
+}
+
+button:hover,
+#button-login:hover,
+#button-cadastro:hover,
+#button-conhecer:hover,
+#button-login-mobile:hover,
+#button-cadastro-mobile:hover {
+    background-color: rgb(0, 135, 135);
+    transform: scale(1.05); 
+    color: rgb(255, 255, 255);
+}
+
+#container-home {
+    min-width: 320px;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: url(../assets/imagens/fundo-home.png) no-repeat center/cover;
+    margin: auto;
+    display: flex; 
+    flex-direction: column;
 }
 
 .texto-inicio {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 4rem;
-  height: 80vh;
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 5rem;
+    height: 70vh; 
+    max-width: 80%; 
 }
 
 .texto-inicio b {
-  font-size: clamp(2rem, 3vw, 5rem);
-  color: white;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: white;
 }
 
-.texto-inicio button {
-  padding: 5px 30px;
-  font-size: clamp(1rem, 1.4vw, 2rem);
-  border-radius: 10px;
-  margin-top: 100px;
-  height: 7vh;
-  width: 20vw;
+.texto-inicio #button-conhecer {
+    padding: 5px 30px;
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
+    border-radius: 10px;
+    margin-top: 2rem; 
+    height: auto;
+    width: clamp(180px, 20vw, 300px);
 }
 
 .texto-inicio span {
-  color: rgb(204, 204, 204);
-  margin-top: 0.8rem;
-  font-size: clamp(1rem, 2vw, 2rem);
+    color: rgb(204, 204, 204);
+    margin-top: 0.8rem;
+    font-size: clamp(1rem, 1.5vw, 1.8rem);
 }
 
 .efeito-overlay-1 {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, transparent, #001114);
-  pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, transparent, #001114);
+    pointer-events: none;
 }
 
-/* === O QUE FAZEMOS === */
+/* O que fazemos */
 #container-info {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 80vh;
-  background-color: #001114;
-  padding-top: 15vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 80vh; 
+    background-color: #001114;
+    padding: 10vh 0; 
 }
 
 #pergunta {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  font-size: clamp(2rem, 3vw, 5rem);
-  top: 7vh;
-  left: 7vw;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    top: 3vh; 
+    left: 5vw;
 }
 
 .informacoes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70vw;
-  height: 50vh;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  background-color: white;
-  padding: 3vh 3vw;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.352);
-  transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    width: 80%; 
+    min-height: 400px; 
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: white;
+    padding: 3vh 3vw;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.352);
+    transition: all 0.3s ease;
+    margin-top: 5vh; 
 }
 
 .informacoes:hover {
-  height: 52vh;
+    transform: scale(1.02); 
 }
 
 #imagem-informacao {
-  width: 50%;
-  height: auto;
+    width: 45%; 
+    height: auto;
 }
 
 #imagem-informacao img {
-  width: 30em;
-  height: auto;
-  display: flex;
-  border-radius: 7px;
+    max-width: 100%; 
+    height: auto;
+    display: block;
+    border-radius: 7px;
 }
 
 #texto-informacao {
-  color: rgb(0, 0, 0);
-  font-size: clamp(0.5rem, 1.5rem, 4rem);
-  margin-left: 2vw;
+    color: rgb(0, 0, 0);
+    font-size: clamp(1rem, 1.5vw, 1.8rem);
+    margin-left: 2vw;
+    width: 45%;
 }
 
-/* === BENEFÍCIOS === */
+/* Benefícios */
 #container-beneficios {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 80vh;
-  background-color: #001114;
-  gap: 2vw;
+    position: relative;
+    display: flex;
+    align-items: flex-start; 
+    justify-content: center;
+    width: 100%;
+    min-height: 80vh; 
+    background-color: #001114;
+    gap: 3vw;
+    padding: 10vh 5vw;
+    box-sizing: border-box;
 }
 
 #container-beneficios p {
-  font-size: clamp(1rem, 1.5rem, 3.5rem);
-  color: rgba(255, 255, 255, 0.958);
+    font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.958);
 }
 
 #titulo-beneficos {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  font-size: clamp(2rem, 3vw, 5rem);
-  top: 5vh;
-  left: 7vw;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    top: 3vh;
+    left: 5vw;
 }
 
 #titulo-beneficos span {
-  text-decoration: underline 3px;
-  text-underline-offset: 10px;
+    text-decoration: underline 3px;
+    text-underline-offset: 10px;
 }
 
 .textos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(145deg, #00343c, #001f22);
-  border-radius: 10px;
-  padding: 1rem;
-  height: 45vh;
-  width: 27vw;
-  color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-  margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(145deg, #00343c, #001f22);
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: auto; 
+    width: clamp(250px, 28vw, 400px); 
+    color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    margin-top: 10vh; 
+    text-align: center;
 }
 
 .textos:hover {
-  transform: translateY(-15px);
-  transition: all 0.3s ease;
+    transform: translateY(-10px); 
+    transition: all 0.3s ease;
 }
 
 .cabecalho-texto {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding: 0.9vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.5rem;
 }
 
 .textos img {
-  width: 4vw;
-  height: 8vh;
-  margin-left: 1vw;
+    width: clamp(40px, 4vw, 60px);
+    height: auto;
+    margin-right: 1vw;
 }
 
 #titulos-textos {
-  color: rgba(255, 255, 255, 0.555);
-  font-size: clamp(1.5rem, 2rem, 4rem);
+    color: rgba(255, 255, 255, 0.555);
+    font-size: clamp(1.2rem, 1.8vw, 2.5rem);
 }
 
-/* === TECNOLOGIAS === */
+/* Tecnologias */
 #container-tecnologias {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 70vh;
-  background-color: #001114;
-  gap: 2vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 70vh;
+    background-color: #001114;
+    gap: 3vw;
+    padding: 10vh 0;
+    flex-wrap: wrap; 
 }
 
 #titulo-tecnologias {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  font-size: clamp(2rem, 3vw, 5rem);
-  top: 7vh;
-  left: 7vw;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    top: 3vh;
+    left: 5vw;
 }
 
 #titulo-tecnologias span {
-  text-decoration: underline 3px;
-  text-underline-offset: 10px;
+    text-decoration: underline 3px;
+    text-underline-offset: 10px;
 }
 
 .conteudo-tecnologia {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 16vw;
-  height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 150px; 
+    height: auto;
+    margin-top: 5vh;
 }
 
 .conteudo-tecnologia img {
-  width: 10vw;
-  height: 20vh;
+    width: clamp(60px, 8vw, 100px);
+    height: auto;
 }
 
 .conteudo-tecnologia p {
-  color: white;
+    color: white;
+    text-align: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+}
+
+.seta-separacao {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .seta-separacao img {
-  width: 5vw;
-  height: 10vh;
+    width: clamp(30px, 4vw, 50px);
+    height: auto;
 }
 
-/* === CONFORMIDADES === */
+/* Conformidades */
 #container-conformidades {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 120vh;
-  background-color: #ffffff;
-  padding-top: 15vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 10vh 0;
 }
 
 #container-conformidades h3 {
-  color: rgba(255, 255, 255, 0.555);
-  font-size: clamp(1rem, 1.5rem, 3.5rem);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: clamp(1rem, 1.5vw, 1.8rem);
+    text-align: center;
+    margin: 1rem 0;
 }
 
 #container-conformidades img {
-  width: 18vw;
-  height: auto;
-  display: flex;
-  border-radius: 25px;
-  justify-content: end;
-  padding: 1vw;
+    width: clamp(100px, 15vw, 200px);
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    padding: 0.5rem;
 }
 
 #conformidade-imagem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #titulo-conformidades {
-  position: absolute;
-  color: rgb(0, 0, 0);
-  font-size: clamp(2rem, 3vw, 5rem);
-  top: 7vh;
-  left: 7vw;
+    position: absolute;
+    color: rgb(0, 0, 0);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    top: 3vh;
+    left: 5vw;
 }
 
 #container-conformidades span {
-  text-decoration: underline 3px;
-  text-underline-offset: 10px;
+    text-decoration: underline 3px;
+    text-underline-offset: 10px;
 }
 
 #conformidade-conteudos-1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
-  margin-top: 10vh;
-  gap: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 90%;
+    margin-top: 10vh;
+    gap: 3vw;
+    flex-wrap: wrap; 
 }
 
 .conformidade-conteudo-geral-1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: solid 1px black;
-  width: 40vw;
-  height: 40vh;
-  background: linear-gradient(145deg, #00343c, #001f22);
-  color: white;
-  padding: 1vw;
-  border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: solid 1px #ccc;
+    width: clamp(300px, 40vw, 550px);
+    height: auto; 
+    min-height: 350px;
+    background: linear-gradient(145deg, #00343c, #001f22);
+    color: white;
+    padding: 2vw;
+    border-radius: 7px;
+    margin-bottom: 2rem;
 }
 
 #conformidade-conteudos-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
-  margin: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    margin: 5vh 0;
 }
 
 .conformidade-conteudo-geral-2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 90vw;
-  height: 40vh;
-  color: rgb(0, 0, 0);
-  padding: 1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    padding: 1vw;
+    flex-wrap: wrap;
 }
 
 .conformidade-conteudo {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .conformidade-conteudo h1 {
-  color: black;
+    color: black;
+    font-size: clamp(2rem, 2.5vw, 3rem);
 }
 
 #txt-sobrenos {
-  font-size: clamp(1rem, 1.5rem, 3.5rem);
+    font-size: clamp(1rem, 1.5vw, 1.8rem);
 }
 
 #palavras-chave {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  gap: 10vw;
-  background-color: #6565657a;
-  color: #001f22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: 5vw;
+    background-color: #6565657a;
+    color: #001f22;
+    padding: 1rem 0;
+    border-radius: 5px;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 #palavra-chave {
-  text-decoration: underline;
+    text-decoration: underline;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
 }
 
-/* === EQUIPE === */
+/* Equipe */
 #container-equipe {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 5vw;
-  width: 100%;
-  height: 90vh;
-  background-color: #ffffff;
-  margin-top: 15vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4vw;
+    width: 100%;
+    min-height: 80vh;
+    background-color: #ffffff;
+    padding: 10vh 0;
 }
 
 .integrante {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 25vw;
-  height: 38vh;
-  background-color: #002b2f;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  color: white;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; 
+    width: clamp(250px, 25vw, 350px);
+    height: 300px;
+    background-color: #002b2f;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 2rem;
+    margin-top: 5vh;
 }
 
 .integrante:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
 .image-integrante {
-  position: absolute;
-  top: -5vh;
-  width: 8vw;
-  height: 8vw;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: -50px; 
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .nome-integrante {
-  margin-top: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
+    margin-top: 3rem; 
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    font-weight: 600;
 }
 
 .cargo-integrante {
-  font-size: 1rem;
-  opacity: 0.9;
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    opacity: 0.9;
 }
 
 .nome-integrante::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 1px;
-  background-color: white;
-  margin: 0.5rem auto;
-  opacity: 0.7;
+    content: "";
+    display: block;
+    width: 50%;
+    height: 1px;
+    background-color: white;
+    margin: 0.5rem auto;
+    opacity: 0.7;
 }
 
-/* === FORMULÁRIO === */
+/* Formulário */
 #container-formulario {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  background-color: #001f22;
-  color: white;
-  margin-top: 10vh;
-  height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #001f22;
+    color: white;
+    margin-top: 10vh;
+    min-height: 80vh;
+    padding: 5vh 0;
+    position: relative; 
 }
 
 #titulo-formulario {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  font-size: clamp(2rem, 3vw, 5rem);
-  margin-top: -55vh;
-  left: 7vw;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    top: 3vh;
+    left: 5vw;
 }
 
 #titulo-formulario span {
-  text-decoration: underline 3px;
-  text-underline-offset: 10px;
+    text-decoration: underline 3px;
+    text-underline-offset: 10px;
 }
 
 #formulario-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30vw;
-  height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: auto;
 }
 
 .formulario-icone {
-  height: 6vh;
-  width: 3vw;
-  padding: 1vh;
+    height: clamp(50px, 8vw, 100px);
+    width: auto;
+    padding: 1vh;
 }
 
 .formulario-informacoes {
-  display: flex;
-  flex-direction: column;
-  padding: 3vw;
+    display: flex;
+    flex-direction: column;
+    padding: 3vw;
+    width: 50%;
 }
 
 .formulario-titulo-informacao,
 .nome-input {
-  margin-top: 3vh;
+    margin-top: 3vh;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .inputs-formulario {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 #inp_nome_empresa,
 #inp_email_empresa,
 #inp_mensagem_empresa {
-  width: 25vw;
-  height: 4vh;
-  border-radius: 7px;
+    width: 100%;
+    height: 4vh;
+    border-radius: 7px;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 #inp_mensagem_empresa {
-  height: 25vh;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 7px;
+    height: 150px;
+    min-height: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 7px;
+    padding: 1rem;
 }
 
 #button-mensagem {
-  height: 3vh;
-  font-size: clamp(0.5rem, 1rem, 4rem);
-  margin-top: 3vh;
-  color: white;
-  background-color: #036a7a;
-  align-items: center;
+    height: auto;
+    padding: 0.8rem 0;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    margin-top: 3vh;
+    color: white;
+    background-color: #036a7a;
 }
 
-/* RESPONSIVIDADE DOS CONTAINERS */
+/* Animações Hambúrguer */
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.navbar-links.active {
+    transform: translateX(0);
+}
+
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        height: auto; 
+    }
+
+    .navbar-links {
+        position: absolute;
+        top: 60px; 
+        right: 0;
+        width: 70vw; 
+        height: calc(100vh - 60px); 
+        background: #001114; 
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%); /* Esconde fora da tela */
+        transition: transform 0.3s ease-in;
+        display: none; /* Oculta a lista por padrão */
+        z-index: 999;
+        padding: 0;
+    }
+
+    .navbar-links.active {
+        display: flex; 
+        transform: translateX(0);
+    }
+    
+    .navbar-links li {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-links li a {
+        font-size: 1.2rem;
+        color: lavender;
+        display: block;
+    }
+
+    .navbar-botoes-desktop {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        margin-right: 5vw;
+    }
+
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    #button-login-mobile {
+        display: flex;
+        width: 45%; 
+        height: auto;
+        padding: 0.8rem 0;
+        font-size: clamp(0.8rem, 3vw, 1rem);
+        margin: 0;
+    }
+    
+
+    .logo img {
+        margin-left: 5vw;
+        width: clamp(100px, 30vw, 150px);
+    }
+    
+    /* === HOME === */
+    .texto-inicio {
+        padding-left: 5vw;
+        padding-top: 5vh;
+        width: 90%;
+        height: auto;
+        margin-bottom: 5vh;
+    }
+
+    .texto-inicio b {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .texto-inicio span {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+
+    #button-conhecer {
+        width: 70%; 
+        margin-top: 30px;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        padding: 10px 0;
+    }
+
+
+    /* === O QUE FAZEMOS === */
+    #pergunta {
+        position: static; 
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-top: 2rem;
+    }
+    
+    #container-info {
+        padding: 5vh 0;
+    }
+
+    .informacoes {
+        flex-direction: column; 
+        width: 90%;
+        padding: 5vw 3vw;
+        min-height: auto;
+        margin-top: 0;
+    }
+
+    #imagem-informacao,
+    #texto-informacao {
+        width: 100%; 
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #imagem-informacao img {
+        width: 80%;
+        max-width: 300px;
+        margin: 0 auto 1rem;
+    }
+
+    /* === BENEFÍCIOS === */
+    #titulo-beneficos {
+        position: static;
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    #container-beneficios {
+        flex-direction: column;
+        align-items: center;
+        padding: 10vh 2vw;
+    }
+
+    .textos {
+        width: 85vw; 
+        margin-top: 1rem;
+        min-height: 250px;
+    }
+
+    /* === TECNOLOGIAS === */
+    #titulo-tecnologias {
+        position: static;
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    #container-tecnologias {
+        flex-direction: column;
+        padding: 10vh 0;
+    }
+    
+    .conteudo-tecnologia {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .seta-separacao {
+        display: none; 
+    }
+
+    /* === CONFORMIDADES === */
+    #titulo-conformidades {
+        position: static;
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    #conformidade-conteudos-1 {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5vh;
+    }
+    
+    .conformidade-conteudo-geral-1 {
+        flex-direction: column;
+        width: 90%;
+        min-height: auto;
+        padding: 5vw;
+    }
+
+    #conformidade-conteudos-2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conformidade-conteudo-geral-2 {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    #palavras-chave {
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+    }
+
+    /* === EQUIPE === */
+    .integrante {
+        width: 80%;
+        height: 280px;
+    }
+
+    /* === FORMULÁRIO === */
+    #titulo-formulario {
+        position: static;
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+    }
+
+    #container-formulario {
+        flex-direction: column;
+        padding: 5vh 0;
+    }
+
+    #formulario-logo {
+        display: none; 
+    }
+
+    .formulario-informacoes {
+        width: 90%;
+        padding: 0 5vw;
+    }
+
+    #inp_nome_empresa,
+    #inp_email_empresa,
+    #inp_mensagem_empresa {
+        width: 100%;
+    }
+
+    #button-mensagem {
+        font-size: 1rem;
+        padding: 0.6rem 0;
+    }
+}
