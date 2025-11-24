@@ -1,6 +1,6 @@
 const lista_maquinas = document.querySelector('.maquinas');
 const idEmpresa = sessionStorage.ID_EMPRESA;
-const intervalo = sessionStorage.INTERVALO_DIAS;
+const intervalo = sessionStorage.INTERVALO_DIAS != undefined ? sessionStorage.INTERVALO_DIAS: 1;
 
 window.addEventListener('load', () => {
 	if (idEmpresa == undefined) {
