@@ -144,6 +144,11 @@ body {
     border-radius: 10px;
 }
 
+#componente-exibe {
+    margin-left: 0%;
+    width: 12vw;
+}
+
 
 /* GRÁFICOS */
 #main-painel-graficos {
