@@ -149,6 +149,12 @@ body {
     width: 15vw;
 }
 
+#componente-exibe :hover {
+    background-color: #e8eaf6;
+    color: #000266;
+    transform: translateX(5px);
+}
+
 details summary {
   cursor: pointer;
   padding: 0.5rem 2rem;
