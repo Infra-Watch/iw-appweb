@@ -13,6 +13,7 @@ const entrar = (emailVar, senhaVar) => {
 		body: JSON.stringify({
 			emailServer: emailVar,
 			senhaServer: senhaVar,
+			cache: 'no-store',
 		}),
 	})
 		.then(function (resposta) {
