@@ -1,0 +1,254 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    height: 100%;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+    background-color: #fff;
+}
+/* ===== NAVBAR LATERAL ===== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 15vw;
+    background-color: #f8f9fc;
+    border-right: 2px solid #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-logo img {
+    width: 90%;
+    max-width: 130px;
+    height: auto;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.sidebar-links li {
+    width: 100%;
+}
+
+.sidebar-links a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #5a61a1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar-links a:hover {
+    background-color: #e8eaf6;
+    color: #000266;
+    transform: translateX(5px);
+}
+
+.sidebar-links a.active {
+    font-weight: bold;
+    color: #353960;
+    border-left: 4px solid #353960;
+    background-color: #e8eaf6;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.sidebar-bottom a {
+    color: #5a61a1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar-bottom a:hover {
+    color: #000266;
+    transform: scale(1.05);
+}
+
+.sidebar-bottom img {
+    width: 35px;
+    height: 35px;
+}
+
+.sidebar-bottom p {
+    font-size: 0.9rem;
+    color: #353960;
+    margin: 0;
+}
+
+body {
+    margin-left: 15vw;
+}
+
+/* CABEÇALHO */
+#cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 93%;
+}
+
+#cabecalho h1 {
+    color: #043b4d;
+    margin-top: 0.5%;
+    padding-top: 0.5%;
+
+}
+
+#titulo-maq {
+    width: 93%;
+}
+
+#maquina-exibe {
+    margin-top: -5%;
+    padding: 0.5rem;
+    width: 27vw;
+    border: 2px solid #464646;
+    border-radius: 10px;
+}
+
+#componente-exibe {
+    margin-left: 0%;
+    width: 15vw;
+}
+
+#componente-exibe :hover {
+    background-color: #e8eaf6;
+    color: #000266;
+    transform: translateX(5px);
+}
+
+details summary {
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  list-style: none;
+  color: #5a61a1;
+  font-weight: 500;
+}
+
+details nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  font-size: 90%;
+}
+
+details nav a:hover {
+  color: #000266;
+}
+
+.kpis {
+    margin-top: 1%;
+    width: 93%;
+    height: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;    
+}
+.kpi {
+    width: 20%;
+    border: solid 2px black;
+    border-radius: 25px;
+    height: 90px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    font-size: small;
+}
+
+.kpi b {
+    font-size: x-large;
+}
+
+#conteudo-kpi {
+    margin-left: 7px;
+}
+
+.icons {
+    margin-top: 10%;
+    height:45%;
+}
+
+.graficos {
+    margin-top: 3%;
+    height: 62vh;
+    width: 62vw;
+    margin-right: 19%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: 1fr 1fr; 
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 5px;
+}
+
+#grafico1 {
+    height:100%;
+    width: 100%;
+    border: solid 2px black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#grafico2 {
+    height:100%;
+    width: 100%;
+    border: solid 2px black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#grafico3 {
+    height:100%;
+    width: 100%;
+    border: solid 2px black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#grafico4 {
+    height:100%;
+    width: 100%;
+    border: solid 2px black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
