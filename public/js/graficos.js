@@ -74,6 +74,7 @@ function graficos(componentes) {
         colors: ["#ff0000ff"],
         labels: ['Average Results'],
     };
+    gauge_cpu.innerHTML = '';
     let chart_gauge = new ApexCharts(gauge_cpu, options_gauge_cpu);
     chart_gauge.render();
 
@@ -91,6 +92,7 @@ function graficos(componentes) {
             data: valoresTemperaturaCPU,
         }]
     };
+    grafico_1.innerHTML = '';
     let chart_1 = new ApexCharts(grafico_1, options_1);
     chart_1.render();
 
@@ -108,6 +110,7 @@ function graficos(componentes) {
             data: valoresFrequenciaCPU,
         }]
     };
+    grafico_2.innerHTML = '';
     let chart_2 = new ApexCharts(grafico_2, options_2);
     chart_2.render();
 
@@ -156,6 +159,7 @@ function graficos(componentes) {
         },
         labels: ['Average Results'],
     };
+    gauge_disco.innerHTML = '';
     let chart_gauge_disco = new ApexCharts(gauge_disco, options_gauge_disco);
     chart_gauge_disco.render();
 
@@ -172,6 +176,7 @@ function graficos(componentes) {
             data: valoresSaidaRede,
         }]
     };
+    grafico_3.innerHTML = '';
     let chart_3 = new ApexCharts(grafico_3, options_3);
     chart_3.render();
 
@@ -188,6 +193,7 @@ function graficos(componentes) {
             data: valoresEntradaRede,
         }]
     };
+    grafico_4.innerHTML = '';
     let chart_4 = new ApexCharts(grafico_4, options_4);
     chart_4.render();
 
@@ -238,6 +244,7 @@ function graficos(componentes) {
         colors: ["#25bb00ff"]
 
     };
+    gauge_ram.innerHTML = '';
     let chart_gauge_ram = new ApexCharts(gauge_ram, options_gauge_ram);
     chart_gauge_ram.render();
 
@@ -255,6 +262,7 @@ function graficos(componentes) {
         }],
         colors: ["#25bb00ff"]
     };
+    grafico_5.innerHTML = '';
     let chart_5 = new ApexCharts(grafico_5, options_5);
     chart_5.render();
 
@@ -278,6 +286,7 @@ function graficos(componentes) {
         ],
         colors: ["#0e1d36", "#cde1ff"]
     };
+    grafico_6.innerHTML = '';
     let chart_6 = new ApexCharts(grafico_6, options_6);
     chart_6.render();
 }

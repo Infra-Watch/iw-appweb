@@ -3,6 +3,9 @@ const intervalo = sessionStorage.INTERVALO_DIAS != undefined ? sessionStorage.IN
 
 const selectMaquinas = document.getElementById('maquina-exibe')
 const painelGeral = document.getElementById('main-painel-graficos')
+const painelGraficos = document.getElementById('graficos')
+const painelAlertas = document.getElementById('alertas')
+const avisoDefault = document.getElementById('aviso-default')
 
 window.addEventListener('load', () => {
 	exibirMaquinas();
@@ -15,9 +18,13 @@ selectMaquinas.addEventListener('change', () => {
 
 function plotarDashboard () {
 	if (selectMaquinas.value == 0) {
-		painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`
-		return false;
+		painelGraficos.style.display = 'none'
+		painelAlertas.style.display = 'none'
+		avisoDefault.style.display = 'block'
 	} else {
+		avisoDefault.style.display = 'none'
+		painelGraficos.style.display = 'flex'
+		painelAlertas.style.display = 'flex'
 		exibirKpis();
 		exibirAlertas();
 		exibirComponentes();
@@ -47,7 +54,6 @@ function exibirComponentes() {
 		let componentes = json[0];
 		console.log(componentes)
 		let query_status = json[1];
-		painelGeral.innerHTML = painel;
 		graficos(componentes);
 		componentes.forEach((componente) => {
 			console.log(componente)
@@ -224,125 +230,3 @@ function dataFormatada (dataString) {
 }
 
 function exibeErro(str) {alert(str)}
-
-const painel = `
-            <section class="graficos">
-
-                <!-- SIMULAÇÃO CPU -->
-                <div class="graficos-componentes">
-
-                    <article class="grafico-gauge-chart">
-
-                        <p> Uso de <span id="componente"> CPU </span> % </p>
-
-                        <div id="chart-apex-gauge-cpu"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
-
-                        <div id="chart-apex-temp-cpu"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
-
-                        <div id="chart-apex-freq-cpu"></div>
-
-                    </article>
-
-                </div>
-
-                <!-- SIMULAÇÃO REDE -->
-                <div class="graficos-componentes">
-
-                    <article class="grafico-gauge-chart">
-
-                        <p> Uso de <span id="componente"> Disco </span> % </p>
-
-                        <div id="chart-apex-gauge-disco"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Velocidade de <span id="componente"> Disco </span> - Mbps </p>
-
-                        <div id="chart-apex-vel-disco"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Nível de <span id="componente"> Mbps Envidados </span> </p>
-
-                        <div id="chart-apex-env-mbps"></div>
-
-                    </article>
-
-
-                </div>
-
-                <!-- SIMULAÇÃO RAM -->
-                <div class="graficos-componentes">
-
-                    <article class="grafico-gauge-chart">
-
-                        <p> Uso de <span id="componente"> RAM </span> % </p>
-
-                        <div id="chart-apex-gauge-ram"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Memória <span id="componente"> RAM </span> - Em uso </p>
-
-                        <div id="chart-apex-uso-ram"></div>
-
-                    </article>
-
-                    <article class="card-grafico">
-
-                        <p> Nível de <span id="componente"> Mbps Recebidos </span> </p>
-
-                        <div id="chart-apex-rec-mbps"></div>
-
-                    </article>
-
-                </div>
-
-            </section>
-
-
-            <!-- ALERTAS -->
-            <section id="alertas">
-
-                <article class="kpi">
-
-                    <img class="icons" src="assets/imagens/alarme.png ">
-
-                    <div id="conteudo-kpi">
-                        <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 1 </span> </h2>
-                        <p> Tempo: últimas 24 horas </p>
-                    </div>
-
-                </article>
-
-                <p>Todos os últimos alertas:</p>
-
-                <article class="alerta">
-                    <p>
-                        Máquina: <span id="maquina_alerta"> 3 </span> <br>
-                        Componente crítico: <span id="componente_critico"> CPU </span> <br>
-                        Registro de pico: <span id="registro_pico"> 95% </span> <br>
-                        Momento: <span id="momento_pico"> 13h53min </span>
-                    </p>
-                </article>
-
-            </section>
-`
