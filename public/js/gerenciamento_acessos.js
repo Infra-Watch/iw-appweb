@@ -139,16 +139,20 @@ function traduzirPermissoes(permissoes) {
 }
 
 function setarChecks(permissoes) {
-  if (permissoes) {
-    return
-  }
   const check_dashboard = document.getElementById("check_dashboard")
   const check_maquinas = document.getElementById("check_maquinas")
   const check_acessos = document.getElementById("check_acessos")
+  
+  if (permissoes == 'undefined') {
+    check_dashboard.checked = false;
+    check_maquinas.checked = false;
+    check_acessos.checked = false;
+  }
+
   permissoes = permissoes.split('').map(str => {return (Number(str))})
-  permissoes[1] == 1? check_dashboard.checked = true: check_dashboard.checked = false;
-  permissoes[2] == 1? check_maquinas.checked = true: check_maquinas.checked = false;
-  permissoes[3] == 1? check_acessos.checked = true: check_acessos.checked = false;
+  permissoes[1] == 1? check_dashboard.checked = true: check_dashboard.checked = false
+  permissoes[2] == 1? check_maquinas.checked = true: check_maquinas.checked = false
+  permissoes[3] == 1? check_acessos.checked = true: check_acessos.checked = false
 }
 
 function exibeErro(str) {
