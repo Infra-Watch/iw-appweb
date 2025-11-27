@@ -21,6 +21,7 @@ const entrar = (emailVar, senhaVar) => {
 				console.log(resposta);
 
 				resposta.json().then((json) => {
+					json = json[0][0]
 					console.log(json);
 					console.log(JSON.stringify(json));
 
