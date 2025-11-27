@@ -81,8 +81,8 @@ function exibirCategorias() {
                         <div class="labels">
                             <p style="width: 20%">${categoria.categoria}</p>
                             <p style="width: 20%">${categoria.descricao}</p>
-                            <p style="width: 20%">${categoria.permissoes}</p>
-                            <p style="width: 20%" onclick="configurarCategoria(${categoria.idCategoria_acesso})"><i class="fa-solid fa-ellipsis"></i></p>
+                            <p style="width: 20%">${traduzirPermissoes(categoria.permissoes)}</p>
+                            <p style="width: 20%" onclick="configurarCategoria(${categoria.idCategoria_acesso}, '${categoria.categoria}', '${categoria.descricao}', '${categoria.permissoes}')"><i class="fa-solid fa-pen-to-square"></i></p>
                         </div>
                     </div>
                 `
@@ -96,8 +96,17 @@ function exibirCategorias() {
     });
 }
 
-function configurarCategoria(idCategoria){
+function configurarCategoria(idCategoria, categoria, descricao, permissoes){
+  const modal = document.getElementById("modal_config")
+  const input_categoria = document.getElementById("nome_acesso_editar")
+  const input_descricao = document.getElementById("descricao_editar")
 
+  
+  input_categoria.setAttribute('value', categoria)
+  input_descricao.setAttribute('value', descricao)
+  setarChecks(permissoes);
+
+  abrirModal(modal)
 }
 
 function gerarCodigoPermissoes() {
@@ -112,6 +121,34 @@ function gerarCodigoPermissoes() {
       }
     });
     return codigo;
+}
+
+function traduzirPermissoes(permissoes) {
+  if (permissoes == 'undefined') {
+    return 'Não configurado'
+  }
+
+  let permissoesText = [];
+
+  permissoes = permissoes.split('').map(str => {return (Number(str))})
+  permissoes[0] == 1? permissoesText.push('Colaborador'): '';
+  permissoes[1] == 1? permissoesText.push('Visualizar dashboard'): '';
+  permissoes[2] == 1? permissoesText.push('Gerenciamento de máquinas'): '';
+  permissoes[3] == 1? permissoesText.push('Gerenciamento de acessos'): '';
+  return permissoesText.join()
+}
+
+function setarChecks(permissoes) {
+  if (permissoes) {
+    return
+  }
+  const check_dashboard = document.getElementById("check_dashboard")
+  const check_maquinas = document.getElementById("check_maquinas")
+  const check_acessos = document.getElementById("check_acessos")
+  permissoes = permissoes.split('').map(str => {return (Number(str))})
+  permissoes[1] == 1? check_dashboard.checked = true: check_dashboard.checked = false;
+  permissoes[2] == 1? check_maquinas.checked = true: check_maquinas.checked = false;
+  permissoes[3] == 1? check_acessos.checked = true: check_acessos.checked = false;
 }
 
 function exibeErro(str) {

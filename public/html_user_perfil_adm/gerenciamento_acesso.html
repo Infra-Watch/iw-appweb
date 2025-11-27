@@ -21,12 +21,12 @@
         <h1><span class="underline">Ca</span>dastro de Acessos</h1>
 
         <div class="text-field">
-          <label for="razao">Categoria</label>
+          <label for="nome_acesso">Categoria</label>
           <input type="text" name="nome_acesso" id="nome_acesso" placeholder="Digite o nome do tipo de acesso" />
         </div>
 
         <div class="text-field">
-          <label for="fantasia">Descrição</label>
+          <label for="descricao">Descrição</label>
           <input type="text" name="descricao" id="descricao" placeholder="Descreva o tipo de acesso" />
         </div>
 
@@ -74,7 +74,7 @@
             <p style="width: 20%">Categoria</p>
             <p style="width: 20%">Descrição</p>
             <p style="width: 20%">Permissões</p>
-            <p style="width: 20%">Ver Mais</p>
+            <p style="width: 20%">Editar</p>
           </div>
         </div>
       </div>
@@ -84,8 +84,64 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/gerenciamento_acessos.js"></script>
+  <dialog id="modal_config">
+      <div class="options-main flex">
+          <i class="fa-solid fa-circle-xmark icon close-button" onclick="fecharModal(modal_config)"></i>
+
+          <h3>Editar Categoria</h3>
+
+          <div class="text-field">
+            <label for="nome_acesso">Categoria</label>
+            <input type="text" name="nome_acesso" id="nome_acesso_editar" placeholder="Digite o nome do tipo de acesso" />
+          </div>
+
+          <div class="text-field">
+            <label for="descricao">Descrição</label>
+            <textarea type="text" name="descricao" id="descricao_editar" placeholder="Descreva o tipo de acesso" rows="3" cols="40" style="resize:none;"></textarea>
+          </div>
+
+          <div class="permissoes">
+            <h3>Permissões</h3>
+
+            <label class="switch-container">
+              <input id="check_dashboard" type="checkbox" class="">
+              <span class="switch"></span>
+              <span class="label-text">Visualizar dashboard</span>
+            </label>
+
+            <label class="switch-container">
+              <input id="check_maquinas" type="checkbox" class="">
+              <span class="switch"></span>
+              <span class="label-text">Gerenciamento de máquinas</span>
+            </label>
+
+            <label class="switch-container">
+              <input id="check_acessos" type="checkbox" class="">
+              <span class="switch"></span>
+              <span class="label-text">Gerenciamento de acessos</span>
+            </label>
+          </div>
+
+          <div class="button-container">
+              <button onclick="confirmarExecucao('reiniciarConta()')">Confirma</button>
+              <button onclick="confirmarExecucao('deletarConta()')">Excluir Categoria</button>
+          </div>
+      </div>
+  </dialog>
+  <dialog id="modal_confirma">
+      <div>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span id="text-aviso">Você tem certeza que quer continuar com essa ação?</span>
+          <span class="button-container">
+              <button id="button_confirma">Confirmar</button>
+              <button onclick="fecharModal(modal_confirma)">Cancelar</button>
+          </span>
+      </div>
+  </dialog>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/gerenciamento_acessos.js"></script>
+<script src="../js/utils.js"></script>
 
 </html>
