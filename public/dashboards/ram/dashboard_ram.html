@@ -27,9 +27,9 @@
                     <nav>
                         <ul>
                             <a href="dashboard_ram.html">Detalhes da CPU</a>
-                            <u><a href="dashboard_ram.html">Detalhes da Memória RAM</a></u>
-                            <a href="dashboard_ram.html">Detalhes de Disco</a>
-                            <a href="dashboard_ram.html">Detalhes de Rede</a>
+                            <u><a href="../../dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a></u>
+                            <a href="../disco/disco.html">Detalhes de Disco</a>
+                            <a href="../rede/rede.html">Detalhes de Rede</a>
                             <a href="dashboard_ram.html">Detalhes do Sistema</a>
                         </ul>
                     </nav>
@@ -53,17 +53,9 @@
         <div id="titulo-maq">
             <select name="maquinas" id="maquina-exibe">
                 <option value="0">Selecione a máquina</option>
-                <option value="1">Máquina 1</option>
-                <option value="2">Máquina 2</option>
-                <option value="3">Máquina 3</option>
-                <option value="4">Máquina 4</option>
-                <option value="5">Máquina 5</option>
-                <option value="6">Máquina 6</option>
             </select>
         </div>
-        <div class="usuario">
-            <b>Undefined</b>
-            <img class="foto-usuario" src="../../assets/imagens/foto-protopersona.png" alt="usuario">
+        <div id="nome_usuario">
         </div>
     </header>
     <main class="container-pai">
@@ -111,5 +103,7 @@
                 </div>
         </section>
     </main>
+    <script src="../../js/sessionStorage_usage.js"></script>
+    <script src="ram.js"></script>
 </body>
 </html>
