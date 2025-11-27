@@ -96,6 +96,10 @@ function exibirCategorias() {
     });
 }
 
+function configurarCategoria(idCategoria){
+
+}
+
 function gerarCodigoPermissoes() {
     let checkboxes = document.querySelectorAll('.perm');
     var codigo = "0";

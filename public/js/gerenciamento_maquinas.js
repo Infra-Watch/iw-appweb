@@ -1,3 +1,8 @@
+window.addEventListener('load', () => {
+    exibirMaquinas();
+})
+
+
 function exibirMaquinas() {
     let idEmpresa = sessionStorage.ID_EMPRESA;
     fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`
@@ -31,7 +36,7 @@ function exibirMaquinas() {
                         <p style="width: 20%">${maquina.nome_maquina}</p>
                         <p style="width: 20%">${maquina.mac_address}</p>
                         <p style="width: 10%">${interpretarStatus(maquina.ativacao)}</p>
-                        <p style="width: 10%" onclick="configurarMaquina(${maquina.idMaquina})"><i class="fa-solid fa-ellipsis"></i></p>
+                        <p style="width: 10%" onclick="configurarMaquina('${maquina.nome_maquina}', '${maquina.mac_address}', ${maquina.ativacao})"><i class="fa-solid fa-pen-to-square"></i></p>
                     </div>
                     </div>
                 `
@@ -79,16 +84,45 @@ function cadastrarMaquina() {
 
 }
 
-window.addEventListener('load', () => {
-    exibirMaquinas();
-})
+function configurarMaquina(nome_maquina, mac_address, ativacao) {
+    const modal = document.getElementById("modal_config")
+    const input_macaddress = document.getElementById("macaddress_editar")
+    const input_apelido = document.getElementById("apelido_editar")
+
+    checkText(ativacao)
+    input_macaddress.setAttribute('value', mac_address)
+    input_apelido.setAttribute('value', nome_maquina)
+    abrirModal(modal)
+}
+
+function checkText(ativacao) {
+    const checkbox = document.getElementById('ativacao_editar')
+    const checkLabel = document.getElementById('checkLabel')
+
+    switch (ativacao) {
+        case 1:
+            checkbox.checked = true;
+            break;
+        case 0:
+            checkbox.checked = false;
+            break;
+        default:
+            break;
+    }
+
+    if (checkbox.checked) {
+        checkLabel.textContent = 'Ativa'
+    } else {
+        checkLabel.textContent = 'Inativa'
+    }
+}
 
 function interpretarStatus(ativacao) {
 	let str = '';
 	if (!ativacao) {
-		str = `Desligada`
+		str = `Inativa`
 	} else {
-		str =  `Ligada`
+		str =  `Ativa`
 	}
 	return str
 };
