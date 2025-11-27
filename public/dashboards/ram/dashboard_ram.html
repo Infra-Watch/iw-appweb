@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,110 +8,104 @@
     <link rel="stylesheet" href="dashboard_memoria_ram.css">
     <link rel="icon" href="assets/logo-infrawatch.png">
 </head>
+
 <body>
 
     <nav class="sidebar">
         <div class="sidebar-logo">
-        <a href="index.html">
-            <img src="assets/logo-infrawatch.png" alt="InfraWatch">
-        </a>
+            <a href="index.html">
+                <img src="assets/logo-infrawatch.png" alt="InfraWatch">
+            </a>
         </div>
 
-       <ul class="sidebar-links">
-        <li><a href="dashboard_geral.html">Painel Integral</a></li>
-        <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
-        <li>
-            <details name="Componentes" id="componente-exibe">
-               <summary>Componentes</summary>
-               <nav>
-                <ul>
-                    <a href="dashboard_ram.html">Detalhes da CPU</a>
-                    <u><a href="dashboard_ram.html">Detalhes da Memória RAM</a></u>
-                    <a href="dashboard_ram.html">Detalhes de Disco</a>
-                    <a href="dashboard_ram.html">Detalhes de Rede</a>
-                    <a href="dashboard_ram.html">Detalhes do Sistema</a>
-                </ul>
-               </nav>
-           </details>
-        </li>
-        <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
-        <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+        <ul class="sidebar-links">
+            <li><a href="dashboard_geral.html">Painel Integral</a></li>
+            <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
+            <li>
+                <details name="Componentes" id="componente-exibe">
+                    <summary>Componentes</summary>
+                    <nav>
+                        <ul>
+                            <a href="dashboard_ram.html">Detalhes da CPU</a>
+                            <u><a href="dashboard_ram.html">Detalhes da Memória RAM</a></u>
+                            <a href="dashboard_ram.html">Detalhes de Disco</a>
+                            <a href="dashboard_ram.html">Detalhes de Rede</a>
+                            <a href="dashboard_ram.html">Detalhes do Sistema</a>
+                        </ul>
+                    </nav>
+                </details>
+            </li>
+            <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+            <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
         </ul>
 
-    <div class="sidebar-bottom">
-     <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
-        <h4>Suporte</h4>
-    <img id="suporte-jira" src="assets/jira.png" alt="Suporte Jira">
-</a>
-      <p>Data: <span id="date">24/11/2025</span></p>
-    </div>
-  </nav>
+        <div class="sidebar-bottom">
+            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+                <h4>Suporte</h4>
+                <img id="suporte-jira" src="assets/jira.png" alt="Suporte Jira">
+            </a>
+            <p>Data: <span id="date">24/11/2025</span></p>
+        </div>
+    </nav>
 
     <header id="cabecalho">
         <h1>Detalhes da memória RAM</h1>
+        <div id="titulo-maq">
+            <select name="maquinas" id="maquina-exibe">
+                <option value="0">Selecione a máquina</option>
+                <option value="1">Máquina 1</option>
+                <option value="2">Máquina 2</option>
+                <option value="3">Máquina 3</option>
+                <option value="4">Máquina 4</option>
+                <option value="5">Máquina 5</option>
+                <option value="6">Máquina 6</option>
+            </select>
+        </div>
     </header>
+    <main class="container-pai">
+        <section class="container-principal">
+            <div class="kpis">
+                <div class="kpi">
+                    <p>Porcentagem de uso máxima: <br><br><b>82%</b></p>
 
-    <div id="titulo-maq">
-        <select name="maquinas" id="maquina-exibe">
-            <option value="0">Selecione a máquina</option>
-            <option value="1">Máquina 1</option>
-            <option value="2">Máquina 2</option>
-            <option value="3">Máquina 3</option>
-            <option value="4">Máquina 4</option>
-            <option value="5">Máquina 5</option>
-            <option value="6">Máquina 6</option>
-        </select>
-    </div>
-
-    <div class="kpis">
-        <div class="kpi">
-            <p>Porcentagem de uso máxima: <br><br><b>82%</b></p>
-            
-        </div>
-        <div class="kpi">
-            <p>Porcentagem de uso máxima: <br><br><b>79%</b> </p>
-        </div>
-        <div class="kpi">
-            <p>Utilização em gigabytes máxima: <br><br><b>1,5 GB</b></p>
-        </div>
-        <div class="kpi">
-            <p>Utilização em gigabytes média: <br><br><b>1,2 GB</b></p>
-        </div>
-        <article class="kpi">
-            <img class="icons" src="assets/alarme.png">
-            <div id="conteudo-kpi">
-              <p>Tempo: últimas 24 horas</p>
-              <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
+                </div>
+                <div class="kpi">
+                    <p>Porcentagem de uso máxima: <br><br><b>79%</b> </p>
+                </div>
+                <div class="kpi">
+                    <p>Utilização em gigabytes máxima: <br><br><b>1,5 GB</b></p>
+                </div>
+                <div class="kpi">
+                    <p>Utilização em gigabytes média: <br><br><b>1,2 GB</b></p>
+                </div>
             </div>
-          </article> 
-    </div>
-
-    <div class="graficos">
-        <div id="grafico1">histograma</div>
-        <div id="grafico2">histograma</div>
-        <section id="lista-alertas">
-            <p>Todos os últimos alertas:</p>
-            <div class="alertas">
-                <p>dcfgvhbnjmk</p>
-            </div>
-            <div class="alertas">
-                <p>dcgfvhjkl</p>
-            </div>
-            <div class="alertas">
-                <p>dcfgvbhnj</p>
-            </div>
-            <div class="alertas">
-                <p>dcfgvbhnj</p>
-            </div>
-            <div class="alertas">
-                <p>dcfgvbhnj</p>
+            <div class="graficos">
+                <div id="grafico1">histograma</div>
+                <div id="grafico2">histograma</div>
+                <div id="grafico3">linha</div>
+                <div id="grafico4">barra</div>
             </div>
         </section>
-        <div id="grafico3">linha</div>
-        <div id="grafico4">barra</div>
-        
-    </div>
-
-    
+        <section class="container-alertas">
+            <div class="kpi-alerta">
+                <p>Tempo: últimas 24 horas</p>
+                <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
+            </div>
+            <div class="alertas-scroll">
+                <p>Todos os últimos alertas:</p>
+                <div class="alertas">
+                    <p>dcfgvhbnjmk</p>
+                </div>
+                <div class="alertas">
+                    <p>dcgfvhjkl</p>
+                </div>
+                <div class="alertas">
+                    <p>dcfgvbhnj</p>
+                </div>
+                <div class="alertas">
+                    <p>dcfgvbhnj</p>
+                </div>
+        </section>
+    </main>
 </body>
 </html>
