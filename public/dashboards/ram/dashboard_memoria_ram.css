@@ -10,6 +10,7 @@ body {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
     background-color: #fff;
+    overflow: hidden;
 }
 /* ===== NAVBAR LATERAL ===== */
 .sidebar {
@@ -101,10 +102,7 @@ body {
     margin: 0;
 }
 
-body {
-    margin-left: 15vw;
-    overflow: hidden;
-}
+
 
 /* CABEÇALHO */
 #cabecalho {
@@ -112,7 +110,7 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    width: 93%;
+    width: 80%;
 }
 
 #cabecalho h1 {
@@ -124,11 +122,12 @@ body {
 }
 
 #titulo-maq {
-    width: 50%;
+    width: 30%;
+    margin-right: 7vw;
 }
 
 #maquina-exibe {
-    margin-top: 1%;
+    margin-top: 2%;
     padding: 0.5rem;
     width: 26vw;
     border: 2px solid #464646;
@@ -144,6 +143,24 @@ body {
     background-color: #e8eaf6;
     color: #000266;
     transform: translateX(5px);
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -9vw;
+    gap: 1px;
+}
+
+.usuario b {
+    font-size: x-large;
+    color: #000266;
+}
+
+.foto-usuario {
+    height: 40px;
+    width: 70px;
 }
 
 details summary {
