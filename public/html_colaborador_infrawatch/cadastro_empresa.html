@@ -118,7 +118,89 @@
       </div>
     </div>
   </div>
+  <dialog id="modal_config">
+      <div class="options-main flex">
+          <div id="botoes-modal">
+            <i class="fa-solid fa-circle-xmark icon close-button" onclick="fecharModal(modal_config)" id="botao-fechar"></i>
+            <i class="fa-solid fa-pen-to-square" onclick="modoEdicao()" id="botao-editar"></i>
+          </div>
+
+          <h3 id="titulo-modal">Ver Detalhes da Empresa</h3>
+
+          <div>
+            <h3>Empresa</h3>
+            <div class="text-field">
+              <label for="razao">Razão Social</label>
+              <input type="text" id="razao_social-editar" placeholder="Digite a razão social da empresa" required />
+            </div>
+            <div class="text-field">
+              <label for="fantasia">Nome Fantasia</label>
+              <input type="text" id="nome_fantasia-editar" placeholder="Digite o nome fantasia da empresa" required />
+            </div>
+            <div class="text-field">
+              <label for="cnpj">CNPJ</label>
+              <input type="text" id="cnpj-editar" placeholder="00.000.000/0000-00" required />
+            </div>
+          </div>
+
+          <div>
+            <h3>Endereço</h3>
+            <div class="text-field">
+              <label for="estado">Estado</label>
+              <input type="text" id="estado-editar" placeholder="Digite o estado" required />
+            </div>
+            <div class="text-field">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade-editar" placeholder="Digite a cidade" required />
+            </div>
+            <div class="text-field">
+              <label for="cep">CEP</label>
+              <input type="text" id="cep-editar" placeholder="00000-000" required />
+            </div>
+            <div class="text-field">
+              <label for="numero">Número</label>
+              <input type="number" id="numero-editar" placeholder="000" required />
+            </div>
+            <div class="text-field">
+              <label for="complemento">Complemento</label>
+              <input type="text" id="complemento-editar" placeholder="Opcional" />
+            </div>
+          </div>
+
+          <div>
+            <h3>Representante</h3>
+            <div class="text-field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome_representante-editar" placeholder="Digite o nome do responsável" required />
+            </div>
+            <div class="text-field">
+              <label for="email">Email</label>
+              <input type="email" id="email_representante-editar" placeholder="exemplo@dominio.com" required />
+            </div>
+            <div class="text-field">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone_representante-editar" placeholder="+00 00 00000-0000" required />
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button onclick="confirmarExecucao('reiniciarConta()')" class="botao-edicao" style="display: none;">Confirma</button>
+            <button onclick="confirmarExecucao('deletarConta()')" class="botao-edicao" style="display: none;">Excluir Empresa</button>
+          </div>
+      </div>
+  </dialog>
+  <dialog id="modal_confirma">
+      <div>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span id="text-aviso">Você tem certeza que quer continuar com essa ação?</span>
+          <span class="button-container">
+              <button id="button_confirma">Confirmar</button>
+              <button onclick="fecharModal(modal_confirma)">Cancelar</button>
+          </span>
+      </div>
+  </dialog>
 </body>
 </html>
+<script src="../js/utils.js"></script>
 <script src="../js/cadastroEmpresa.js"></script>
 <script src="../js/empresas.js"></script>

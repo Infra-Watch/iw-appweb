@@ -300,6 +300,15 @@ body * {
     width: 20%;
 }
 
+div#botoes-modal {
+    display: flex;
+    justify-content: space-between;
+}
+
+i {
+    cursor: pointer;
+}
+
 /* Botão de exclusão */
 .btn-excluir {
     width: 30px;
