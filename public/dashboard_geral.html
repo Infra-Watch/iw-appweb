@@ -25,8 +25,8 @@
     <div class="sidebar-bottom">
       <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
         <h4>Suporte</h4>
-    <img id="suporte-jira" src="assets/imagens/jira.png" alt="Suporte Jira">
-</a>
+        <img id="suporte-jira" src="assets/imagens/jira.png" alt="Suporte Jira">
+      </a>
       <p>Data: <span id="date">31/10/2025</span></p>
     </div>
   </nav>
@@ -72,14 +72,16 @@
               <p>Tempo: últimas 24 horas</p>
               <h1>Alertas Totais: <span id="qtd_ultimos_alertas">~</span></h1>
             </div>
-          </article>          
+          </article>
         </section>
 
         <div id="maquinas-alertas">
+          
           <!-- MÁQUINAS -->
           <section class="maquinas">
             <h2 class="titulo">Lista de máquinas</h2>
           </section>
+
           <!-- ===== ALERTAS ===== -->
           <section id="lista-alertas">
             <p>Todos os últimos alertas:</p>
@@ -87,24 +89,7 @@
         </div>
       </section>
     </div>
-    <!-- MODAL -->
-    <button id="abrir-modal">
-      <i class='bx bxs-filter'></i>
-    </button>
-    <dialog id="modal">
-      <article>
-        <header>
-          <h1 id="titulo_modal">Máquinas Disponíveis</h1>
-          <p>Escolha a máquina que deseja ver os detalhes</p>
-        </header>
-        <section class="maquinas_disponiveis">
-          <a href="dashboard_detalhada.html"><span>Máquina 1</span></a>
-          <a href="dashboard_detalhada.html"><span>Máquina 2</span></a>
-          <a href="dashboard_detalhada.html"><span>Máquina 3</span></a>
-        </section>
-        <button id="fechar-modal">Fechar</button>
-      </article>
-    </dialog>
+    
   </main>
 
   <script src="./js/modal_dash.js"></script>

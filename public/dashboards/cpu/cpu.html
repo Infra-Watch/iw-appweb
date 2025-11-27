@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dashboard CPU | Infrawatch </title>
+    <link rel="stylesheet" href="cpu.css">
+    <link rel="icon" href="./public/assets/imagens/logo-infrawatch.png">
+
+</head>
+
+<body>
+
+    <!-- ======= NAVBAR (ESQUERDA) ======= -->
+    <nav class="sidebar">
+
+        <div class="sidebar-logo">
+            <a href="index.html">
+                <img src="./public/assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+            </a>
+        </div>
+
+        <!-- PÁGINAS / TELAS -->
+        <ul class="sidebar-links">
+
+            <li><a href="dashboard_geral.html">Painel Integral</a></li>
+            <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
+
+            <li>
+
+                <details name="Componentes" id="componente-exibe">
+
+                    <summary> Componentes </summary>
+
+                    <nav>
+                        <ul>
+                            <a href="dashboard_ram.html" id="current-page">Detalhes da CPU</a>
+                            <a href="dashboard_ram.html">Detalhes da Memória RAM</a>
+                            <a href="dashboard_ram.html">Detalhes de Disco</a>
+                            <a href="dashboard_ram.html">Detalhes de Rede</a>
+                            <a href="dashboard_ram.html">Detalhes do Sistema</a>
+                        </ul>
+                    </nav>
+
+                </details>
+
+            </li>
+
+            <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+
+            <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+
+        </ul>
+
+        <!-- LINK SUPORTE (JIRA) -->
+        <div class="sidebar-bottom">
+
+            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+                <h4>Suporte</h4>
+                <img id="suporte-jira" src="assets/jira.png" alt="Suporte Jira">
+
+            </a>
+
+            <p>Data: <span id="date"> 24/11/2025 </span></p>
+
+        </div>
+
+    </nav>
+
+    <!-- ======= CABEÇALHO ======= -->
+    <header class="header">
+
+        <h1> Detalhes da CPU </h1>
+
+        <div id="machine-options">
+            <select name="maquinas" id="machines">
+                <option selected disabled value="0"> Selecione a máquina </option>
+                <option value="1">Máquina 1</option>
+                <option value="2">Máquina 2</option>
+                <option value="3">Máquina 3</option>
+                <option value="4">Máquina 4</option>
+                <option value="5">Máquina 5</option>
+                <option value="6">Máquina 6</option>
+            </select>
+        </div>
+
+        <di id="user profile">
+            <img src="/public/assets/imagens/perfil-de-usuario.png" alt="">
+            <h1>user</h1>
+            </div>
+
+    </header>
+
+
+    <!-- ======= CONTAINER GERAL ======= -->
+    <main id="container-all">
+
+        <section id="main-content">
+
+            <!-- KPIs -->
+            <section id="all-kpis">
+
+                <div class="kpi">
+                    <p>
+                        <u> <i> Porcentagem de Uso </i> </u> <br>
+                        máxima/média: <br><br>
+                        <b>82%</b>
+                    </p>
+                </div>
+
+                <div class="kpi">
+                    <p>
+                        <u> <i> Frequência </i> </u> <br>
+                        máxima/média: <br><br>
+                        <b>79%</b>
+                    </p>
+                </div>
+
+                <div class="kpi">
+                    <p>
+                        <u><i> Temperatura </i> </u> <br>
+                        máxima/média: <br><br>
+                        <b>1,5 GB</b>
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- TODOS OS GRÁFICOS -->
+            <section id="all-graphics">
+
+                <!-- HISTOGRAMAS -->
+                <article id="histograms">
+
+                    <div class="histogram">histograma</div>
+                    <div class="histogram">histograma</div>
+                    <div class="histogram">histograma</div>
+
+                </article>
+
+                <!-- GRÁFICOS -->
+                <article id="graphics">
+
+                    <div class="graphic">
+
+                        <H1> ESTAMOS AQUI </H1>
+
+                    </div>
+
+                    <div class="graphic">
+
+                        <H1> ESTAMOS AQUI </H1>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </section>
+
+
+        <!-- ALERTAS -->
+        <section class="all-alerts">
+
+            <div id="kpi-alerta">
+                <p>Tempo: últimas 24 horas</p>
+                <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
+            </div>
+
+            <div id="alert-list">
+
+                <p>Todos os últimos alertas:</p>
+
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>
