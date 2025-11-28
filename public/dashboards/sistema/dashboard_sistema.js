@@ -13,48 +13,12 @@ selectMaquinas.addEventListener('change', () => {
 	plotarDashboard();
 });
 
-function exibirKpis() {
-	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/${intervalo}`
-		, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			}
-		}
-		)
-			.then((resposta) => {
-				if (resposta.ok) {
-					return resposta.json();
-				} else {
-					exibeErro('Não foi possível exibir KPIs');
-					return resposta.text().then(texto => console.error(texto));
-					
-				}
-			})
-			.then((json) => {
-				if(!json)return;
-				let kpis = json[0][0];
-				let query_status = json[1];
-				console.log(json)
-				console.log(kpis)
-				document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
-				document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
-				document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
-				document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
-			})
-			.catch((erro) => {
-				console.error(erro);
-			});
-}
-
 function plotarDashboard () {
 	if (selectMaquinas.value == 0) {
 		painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`
 		return false;
 	} else {
 		exibirKpis();
-		exibirAlertas();
-		exibirComponentes();
 	}
 };
 
@@ -89,6 +53,55 @@ function exibirMaquinas() {
 		.catch((erro) => {
 			console.error(erro);
 		});
+}
+
+function exibirKpis() {
+	const idMaquina = selectMaquinas.value;
+	if(!idMaquina || idMaquina == 0) return;
+
+	const bkp = document.querySelectorAll('.kpis .kpi b');
+
+	bkp.forEach(b => b.innerHTML = '...');
+
+	const url = `/ram/kpis/${idEmpresa}/${idMaquina}?intervalo=${intervalo}`;
+
+	fetch(url)
+	.then(res => {
+		if(!res.ok) return null;
+		return res.json();
+	})
+	.then(json => {
+		if (!json) {
+			bkp.forEach(b => b.innerHTML = '-');
+			return;
+		}
+
+		const percentMax = Number(json.porcentagem_uso_maxima) || 0;
+		const percentMed = Number(json.porcentagem_uso_media) || 0;
+		const gigaMax = Number(json.utilizacao_gb_maxima) || 0;
+		const gigaMed = Number(json.utilizacao_gb_media) || 0;
+
+		if (bkp.length >= 4) {
+			bkp[0].innerHTML = `${percentMax.toFixed(2)}%`
+			bkp[1].innerHTML = `${percentMed.toFixed(2)}%`
+			bkp[2].innerHTML = `${gigaMax.toFixed(2)} GB`
+			bkp[3].innerHTML = `${gigaMed.toFixed(2)} GB`
+		}else{
+			document.querySelectorAll('.kpis .kpi').forEach(block =>{
+				const text = (block.innerHTML || '').toLowerCase();
+				const b = block.querySelector('b');
+				if (!b) return;
+				if (text.includes('Porcentagem de uso máxima')) b.innerHTML = `${percentMax.toFixed(2)}%`
+				if (text.includes('Porcentagem de uso médio')) b.innerHTML = `${percentMed.toFixed(2)}%`
+				if(text.includes('Utilização em gigabytes máxima')) b.innerHTML = `${gigaMax.toFixed(2)} GB`
+				if(text.includes('Utilização em gigabytes médai')) b.innerHTML = `${gigaMed.toFixed(2)} GB`
+			})
+		}
+	})
+	.catch(err => {
+		console.error(err);
+		bkp.forEach(b => b.innerHTML = 'erro');
+	});
 }
 
 
