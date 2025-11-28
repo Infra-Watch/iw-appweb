@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dashboard CPU | Infrawatch </title>
     <link rel="stylesheet" href="cpu.css">
-    <link rel="icon" href="./public/assets/imagens/logo-infrawatch.png">
-
+    <link rel="icon" href="../../assets/logo-infrawatch.png">
 </head>
 
 <body>
@@ -17,7 +16,7 @@
 
         <div class="sidebar-logo">
             <a href="index.html">
-                <img src="./public/assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+                <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
             </a>
         </div>
 
@@ -53,16 +52,14 @@
 
         </ul>
 
-        <!-- LINK SUPORTE (JIRA) -->
-        <div class="sidebar-bottom">
+        <!-- LINK SUPORTE (JIRA) -->    
+        <div class="sidebar-bottom cursor-present">
 
-            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank" class="cursor-present" title="Suporte Plataforma Jira">
                 <h4>Suporte</h4>
-                <img id="suporte-jira" src="assets/jira.png" alt="Suporte Jira">
+                <img id="suporte-jira" src="../../assets/imagens/jira.png" alt="Suporte Jira">
 
             </a>
-
-            <p>Data: <span id="date"> 24/11/2025 </span></p>
 
         </div>
 
@@ -85,10 +82,10 @@
             </select>
         </div>
 
-        <di id="user profile">
-            <img src="/public/assets/imagens/perfil-de-usuario.png" alt="">
-            <h1>user</h1>
-            </div>
+        <div id="user-profile" class="cursor-present" title="Perfil">
+            <img id="user-icon" src="../../assets/imagens/perfil-de-usuario.png">
+           <b> <span id="logged-in-user"> undefined </span> </b>
+        </div>
 
     </header>
 
@@ -173,6 +170,19 @@
 
                 <p>Todos os últimos alertas:</p>
 
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                <div class="alerts">
+                    <p>.....</p>
+                </div>
+                
                 <div class="alerts">
                     <p>.....</p>
                 </div>
