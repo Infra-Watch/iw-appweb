@@ -135,6 +135,14 @@ body * {
     right: 0;
 }
 
+.btn2 span:after {
+    content: '\00ab';
+    position: absolute;
+    opacity: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
 .dual-field {
     display: flex;
     gap: 8px;

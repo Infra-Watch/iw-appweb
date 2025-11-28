@@ -21,6 +21,7 @@ var alertasRouter = require("./src/routes/alertas");
 var acessosRouter = require("./src/routes/acessos");
 var componentesRouter = require("./src/routes/componentes");
 var ramRouter = require("./src/routes/ram");
+var sistemaRouter = require("./src/routes/sistema");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/alertas", alertasRouter);
 app.use("/acessos", acessosRouter);
 app.use("/componentes", componentesRouter);
 app.use("/ram", ramRouter);
+app.use("/sistema", sistemaRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
