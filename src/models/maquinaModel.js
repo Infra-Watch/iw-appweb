@@ -25,8 +25,22 @@ function buscarKpisGeral(idEmpresa, intervalo) {
 }
 
 
+function atualizar(idEmpresa, idMaquina, ativacao, mac_address, apelido) {
+  var instrucaoSql = `CALL atualizar_maquina(${idEmpresa}, ${idMaquina}, ${ativacao}, ${mac_address}, ${apelido})`;
+
+  return database.executar(instrucaoSql);
+}
+
+function remover(idEmpresa, idMaquina) {
+  var instrucaoSql = `CALL remover_maquina(${idEmpresa}, ${idMaquina})`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     buscarPorEmpresa,
-    buscarKpisGeral
+    buscarKpisGeral,
+    atualizar,
+    remover
 };

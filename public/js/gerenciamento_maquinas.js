@@ -1,7 +1,12 @@
+const modal = document.getElementById("modal_config")
+const input_macaddress = document.getElementById("macaddress_editar")
+const input_apelido = document.getElementById("apelido_editar")
+const checkbox = document.getElementById('ativacao_editar')
+const checkLabel = document.getElementById('checkLabel')
+
 window.addEventListener('load', () => {
     exibirMaquinas();
 })
-
 
 function exibirMaquinas() {
     let idEmpresa = sessionStorage.ID_EMPRESA;
@@ -36,7 +41,7 @@ function exibirMaquinas() {
                         <p style="width: 20%">${maquina.nome_maquina}</p>
                         <p style="width: 20%">${maquina.mac_address}</p>
                         <p style="width: 10%">${interpretarStatus(maquina.ativacao)}</p>
-                        <p style="width: 10%" onclick="configurarMaquina('${maquina.nome_maquina}', '${maquina.mac_address}', ${maquina.ativacao})"><i class="fa-solid fa-pen-to-square"></i></p>
+                        <p style="width: 10%" onclick="configurarMaquina(${maquina.idMaquina}, '${maquina.nome_maquina}', '${maquina.mac_address}', ${maquina.ativacao})"><i class="fa-solid fa-pen-to-square"></i></p>
                     </div>
                     </div>
                 `
@@ -84,21 +89,81 @@ function cadastrarMaquina() {
 
 }
 
-function configurarMaquina(nome_maquina, mac_address, ativacao) {
-    const modal = document.getElementById("modal_config")
-    const input_macaddress = document.getElementById("macaddress_editar")
-    const input_apelido = document.getElementById("apelido_editar")
+function configurarMaquina(idMaquina, nome_maquina, mac_address, ativacao) {
+    console.log(idMaquina, nome_maquina, mac_address, ativacao)
 
-    checkText(ativacao)
+    modal.setAttribute('idMaquina', idMaquina)
+    
     input_macaddress.setAttribute('value', mac_address)
     input_apelido.setAttribute('value', nome_maquina)
+    input_apelido.value = nome_maquina
+    input_macaddress.value = mac_address
+    checkText(ativacao)
+
     abrirModal(modal)
 }
 
-function checkText(ativacao) {
-    const checkbox = document.getElementById('ativacao_editar')
-    const checkLabel = document.getElementById('checkLabel')
+function atualizarMaquina() {
+    let idEmpresa = sessionStorage.ID_EMPRESA
+    let idMaquina = modal.getAttribute('idMaquina')
+    let ativacao = checkbox.checked? 1: 0
+    let mac_address = input_macaddress.value
+    let apelido = input_apelido.value
 
+    console.log(idEmpresa, idMaquina, mac_address, apelido, ativacao)
+    fetch('/maquinas/atualizar', {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idEmpresaServer: idEmpresa,
+            idMaquinaServer: idMaquina,
+            ativacaoServer: ativacao,
+            mac_addressServer: mac_address,
+            apelidoServer: apelido,
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            window.alert("Máquina editada com sucesso!");
+            window.location.reload()
+
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            alert('Erro ao atualizar cadastro!')
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function removerMaquina() {
+    let idEmpresa = sessionStorage.ID_EMPRESA
+    let idMaquina = modal.getAttribute('idMaquina')
+    console.log(idEmpresa, idMaquina)
+
+	fetch(`/maquinas/remover/${idEmpresa}/${idMaquina}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	}).then(function (resposta) {
+		if (resposta.ok) {
+			window.alert("Máquina deletada com sucesso!");
+			window.location.reload();
+		} else if (resposta.status == 404) {
+			window.alert("Deu 404!");
+		} else {
+			throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+		}
+	}).catch(function (resposta) {
+		console.log(`#ERRO: ${resposta}`);
+	});
+}
+
+function checkText(ativacao) {
     switch (ativacao) {
         case 1:
             checkbox.checked = true;

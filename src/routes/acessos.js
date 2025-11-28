@@ -11,4 +11,12 @@ router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
     acessosController.buscarPorEmpresa(req, res);
 });
 
+router.put("/atualizar", function (req, res) {
+    acessosController.atualizar(req, res);
+});
+
+router.delete("/remover/:idEmpresa/:idCategoria", function (req, res) {
+    acessosController.remover(req, res);
+});
+
 module.exports = router;

@@ -19,19 +19,11 @@ router.get("/buscarPorMaquina/:idEmpresa/:idMaquina", function (req, res) {
     maquinaController.buscarPorMaquina(req, res);
 });
 
-router.put("/atualizarStatus", function (req, res) {
-    maquinaController.atualizarStatus(req, res);
+router.put("/atualizar", function (req, res) {
+    maquinaController.atualizar(req, res);
 });
 
-router.put("/atualizarMacaddress", function (req, res) {
-    maquinaController.atualizarMacaddress(req, res);
-});
-
-router.put("/atualizarApelido", function (req, res) {
-    maquinaController.atualizarApelido(req, res);
-});
-
-router.delete("/remover", function (req, res) {
+router.delete("/remover/:idEmpresa/:idMaquina", function (req, res) {
     maquinaController.remover(req, res);
 });
 

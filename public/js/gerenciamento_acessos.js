@@ -1,4 +1,10 @@
 const idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+const modal = document.getElementById("modal_config")
+const input_categoria = document.getElementById("nome_acesso_editar")
+const input_descricao = document.getElementById("descricao_editar")
+const check_dashboard = document.getElementById("check_dashboard")
+const check_maquinas = document.getElementById("check_maquinas")
+const check_acessos = document.getElementById("check_acessos")
 
 window.addEventListener('load', () => {
     exibirCategorias();
@@ -97,20 +103,95 @@ function exibirCategorias() {
 }
 
 function configurarCategoria(idCategoria, categoria, descricao, permissoes){
-  const modal = document.getElementById("modal_config")
-  const input_categoria = document.getElementById("nome_acesso_editar")
-  const input_descricao = document.getElementById("descricao_editar")
-
+  console.log(idCategoria, categoria, descricao, permissoes)
   
+  modal.setAttribute('idCategoria', idCategoria)
+
   input_categoria.setAttribute('value', categoria)
   input_descricao.setAttribute('value', descricao)
+  input_categoria.value = categoria
+  input_descricao.value = descricao
   setarChecks(permissoes);
 
   abrirModal(modal)
 }
 
+function atualizarAcesso() {
+  let idEmpresa = sessionStorage.ID_EMPRESA
+  let idCategoria = modal.getAttribute('idCategoria')
+  let categoria = input_categoria.value
+  let descricao = input_descricao.value
+  let permissoes = permissoesEditar()
+
+  console.log(idEmpresa, idCategoria, categoria, descricao, permissoes)
+
+  fetch('/acessos/atualizar', {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        idEmpresaServer: idEmpresa,
+        idCategoriaServer: idCategoria,
+        categoriaServer: categoria,
+        descricaoServer: descricao,
+        permissoesServer: permissoes,
+    })
+  }).then(function (resposta) {
+    if (resposta.ok) {
+      window.alert("Categoria de acessos editada com sucesso!");
+      window.location.reload()
+    } else if (resposta.status == 404) {
+      window.alert("Deu 404!");
+    } else {
+      alert('Erro ao atualizar cadastro!')
+      throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+  }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+  });
+}
+
+function removerAcesso() {
+  let idEmpresa = sessionStorage.ID_EMPRESA
+  let idCategoria = modal.getAttribute('idCategoria')
+  
+  console.log(idEmpresa, idCategoria)
+	fetch(`/acessos/remover/${idEmpresa}/${idCategoria}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	}).then(function (resposta) {
+		if (resposta.ok) {
+			window.alert("Categoria deletada com sucesso!");
+			window.location.reload();
+		} else if (resposta.status == 404) {
+			window.alert("Deu 404!");
+		} else {
+			throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+		}
+	}).catch(function (resposta) {
+		console.log(`#ERRO: ${resposta}`);
+	});
+}
+
 function gerarCodigoPermissoes() {
     let checkboxes = document.querySelectorAll('.perm');
+    var codigo = "0";
+
+    checkboxes.forEach(cb => {
+      if (cb.checked) {
+        codigo += '1';
+      } else {
+        codigo += '0';
+      }
+    });
+    return codigo;
+}
+
+function permissoesEditar() {
+    let checkboxes = Array.of(check_dashboard, check_maquinas, check_acessos)
     var codigo = "0";
 
     checkboxes.forEach(cb => {
@@ -138,11 +219,7 @@ function traduzirPermissoes(permissoes) {
   return permissoesText.join()
 }
 
-function setarChecks(permissoes) {
-  const check_dashboard = document.getElementById("check_dashboard")
-  const check_maquinas = document.getElementById("check_maquinas")
-  const check_acessos = document.getElementById("check_acessos")
-  
+function setarChecks(permissoes) {  
   if (permissoes == 'undefined') {
     check_dashboard.checked = false;
     check_maquinas.checked = false;

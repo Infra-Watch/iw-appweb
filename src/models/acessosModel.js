@@ -14,7 +14,21 @@ function buscarPorEmpresa(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function atualizar(idEmpresa, idCategoria, categoria, descricao, permissoes) {
+  var instrucaoSql = `CALL atualizar_categoria_acesso(${idEmpresa}, ${idCategoria}, ${categoria}, ${descricao}, ${permissoes})`;
+
+  return database.executar(instrucaoSql);
+}
+
+function remover(idEmpresa, idCategoria) {
+  var instrucaoSql = `CALL remover_categoria_acesso(${idEmpresa}, ${idCategoria})`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
-    buscarPorEmpresa
+    buscarPorEmpresa,
+    atualizar,
+    remover
 };
