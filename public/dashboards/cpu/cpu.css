@@ -13,6 +13,12 @@ body {
     margin-left: 15vw;
 }
 
+/* STYLE CURSOR */
+.cursor-present:hover{
+    border-radius: 5px;
+    background-color: #6868685e;
+}
+
 
 /* ======= NAVBAR (ESQUERDA) ======= */
 .sidebar {
@@ -104,9 +110,11 @@ details nav a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
-    padding-bottom: 1rem;
-
+    margin-bottom: 3.5rem;
+    width: 9vw;
+    height: 7vh;
 }
 
 .sidebar-bottom a {
@@ -166,7 +174,7 @@ details nav a:hover {
     border-radius: 10px;
 }
 
-#user-profile {
+.user-profile {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -176,6 +184,12 @@ details nav a:hover {
     gap: 5px;
     margin-left: 30%;
     padding: 3px;
+}
+
+.user-profile:hover {
+    color: #000266;
+    transform: scale(1.05);
+    transition: 1s;
 }
 
 #user-icon {
