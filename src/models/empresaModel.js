@@ -11,6 +11,12 @@ function buscarPorId(id) {
   return database.executar(instrucaoSql);
 }
 
+function remover(id) {
+  var instrucaoSql = `CALL remover_empresa(${id})`;
+
+  return database.executar(instrucaoSql);
+}
+
 function listar() {
   var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
 
@@ -25,6 +31,12 @@ function buscarDuplicidade(cnpj, inscestadual, razaosocial) {
 
 function cadastrarEmpresa(razaosocial, nomefantasia, cnpj, estado, cidade, cep, numero, complemento, nome, email, telefone) {
   var instrucaoSql = `CALL cadastrar_empresa ('${razaosocial}', '${nomefantasia}', '${cnpj}', '${estado}', '${cidade}', '${cep}', '${numero}', '${complemento}', '${nome}', '${email}', '${telefone}')`;
+
+  return database.executar(instrucaoSql);
+}
+
+function atualizarEmpresa(idEmpresa, razaosocial, nomefantasia, cnpj, nome, email, telefone, cep, numero, complemento, cidade, estado) {
+  var instrucaoSql = `CALL atualizar_empresa (${idEmpresa}, ${razaosocial}, ${cnpj}, ${nomefantasia}, ${nome}, ${email}, ${telefone}, ${cep}, ${numero}, ${complemento}, ${cidade}, ${estado})`;
 
   return database.executar(instrucaoSql);
 }
@@ -46,7 +58,9 @@ module.exports = {
   buscarDuplicidade,
   buscarPorId,
   cadastrarEmpresa,
+  atualizarEmpresa,
   cadastrarEndereco,
   buscarFkEmpresa,
-  listar
+  listar,
+  remover
 };

@@ -19,4 +19,8 @@ router.delete("/remover/:idEmpresa", function (req, res) {
   empresaController.remover(req, res);
 });
 
+router.put("/atualizar", function (req, res) {
+  empresaController.atualizar(req, res);
+});
+
 module.exports = router;
