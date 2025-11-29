@@ -21,11 +21,8 @@ var alertasRouter = require("./src/routes/alertas");
 var acessosRouter = require("./src/routes/acessos");
 var componentesRouter = require("./src/routes/componentes");
 var ramRouter = require("./src/routes/ram");
-<<<<<<< HEAD
 var sistemaRouter = require("./src/routes/sistema");
-=======
 var cpuRouter = require("./src/routes/cpu");
->>>>>>> b817823 (:sparkles: feat: dashboard CPU  | criando caminhos para dados e selects)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,11 +38,8 @@ app.use("/alertas", alertasRouter);
 app.use("/acessos", acessosRouter);
 app.use("/componentes", componentesRouter);
 app.use("/ram", ramRouter);
-<<<<<<< HEAD
 app.use("/sistema", sistemaRouter);
-=======
 app.use("/cpu", cpuRouter);
->>>>>>> b817823 (:sparkles: feat: dashboard CPU  | criando caminhos para dados e selects)
 
 app.listen(PORTA_APP, function () {
     console.log(`
