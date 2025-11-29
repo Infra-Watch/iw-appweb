@@ -14,7 +14,7 @@ body {
 }
 
 /* STYLE CURSOR */
-.cursor-present:hover{
+.cursor-present:hover {
     border-radius: 5px;
     background-color: #6868685e;
 }
@@ -189,7 +189,7 @@ details nav a:hover {
 .user-profile:hover {
     color: #000266;
     transform: scale(1.05);
-    transition: 1s;
+    transition: 0.3s;
 }
 
 #user-icon {
@@ -265,7 +265,9 @@ details nav a:hover {
     font-size: x-large;
 }
 
-
+.porcet_max{
+    color: red;
+}
 /* ======= GRÁFICOS ======= */
 #all-graphics {
     display: flex;
@@ -336,7 +338,7 @@ details nav a:hover {
     width: 17vw;
 }
 
-#alert-list {
+.alert-list {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -349,6 +351,21 @@ details nav a:hover {
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.alert-list::-webkit-scrollbar {
+    width: 5px;
+    margin-right: 5px;
+
+}
+
+.alert-list::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+.alert-list::-webkit-scrollbar-thumb {
+    background-color: #636363;
+    border-radius: 15px;
 }
 
 .alerts {
