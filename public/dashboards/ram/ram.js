@@ -63,7 +63,8 @@ function exibirKpis() {
 
 	bkp.forEach(b => b.innerHTML = '...');
 
-	const url = `/ram/kpis/${idEmpresa}/${idMaquina}?intervalo=${intervalo}`;
+	const url = `/ram/kpis/${idEmpresa}/${idMaquina}`;
+	console.log(url)
 
 	fetch(url)
 	.then(res => {
@@ -72,10 +73,10 @@ function exibirKpis() {
 	})
 	.then(json => {
 		if (!json) {
-			bkp.forEach(b => b.innerHTML = '-');
+			bkp.forEach(b => b.innerHTML = '_');
 			return;
 		}
-
+		console.log(json);
 		const percentMax = Number(json.porcentagem_uso_maxima) || 0;
 		const percentMed = Number(json.porcentagem_uso_media) || 0;
 		const gigaMax = Number(json.utilizacao_gb_maxima) || 0;

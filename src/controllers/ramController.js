@@ -3,26 +3,33 @@ var ramModel = require("../models/ramModel");
 function pegarKpis(req, res){
     var idEmpresa = req.params.idEmpresa;
     var idMaquina = req.params.idMaquina;
-    var intervalo = parseInt(req.query.intervalo || "1", 10);
-    if(isNaN(intervalo) || intervalo <= 0 ) intervalo = 1;
+    var fkMaquina = req.params.fkMaquina;
 
+    console.log(idEmpresa)
+    console.log(idMaquina)
+    
     if(!idEmpresa || !idMaquina){
         return res.status(400).json({mensagem: "idEmpresa oi idMaquina default"});
     }
-
+    
     idEmpresa = Number(idEmpresa);
     idMaquina = Number(idMaquina);
+    fkMaquina = Number(fkMaquina);
+    
+    console.log(idEmpresa)
+    console.log(idMaquina)
+
     Promise.all([
-        ramModel.porcentagemUsoMaxima(idEmpresa,idMaquina,intervalo),
-        ramModel.porcentagemUsoMedia(idEmpresa,idMaquina,intervalo),
-        ramModel.utilizacaoGbMaxima(idEmpresa,idMaquina,intervalo),
-        ramModel.utilizacaoGbMaxima(idEmpresa,idMaquina,intervalo)
+        ramModel.porcentagemUsoMaxima(idEmpresa,idMaquina),
+        ramModel.porcentagemUsoMedia(idEmpresa,idMaquina),
+        ramModel.utilizacaoGbMaxima(idEmpresa,idMaquina),
+        ramModel.utilizacaoGbMedia(idEmpresa,idMaquina)
     ])
-    .then(([resPorcentMax, resPorcentMed, resGbMax, resGbMed]) => {
-        const porcentagem_uso_maxima = (resPorcentMax && resPorcentMax[0]) ? resPorcentMax[0].porcentagem_uso_maxima : 0;
-        const porcentagem_uso_media = (resPorcentMed && resPorcentMed[0]) ? resPorcentMed[0].porcentagem_uso_media : 0;
-        const utilizacao_gb_maxima = (resGbMax && resGbMax[0]) ? resGbMax[0].utilizacao_gb_maxima : 0;
-        const utilizacao_gb_media = (resGbMed && resGbMed[0]) ? resGbMed[0].utilizacao_gb_media : 0;
+    .then(([porMax, porMed, utiMax, utiMed]) => {
+        const porcentagem_uso_maxima = (porMax && porMax[0]) ? porMax[0].porcentagem_uso_maxima : 0;
+        const porcentagem_uso_media = (porMed && porMed[0]) ? porMed[0].porcentagem_uso_media : 0;
+        const utilizacao_gb_maxima = (utiMax && utiMax[0]) ? utiMax[0].utilizacao_gb_maxima : 0;
+        const utilizacao_gb_media = (utiMed && utiMed[0]) ? utiMed[0].utilizacao_gb_media : 0;
 
         return res.status(200).json({
             porcentagem_uso_maxima,
