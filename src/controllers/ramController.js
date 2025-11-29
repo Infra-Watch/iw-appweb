@@ -3,7 +3,6 @@ var ramModel = require("../models/ramModel");
 function pegarKpis(req, res){
     var idEmpresa = req.params.idEmpresa;
     var idMaquina = req.params.idMaquina;
-    var fkMaquina = req.params.fkMaquina;
 
     console.log(idEmpresa)
     console.log(idMaquina)
@@ -14,7 +13,6 @@ function pegarKpis(req, res){
     
     idEmpresa = Number(idEmpresa);
     idMaquina = Number(idMaquina);
-    fkMaquina = Number(fkMaquina);
     
     console.log(idEmpresa)
     console.log(idMaquina)

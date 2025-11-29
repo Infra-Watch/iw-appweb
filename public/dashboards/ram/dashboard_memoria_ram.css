@@ -209,13 +209,13 @@ details nav a:hover {
 
 .kpi {
     width: 20%;
-    border: solid .5px black;
     border-radius: 25px;
     height: 90px;
     display: flex;
     justify-content: center;
     font-size: small;
-    box-shadow: black .5px .5px 2px 0px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color:#FFFFFF;
 }
 
 .kpi b {
@@ -236,51 +236,56 @@ details nav a:hover {
 }
 
 #grafico1 {
-    border: 1px solid black;
     border-radius: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 #grafico2 {
-    border: 1px solid black;
     border-radius: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 #grafico3 {
-    border: 1px solid black;
     border-radius: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 #grafico4 {
-    border: 1px solid black;
     border-radius: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 
 .kpi-alerta {
     margin-top: 1.3vh;
     margin-left: 0vw;
-    border: 1px solid black;
     border-radius: 20px;
     width: 70%;
     height: 17%;
-    padding: 0px 6px;   
+    padding: 2px 6px;   
     text-align: center; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 
 .alertas-scroll {
@@ -295,8 +300,9 @@ details nav a:hover {
     padding: 0.7rem 1rem;
     overflow-y: scroll;
     overflow-x: hidden;
-    border: 1px solid black; 
     gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 
 
@@ -304,9 +310,10 @@ details nav a:hover {
     margin-top: -7%;
     padding: 30px 0;
     width: 200px;
-    border: 1px solid black;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
