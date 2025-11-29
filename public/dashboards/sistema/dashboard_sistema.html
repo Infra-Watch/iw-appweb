@@ -10,10 +10,9 @@
 </head>
 
 <body>
-
-    <nav class="sidebar">
+<nav class="sidebar">
         <div class="sidebar-logo">
-            <a href="../../index.html">
+            <a href="index.html">
                 <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
             </a>
         </div>
@@ -26,17 +25,17 @@
                     <summary>Componentes</summary>
                     <nav>
                         <ul>
-                            <a href="">Detalhes da CPU</a>
-                            <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+                            <a href="../cpu/cpu.html">Detalhes da CPU</a>
+                           <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
                             <a href="../disco/disco.html">Detalhes de Disco</a>
                             <a href="../rede/rede.html">Detalhes de Rede</a>
-                            <u><a href="dashboard_sistema.html">Detalhes do Sistema</a></u>
+                           <u> <a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a></u>
                         </ul>
                     </nav>
                 </details>
             </li>
-            <li><a href="../../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de Máquinas</a></li>
-            <li><a href="../../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de Acessos</a></li>
+            <li><a href="../../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+            <li><a href="../../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
         </ul>
 
         <div class="sidebar-bottom">
@@ -44,32 +43,31 @@
                 <h4>Suporte</h4>
                 <img id="suporte-jira" src="../../assets/jira.png" alt="Suporte Jira">
             </a>
-            <p>Data: <span id="date">24/11/2025</span></p>
         </div>
     </nav>
-    <header id="cabecalho">
-        <h1>Detalhes do Sistema</h1>
+     <header id="cabecalho">
+        <h1>Detalhes de Sistema</h1>
         <div id="titulo-maq">
             <select name="maquinas" id="maquina-exibe">
                 <option value="0">Selecione a máquina</option>
             </select>
         </div>
-        <div class="usuario">
-            <h2 id="nome_usuario">Undefined</h2>
+        <div id="nome_usuario">
         </div>
+        <div id="nome_empresa"></div>
     </header>
 
     <main class="container-pai">
         <section class="container-principal">
             <div class="kpis">
-                <div class="kpi-qtdProcessos">
-                    <p>Quantidade de Processos<br>Máxima/Média<br><br><b>XX|XX</b></p>
+                <div class="kpi">
+                    <p>Quantidade de Processos<br>Máxima | Média<br><br></p>
                 </div>
-                <div class="kpi-qtdThreads">
-                     <p>Quantidade de Threads<br>Máxima/Média<br><br><b>XX|XX</b></p>
+                <div class="kpi">
+                     <p>Quantidade de Threads<br>Máxima | Média<br><br></p>
                 </div>
-                <div class="kpi-qtdServicos">
-                   <p>Quantidade de Serviços<br>Máxima/Média<br><br><b>XX|XX</b></p>
+                <div class="kpi">
+                   <p>Quantidade de Serviços<br>Máxima | Média<br><br></p>
                 </div>
             </div>
             <div class="graficos">
@@ -81,11 +79,11 @@
         </section>
         <section class="container-alertas">
             <div class="kpi-alerta">
-                <p>Tempo: últimas 24 horas</p>
-                <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
+                <p>Tempo: Últimas 24 horas</p>
+                <h2>Alertas Totais: <span id="qtd_ultimos_alertas"></span></h2>
             </div>
             <div class="alertas-scroll">
-                <p>Todos os últimos alertas:</p>
+                <p>Todos os Últimos Alertas:</p>
                 <div class="alertas">
                     <p>Alerta</p>
                 </div>
@@ -101,8 +99,7 @@
         </section>
     </main>
 
-    <script src="../../js/dashboard_detalhada.js"></script>
-    <script src="../../js/sessionStorage_usage.js"></script>
-    <script src=""></script>
+     <script src="../../js/sessionStorage_usage.js"></script>
+    <script src="dashboard_sistema.js"></script>
 
 </html>

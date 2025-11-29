@@ -67,15 +67,12 @@ body * {
     color: #333;
 }
 
-
-/* Layout principal */
 .main-cadastro {
     width: 100vw;
     height: 100vh;
     display: flex;
 }
 
-/* Lado esquerdo - formulário */
 .left-cadastro {
     width: 50vw;
     height: 100vh;
@@ -106,7 +103,6 @@ body * {
     padding-bottom: 3px;
 }
 
-/* Campos de entrada */
 .text-field {
     display: flex;
     flex-direction: column;
@@ -128,7 +124,6 @@ body * {
     margin-bottom: 5px;
 }
 
-/* Botão de cadastro */
 .button {
     display: inline-block;
     text-align: center;
@@ -173,7 +168,6 @@ body * {
     right: 0;
 }
 
-/* Botão de voltar (seta) */
 .top-arrow {
     position: fixed;
     left: 70px;
@@ -189,7 +183,6 @@ body * {
     transition: 0.6s ease-out;
 }
 
-/* Lado direito - lista */
 .right-cadastro {
     width: 50vw;
     height: 100vh;
@@ -213,28 +206,6 @@ body * {
     color: #000266;
 }
 
-/* Barra de pesquisa */
-.ipt_pesquisa {
-    width: 40%;
-    height: 40px;
-    border-radius: 30px;
-    padding: 0 20px;
-    background-color: #D4D4D4;
-    border: 2px solid #000266;
-    font-size: 10px;
-    color: #000;
-}
-
-.btn_pesquisa {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: 10px;
-    color: #000266;
-}
-
-/* Lista de máquinas */
 .usuarios {
     width: 100%;
     display: flex;
@@ -280,12 +251,13 @@ body * {
     color: #000;
 }
 
+
+
 .status-bolinha {
     width: 1rem;
     height: 1rem;
 }
 
-/* Colunas da listagem */
 .id-user,
 .nome-user,
 .email-user,
@@ -309,7 +281,6 @@ body * {
     width: 20%;
 }
 
-/* Botão de exclusão */
 .btn-excluir {
     width: 30px;
     height: 30px;
@@ -329,7 +300,6 @@ body * {
     background-color: #000266;
 }
 
-/* Responsividade */
 @media only screen and (max-width: 950px) {
     .card-cadastro {
         width: 85%;

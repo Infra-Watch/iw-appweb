@@ -154,6 +154,16 @@ body {
     color: #000266;
 }
 
+#nome_empresa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0vw;
+    gap: 1px;
+    font-size: x-large;
+    color: #000266;
+}
+
 
 
 details summary {

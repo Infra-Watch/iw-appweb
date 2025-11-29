@@ -1,83 +1,82 @@
 var database = require("../database/config");
 
-function processosMaximo(idEmpresa, idMaquina, intervalo) {
+function qtdProcessosMaxima(idEmpresa,idMaquina, intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtde_processos_maximo
+    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtd_processos_maxima
         FROM registro_coleta WHERE fkRecurso = 1011
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`;
-
-    console.log("Executando (processosMaximo):\n" + instrucaoSql);
+    
+    console.log("Executando (qtdProcessosMaxima):\n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function processosMedia(idEmpresa, idMaquina, intervalo) {
+function qtdProcessosMedia(idEmpresa,idMaquina,intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtde_processos_media
+    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtd_processos_media
         FROM registro_coleta WHERE fkRecurso = 1011
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`
 
-    console.log("Executando (processosMedia): \n" + instrucaoSql);
+    console.log("Executando (qtdProcessosMedia): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function threadsMaximo(idEmpresa, idMaquina, intervalo) {
+function qtdThreadsMaxima(idEmpresa,idMaquina,intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtde_threads_maximo
+    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtd_threads_maxima
         FROM registro_coleta WHERE fkRecurso = 1013
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`
 
-    console.log("Executando (threadsMaximo): \n" + instrucaoSql);
+    console.log("Executando (qtdThreadsMaxima): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function threadsMedia(idEmpresa, idMaquina, intervalo) {
+function qtdThreadsMedia(idEmpresa,idMaquina,intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtde_threads_media
+    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtd_threads_media
         FROM registro_coleta WHERE fkRecurso = 1013
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`
 
-    console.log("Executando (threadsMedia): \n" + instrucaoSql);
+    console.log("Executando (qtdThreadsMedia): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function servicosMaximo(idEmpresa, idMaquina, intervalo) {
+function qtdServicosMaxima(idEmpresa,idMaquina,intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtde_servicos_maximo
+    const instrucaoSql = `SELECT ROUND(IFNULL(MAX(leitura),0),2) AS qtd_servicos_maxima
         FROM registro_coleta WHERE fkRecurso = 1012
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`
 
-    console.log("Executando (servicosMaximo): \n" + instrucaoSql);
+    console.log("Executando (qtdServicosMaxima): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function servicosMedia(idEmpresa, idMaquina, intervalo) {
+function qtdServicosMedia(idEmpresa,idMaquina,intervalo) {
     intervalo = Number(intervalo) || 1;
-    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtde_servicos_media
+    const instrucaoSql = `SELECT ROUND(IFNULL(AVG(leitura),0),2) AS qtd_servicos_media
         FROM registro_coleta WHERE fkRecurso = 1012
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= NOW() - INTERVAL ${intervalo} DAY;`
 
-    console.log("Executando (servicosMedia): \n" + instrucaoSql);
+    console.log("Executando (qtdServicosMedia): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 
 module.exports = {
-    processosMaximo,
-    processosMedia,
-    threadsMaximo,
-    threadsMedia,
-    servicosMaximo,
-    servicosMedia
+    qtdProcessosMaxima,
+    qtdProcessosMedia,
+    qtdThreadsMaxima,
+    qtdThreadsMedia,
+    qtdServicosMaxima,
+    qtdServicosMedia
 };

@@ -7,33 +7,33 @@ function pegarKpis(req, res){
     if(isNaN(intervalo) || intervalo <= 0 ) intervalo = 1;
 
     if(!idEmpresa || !idMaquina){
-        return res.status(400).json({mensagem: "idEmpresa oi idMaquina default"});
+        return res.status(400).json({mensagem: "idEmpresa ou idMaquina default"});
     }
 
     idEmpresa = Number(idEmpresa);
     idMaquina = Number(idMaquina);
     Promise.all([
-        sistemaModel.processosMaximo(idEmpresa,idMaquina,intervalo),
-        sistemaModel.processosMedia(idEmpresa,idMaquina,intervalo),
-        sistemaModel.threadsMaximo(idEmpresa,idMaquina,intervalo),
-        sistemaModel.threadsMedia(idEmpresa,idMaquina,intervalo),
-        sistemaModel.servicosMaximo(idEmpresa,idMaquina,intervalo),
-        sistemaModel.servicosMedia(idEmpresa,idMaquina,intervalo)
+        sistemaModel.qtdProcessosMaxima(idEmpresa,idMaquina,intervalo),
+        sistemaModel.qtdProcessosMedia(idEmpresa,idMaquina,intervalo),
+        sistemaModel.qtdThreadsMaxima(idEmpresa,idMaquina,intervalo),
+        sistemaModel.qtdThreadsMedia(idEmpresa,idMaquina,intervalo),
+        sistemaModel.qtdServicosMaxima(idEmpresa,idMaquina,intervalo),
+        sistemaModel.qtdServicosMedia(idEmpresa,idMaquina,intervalo)
     ])
-    .then(([resProcessoMax, resProcessoMed, resThreadsMax, resThreadsMed, resServicosMax, resServicosMed]) => {
-        const qtd_processo_maximo = (resProcessoMax && resProcessoMax[0]) ? resProcessoMax[0].qtd_processo_maximo : 0;
-        const qtd_processo_media = (resProcessoMed && resProcessoMed[0]) ? resProcessoMed[0].qtd_processo_media : 0;
-        const qtd_threads_maximo = (resThreadsMax && resThreadsMax[0]) ? resThreadsMax[0].qtd_threads_maximo : 0;
-        const qtd_threads_media = (resThreadsMed && resThreadsMed[0]) ? resThreadsMed[0].qtd_threads_media : 0;
-         const qtd_servicos_maximo = (resServicosMax && resServicosMax[0]) ? resProcessoMax[0].qtd_servicos_maximo : 0;
-        const qtd_servicos_media = (resServicosMed && resServicosMed[0]) ? resServicosMed[0].qtd_servicos_media : 0;
+    .then(([qtdProcessosMax, qtdProcessosMed, qtdThreadsMax, qtdThreadsMed, qtdServicosMax, qtdServicosMed]) => {
+        const qtd_processos_maxima = (qtdProcessosMax && qtdProcessosMax[0]) ? qtdProcessosMax[0].qtd_processos_maxima : 0;
+        const qtd_processos_media = (qtdProcessosMed && qtdProcessosMed[0]) ? qtdProcessosMed[0].qtd_processos_media : 0;
+        const qtd_threads_maxima = (qtdThreadsMax && qtdThreadsMax[0]) ? qtdThreadsMax[0].qtd_threads_maxima : 0;
+        const qtd_threads_media = (qtdThreadsMed && qtdThreadsMed[0]) ? qtdThreadsMed[0].qtd_threads_media : 0;
+        const qtd_servicos_maxima = (qtdServicosMax && qtdServicosMax[0]) ? qtdServicosMax[0].qtd_servicos_maxima : 0;
+        const qtd_servicos_media = (qtdServicosMed && qtdServicosMed[0]) ? qtdServicosMed[0].qtd_servicos_media : 0;
 
         return res.status(200).json({
-            qtd_processo_maximo,
-            qtd_processo_media,
-            qtd_threads_maximo,
+            qtd_processos_maxima,
+            qtd_processos_media,
+            qtd_threads_maxima,
             qtd_threads_media,
-            qtd_servicos_maximo,
+            qtd_servicos_maxima,
             qtd_servicos_media
         });
     })
