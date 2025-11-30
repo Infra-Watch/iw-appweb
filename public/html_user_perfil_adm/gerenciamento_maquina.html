@@ -12,8 +12,46 @@
 </head>
 <!-- onload="carregarPage()" -->
 <body>
+
+   <!-- ===== NAVBAR LATERAL ===== -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <a href="/dashboard_geral.html">
+        <img src="../assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+      </a>
+    </div>
+
+    <ul class="sidebar-links">
+        <li><a href="../dashboard_geral.html">Painel Integral</a></li>
+        <li><a href="../dashboard_detalhada.html">Painel Detalhes</a></li>
+        <li>
+            <details name="Componentes" id="componente-exibe">
+               <summary value="0">Componentes</summary>
+               <nav>
+                <ul>
+                    <a href="../dashboards/disco/disco.html">Detalhes da CPU</a>
+                    <a href="../dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+                    <a href="../dashboards/disco/disco.html">Detalhes de Disco</a>
+                    <a href="../dashboards/disco/disco.html">Detalhes de Rede</a>
+                    <a href="../dashboards/disco/disco.html">Detalhes do Sistema</a>
+                </ul>
+               </nav>
+           </details>
+        </li>
+        <li><a href="../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+        <li><a href="../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+        </ul>
+
+    <div class="sidebar-bottom">
+      <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+        <h4>Suporte</h4>
+        <img id="suporte-jira" src="../assets/imagens/jira.png" alt="Suporte Jira">
+      </a>
+      <p>Data: <span id="date">31/10/2025</span></p>
+    </div>
+  </nav>
+
   <div class="main-cadastro">
-    <a href="../html_user_perfil_adm/perfil_adm.html" class="top-arrow">←</a>
     <div class="left-cadastro">
       <div class="card-cadastro">
         <h1><span class="underline">Ca</span>dastro de Máquinas</h1>
