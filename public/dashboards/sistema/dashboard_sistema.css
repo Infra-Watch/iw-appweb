@@ -235,7 +235,7 @@ details nav a:hover {
     gap: 25px;
 }
 
-#grafico1 {
+#chart-apex-processos-sistema {
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -245,7 +245,7 @@ details nav a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: #FFFFFF;
 }
-#grafico2 {
+#chart-apex-threads-sistema {
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -255,7 +255,7 @@ details nav a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: #FFFFFF;
 }
-#grafico3 {
+#chart-apex-servicos-sistema {
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -265,7 +265,7 @@ details nav a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: #FFFFFF;
 }
-#grafico4 {
+#chart-apex-alertas-sistema {
     border-radius: 20px;
     height: 100%;
     width: 100%;

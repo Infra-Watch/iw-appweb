@@ -61,21 +61,40 @@
         <section class="container-principal">
             <div class="kpis">
                 <div class="kpi">
-                    <p>Quantidade de Processos<br>Máxima: <b>_</b> | Média: <b>_</b></p>
+                    <p>Quantidade de Processos<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
                 <div class="kpi">
-                    <p>Quantidade de Threads<br>Máxima: <b>_</b> | Média: <b>_</b></p>
+                    <p>Quantidade de Threads<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
                 <div class="kpi">
-                    <p>Quantidade de Serviços<br>Máxima: <b>_</b> | Média: <b>_</b></p>
+                    <p>Quantidade de Serviços<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
             </div>
 
            <div id="graficos" class="graficos">
-                <div id="grafico1">histograma</div>
-                <div id="grafico2">histograma</div>
-                <div id="grafico3">histograma</div>
-                <div id="grafico4">barra</div>
+           <div class="graficos-componentes">
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Processos </span></p>
+                        <div id="chart-apex-processos-sistema"></div>
+                    </article>
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Threads </span></p>
+                        <div id="chart-apex-threads-sistema"></div>
+                    </article>
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Serviços </span></p>
+                        <div id="chart-apex-servicos-sistema"></div>
+                    </article>
+
+                      <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Alertas </span></p>
+                        <div id="chart-apex-alertas-sistema"></div>
+                    </article>
+
+                </div>
             </div>
         </section>
         <section class="container-alertas">
