@@ -7,6 +7,7 @@
     <title>Dashboard Rede | Infrawatch</title>
     <link rel="stylesheet" href="rede.css">
     <link rel="icon" href="../../assets/logo-infrawatch.png">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -48,62 +49,84 @@
         </div>
     </nav>
 
-    <header id="cabecalho">
-        <h1>Métricas de Rede</h1>
-        <div id="titulo-maq">
-            <select name="maquinas" id="maquina-exibe">
-                <option value="0">Selecione a máquina</option>
-            </select>
-        </div>
-        <div id="nome_usuario">
-        </div>
-    </header>
-    <main class="container-pai">
-        <section class="container-principal">
-            <div class="kpis">
-                <div class="kpi">
-                    <p>Throughput: <br><br><b></b></p>
-                </div>
-                <div class="kpi">
-                    <p>Jitter: <br><br><b></b></p>
-                </div>
-                <div class="kpi">
-                    <p>Taxa de sáida média: <br><br><b></b></p>
-                </div>
-                <div class="kpi">
-                    <p>Taxa de entrada média: <br><br><b></b></p>
-                </div>
+    <div id="main">
+        <header id="cabecalho">
+            <h1>Métricas de Rede</h1>
+            <div id="titulo-maq">
+                <select name="maquinas" id="maquina-exibe">
+                    <option value="0">Selecione a máquina</option>
+                </select>
             </div>
-            <div class="graficos">
-                <div id="grafico1">gráfico de barras | Kb médio por hora</div>
-                <div id="grafico2">gráfico de linha | taxa de saída + taxa de entrada</div>
-                <div id="grafico3">histograma | taxa de saída</div>
-                <div id="grafico4">histograma | taxa de entrada</div>
+            <div id="nome_usuario">
             </div>
-        </section>
-        
-        <section class="container-alertas">
-            <div class="kpi-alerta">
-                <p>Tempo: últimas 24 horas</p>
-                <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
-            </div>
-            <div class="alertas-scroll">
-                <p>Todos os últimos alertas:</p>
-                <div class="alertas">
-                    <p>dcfgvhbnjmk</p>
+        </header>
+        <main class="container-pai">
+            <section class="container-principal">
+                <div class="kpis">
+                    <div class="kpi-card">
+                        <p>Throughput:</p>
+                        <p class="kpi">X</p>
+                    </div>
+                    <div class="kpi-card">
+                        <p>Jitter:</p>
+                        <p class="kpi">X</p>
+                    </div>
+                    <div class="kpi-card">
+                        <p>Taxa de sáida média:</p>
+                        <p class="kpi">X</p>
+                    </div>
+                    <div class="kpi-card">
+                        <p>Taxa de entrada média:</p>
+                        <p class="kpi">X</p>
+                    </div>
+                    <div class="kpi-card">
+                        <p>Taxa de entrada média:</p>
+                        <p class="kpi">X</p>
+                    </div>
                 </div>
-                <div class="alertas">
-                    <p>dcgfvhjkl</p>
+                <div class="container-graficos">
+                    <div class="graficos-container grafico">
+                        <h4>gráfico de barras | Kb médio por hora</h4>
+                        <div id="grafico1"></div>
+                    </div>
+                    <!-- <div class="grafico">
+                            <h4>gráfico de linha | taxa de saída + taxa de entrada</h4>
+                            <div id="grafico2"></div>
+                        </div>
+                        <div class="grafico">
+                            <h4>histograma | taxa de saída</h4>
+                            <div id="grafico3"></div>
+                        </div>
+                        <div class="grafico">
+                            <h4>histograma | taxa de entrada</h4>
+                            <div id="grafico4"></div>
+                        </div> -->
+                    <!-- </div> -->
+                    <div class="graficos-container">
+                        <!-- <div class="grafico">
+                            <h4>gráfico de barras | Kb médio por hora</h4>
+                            <div id="grafico1"></div>
+                        </div>
+                        <div class="grafico">
+                            <h4>gráfico de linha | taxa de saída + taxa de entrada</h4>
+                            <div id="grafico2"></div>
+                        </div> -->
+                        <div class="histograma">
+                            <h4>Histograma | Taxa de Saída</h4>
+                            <div id="grafico3"></div>
+                        </div>
+                        <div class="histograma">
+                            <h4>Histograma | Taxa de Entrada</h4>
+                            <div id="grafico4"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="alertas">
-                    <p>dcfgvbhnj</p>
-                </div>
-                <div class="alertas">
-                    <p>dcfgvbhnj</p>
-                </div>
-        </section>
-    </main>
+            </section>
+
+        </main>
+    </div>
     <script src="../../js/sessionStorage_usage.js"></script>
     <script src="rede.js"></script>
 </body>
+
 </html>
