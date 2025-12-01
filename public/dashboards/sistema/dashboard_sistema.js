@@ -63,7 +63,7 @@ function exibirKpis() {
 
 	bkp.forEach(b => b.innerHTML = '...');
 
-	const url = `/sistema/kpis/${idEmpresa}/${idMaquina}?intervalo=${intervalo}`;
+	const url = `/sistema/kpis/${idEmpresa}/${idMaquina}`;
 
 	fetch(url)
 		.then(res => {
@@ -72,7 +72,7 @@ function exibirKpis() {
 		})
 		.then(json => {
 			if (!json) {
-				bkp.forEach(b => b.innerHTML = '-');
+				bkp.forEach(b => b.innerHTML = '_');
 				return;
 			}
 
@@ -83,7 +83,7 @@ function exibirKpis() {
 			const servicosMax = Number(json.qtd_servicos_maxima) || 0;
 			const servicosMed = Number(json.qtd_servicos_media) || 0;
 
-			if (bkp.length >= 4) {
+			if (bkp.length >= 6) {
 				bkp[0].innerHTML = `${processosMax}`
 				bkp[1].innerHTML = `${processosMed}`
 				bkp[2].innerHTML = `${threadsMax}`
