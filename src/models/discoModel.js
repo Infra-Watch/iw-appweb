@@ -145,6 +145,54 @@ function pegarDadosGraficoLeitura(idEmpresa, idMaquina) {
 
 }
 
+function alertas24h(idEmpresa, idMaquina) {
+    const instrucaoSql = `
+        SELECT 
+            COUNT(a.idAlerta) AS qtd_alertas_24h
+        FROM alerta AS a
+        INNER JOIN registro_coleta AS c 
+            ON a.fkColeta = c.idColeta
+        INNER JOIN recurso_monitorado AS r 
+            ON c.fkRecurso = r.idRecurso
+        WHERE 
+            r.nome LIKE 'disco%' 
+            AND c.data_hora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+            AND a.fkEmpresa = ${idEmpresa}
+            AND a.fkMaquina = ${idMaquina};
+    `
+    console.log("Executando (alertas24h): \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+function carregarAlertas(idEmpresa, idMaquina) {
+    const instrucaoSql = `
+        SELECT 
+            m.apelido,
+            a.nivel,
+            r.descricao,
+            leitura,
+            data_hora,
+            unidade_de_medida
+        FROM alerta AS a
+        JOIN registro_coleta AS c 
+            ON a.fkColeta = c.idColeta
+        JOIN recurso_monitorado AS r 
+            ON c.fkRecurso = r.idRecurso
+        JOIN maquina as m
+            on c.fkMaquina = m.idMaquina
+        WHERE 
+            r.nome LIKE 'disco%' 
+            AND c.data_hora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+            AND a.fkEmpresa = ${idEmpresa}
+            AND a.fkMaquina = ${idMaquina}
+        ORDER BY c.data_hora DESC;
+    `
+    console.log("Executando (alertas24h): \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 
 module.exports = {
     usoMaximoPorcentagem,
@@ -156,5 +204,7 @@ module.exports = {
     velocidadeEscritaMedia,
     velocidadeEscritaAtual,
     pegarDadosGraficoAlertas,
-    pegarDadosGraficoLeitura
+    pegarDadosGraficoLeitura,
+    alertas24h,
+    carregarAlertas
 };

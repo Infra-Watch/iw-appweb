@@ -64,52 +64,52 @@
             </select>
         </div>
         <div class="usuario">
-            <b>Undefined</b>
-            <img class="foto-usuario" src="../../assets/imagens/foto-protopersona.png" alt="usuario">
+            <b id="nome-usuario"></b>
         </div>
     </header>
     <main class="container-pai">
         <section class="container-principal">
             <div class="kpis">
                 <div class="kpi">
-                    <p>Porcentagem de uso <br><br><b id="dado-kpi-uso">--% | --%</b></p>
+                    <p>Porcentagem de uso <br><br><b id="dado-kpi-uso">--% | --%</b> <br><br> <span
+                            id="status-uso">--</span></p>
                 </div>
                 <div class="kpi">
-                    <p>Velocidade de leitura <br><br><b id="dado-kpi-velocidade-leitura">--mb/s | --mb/s</b> </p>
+                    <p>Velocidade de leitura <br><br><b id="dado-kpi-velocidade-leitura">--mb/s | --mb/s</b> <br><br>
+                        <span id="status-leitura">--</span></p>
                 </div>
                 <div class="kpi">
-                    <p>Velocidade de escrita <br><br><b id="dado-kpi-velocidade-escrita">--mb/s | --mb/s</b></p>
+                    <p>Velocidade de escrita <br><br><b id="dado-kpi-velocidade-escrita">--mb/s | --mb/s</b> <br><br>
+                        <span id="status-escrita">--</span></p>
                 </div>
             </div>
             <div class="graficos">
-                <div id="grafico1">
+                <div id="container-grafico1">
+                    <span id="title-grafico1">Contagem de Alertas de Disco por Nível (7 Dias)</span>
+                    <div id="grafico1">
+                    </div>
                 </div>
-                <div id="grafico2">
+                <div id="container-grafico2">
+                    <span id="tite-grafico2">Velocidade de Transferência (I/O) do Disco (mb/s)</span>
+                    <div id="grafico2">
+                    </div>
                 </div>
             </div>
         </section>
         <section class="container-alertas">
             <div class="kpi-alerta">
                 <p>Tempo: últimas 24 horas</p>
-                <h2>Alertas Totais: <span id="qtd_ultimos_alertas">3</span></h2>
+                <h2>Alertas Totais: <span id="dado-kpi-alertas"> -- alertas</span></h2>
             </div>
-            <div class="alertas-scroll">
+            <div class="alertas-scroll" id="container-alertas-scroll">
                 <p>Últimos alertas:</p>
-                <div class="alertas">
-                    <p>dcfgvhbnjmk</p>
-                </div>
-                <div class="alertas">
-                    <p>dcgfvhjkl</p>
-                </div>
-                <div class="alertas">
-                    <p>dcfgvbhnj</p>
-                </div>
-                <div class="alertas">
-                    <p>dcfgvbhnj</p>
-                </div>
+                <span id="box-container-alertas">
+                </span>
+            </div>
         </section>
     </main>
 </body>
 
-    <script src="disco.js" defer></script>
+<script src="disco.js" defer></script>
+
 </html>

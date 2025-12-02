@@ -5,6 +5,12 @@ const selectMaquinas = document.getElementById('maquina-exibe')
 const kpiUso = document.getElementById('dado-kpi-uso')
 const kpiLeitura = document.getElementById('dado-kpi-velocidade-leitura')
 const kpiEscrita = document.getElementById('dado-kpi-velocidade-escrita')
+const kpiAlertas24h = document.getElementById('dado-kpi-alertas')
+
+const statusUso = document.getElementById('status-uso');
+const statusLeitura = document.getElementById('status-leitura');
+const statusEscrita = document.getElementById('status-escrita');
+
 
 let ultimosDias = []
 let alertasCriticos = []
@@ -26,10 +32,16 @@ function plotarDados() {
         atualizarKPIs();
         const intervaloKpi = setInterval(atualizarKPIs, 3000)
         carregarDadosGraficos();
+        carregarAlertas();
+        const intervaloAlertas = setInterval(carregarAlertas, 3000)
     } else {
         kpiUso.innerHTML = "--% | --%"
         kpiEscrita.innerHTML = '--mb/s | --mb/s'
         kpiLeitura.innerHTML = '--mb/s | --mb/s'
+        kpiAlertas24h.innerHTML = '-- alertas'
+        statusUso.innerHTML = '--';
+        statusLeitura.innerHTML = '--';
+        statusEscrita.innerHTML = '--';
     }
 }
 
@@ -75,6 +87,8 @@ function atualizarKPIs() {
                     kpiUso.innerHTML = `${resposta.uso_atual_porcentagem}% | ${resposta.uso_maximo_porcentagem}%`
                     kpiLeitura.innerHTML = `${resposta.velocidade_leitura_atual}mb/s | ${resposta.velocidade_leitura_media}mb/s`
                     kpiEscrita.innerHTML = `${resposta.velocidade_escrita_atual}mb/s | ${resposta.velocidade_escrita_media}mb/s`
+                    kpiAlertas24h.innerHTML = `${resposta.alertas24h[0].qtd_alertas_24h} alertas`
+                    aplicarStatus(resposta.uso_atual_porcentagem, resposta.velocidade_leitura_atual, resposta.velocidade_escrita_atual)
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -84,6 +98,55 @@ function atualizarKPIs() {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
+
+function aplicarStatus(uso, leitura, escrita) {
+    let divStatusUso = document.getElementById('status-uso')
+    let divStatusLeitura = document.getElementById('status-leitura')
+    let divStatusEscrita = document.getElementById('status-escrita')
+
+    divStatusUso.style.color = 'green'
+    divStatusUso.style.fontWeight = 'bold'
+    divStatusUso.innerHTML = "NORMAL"
+
+    divStatusLeitura.style.color = 'green'
+    divStatusLeitura.style.fontWeight = 'bold'
+    divStatusLeitura.innerHTML = "NORMAL"
+
+    divStatusEscrita.style.color = 'green'
+    divStatusEscrita.style.fontWeight = 'bold'
+    divStatusEscrita.innerHTML = "NORMAL"
+
+    if (uso > 85) {
+        divStatusUso.style.color = 'red'
+        divStatusUso.style.fontWeight = 'bold'
+        divStatusUso.innerHTML = "CRÍTICO"
+    } else if (uso > 70) {
+        divStatusUso.style.color = 'yellow'
+        divStatusUso.style.fontWeight = 'bold'
+        divStatusUso.innerHTML = "ATENÇÃO"
+    }
+
+    if (leitura < 5) {
+        divStatusLeitura.style.color = 'red'
+        divStatusLeitura.style.fontWeight = 'bold'
+        divStatusLeitura.innerHTML = "CRÍTICO"
+    } else if (leitura < 15) {
+        divStatusLeitura.style.color = 'yellow'
+        divStatusLeitura.style.fontWeight = 'bold'
+        divStatusLeitura.innerHTML = "ATENÇÃO"
+    }
+
+    if (escrita < 5) {
+        divStatusEscrita.style.color = 'red'
+        divStatusEscrita.style.fontWeight = 'bold'
+        divStatusEscrita.innerHTML = "CRÍTICO"
+    } else if (escrita < 15) {
+        divStatusEscrita.style.color = 'yellow'
+        divStatusEscrita.style.fontWeight = 'bold'
+        divStatusEscrita.innerHTML = "ATENÇÃO"
+    }
+}
+
 
 function carregarDadosGraficos() {
     const idMaquina = selectMaquinas.value
@@ -151,7 +214,7 @@ function plotarGraficoDisco() {
                 data: velocidade_leitura
             },
             {
-                name: 'Velocidade de Escrita (MB/s)', 
+                name: 'Velocidade de Escrita (MB/s)',
                 data: velocidade_escrita
             }],
             chart: {
@@ -166,10 +229,6 @@ function plotarGraficoDisco() {
             },
             stroke: {
                 curve: 'straight'
-            },
-            title: {
-                text: 'Velocidade de Transferência (I/O) do Disco (mb/s)',
-                align: 'left'
             },
             grid: {
                 row: {
@@ -230,10 +289,6 @@ function plotarGraficoAlertas() {
                 enabled: true
             }
         },
-        title: {
-            text: 'Contagem de Alertas de Disco por Nível (7 Dias)',
-            align: 'left'
-        },
         responsive: [{
             breakpoint: 480,
             options: {
@@ -271,10 +326,56 @@ function plotarGraficoAlertas() {
         },
         fill: {
             opacity: 1,
-            colors: ['#ff0000ff', '#ffee00aa']
+            colors: ['#ff0000ff', '#ece13baa']
         }
     };
 
     var grafico_nivel_alerta = new ApexCharts(document.getElementById("grafico1"), optContagemAlertas);
     grafico_nivel_alerta.render();
 }
+
+function carregarAlertas() {
+    const idMaquina = selectMaquinas.value
+    fetch(`/disco/alertas/${idEmpresa}/${idMaquina}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    const alertasScroll = document.getElementById("box-container-alertas")
+                    alertasScroll.innerHTML = ''
+                    console.log(resposta)
+                    const formatarData = data => {
+                        const date = new Date(data);
+                        const dia = date.getDate().toString();
+                        const mes = (date.getMonth() + 1).toString();
+                        const ano = date.getFullYear().toString();
+                        const hora = date.getHours().toString().padStart(2, '0');
+                        const minutos = date.getMinutes().toString().padStart(2, '0');
+                        const segundos = date.getSeconds().toString().padStart(2, '0');
+
+                        return `${dia}/${mes}/${ano} - ${hora}:${minutos}:${segundos}`;
+                    };
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        alertasScroll.innerHTML += `
+                        <div class="alertas">
+                            <span>Máquina: ${resposta[i].apelido}</span>
+                            <span>Nível: ${resposta[i].nivel}</span>
+                            <span>Componente: ${resposta[i].descricao}</span>
+                            <span>Registro: ${resposta[i].leitura}${resposta[i].unidade_de_medida}</span>
+                            <span>Horário: ${formatarData(resposta[i].data_hora)}</span>
+                        </div>
+                        `
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('nome-usuario').innerHTML = sessionStorage.getItem('NOME_USUARIO')
+})

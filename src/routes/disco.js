@@ -15,4 +15,8 @@ router.get("/grafico_leitura/:idEmpresa/:idMaquina", function(req, res) {
     discoController.pegarDadosGraficoLeitura(req, res);
 })
 
+router.get("/alertas/:idEmpresa/:idMaquina", function(req, res) {
+    discoController.carregarAlertas(req, res);
+})
+
 module.exports = router;

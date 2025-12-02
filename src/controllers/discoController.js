@@ -24,11 +24,13 @@ function pegarKpis(req, res) {
         discoModel.velocidadeEscritaMaxima(idEmpresa, idMaquina),
         discoModel.velocidadeEscritaMedia(idEmpresa, idMaquina),
         discoModel.velocidadeEscritaAtual(idEmpresa, idMaquina),
+        discoModel.alertas24h(idEmpresa, idMaquina)
     ])
         .then(([
             usoMax, usoAtual,
             leituraMax, leituraMed, leituraAtual,
-            escritaMax, escritaMed, escritaAtual
+            escritaMax, escritaMed, escritaAtual,
+            alertas24h
         ]) => {
             const uso_maximo_porcentagem = (usoMax && usoMax[0]) ? usoMax[0].uso_maximo_porcentagem : 0;
             const uso_atual_porcentagem = (usoAtual && usoAtual[0]) ? usoAtual[0].uso_atual_porcentagem : 0;
@@ -49,7 +51,8 @@ function pegarKpis(req, res) {
                 velocidade_leitura_atual,
                 velocidade_escrita_maxima,
                 velocidade_escrita_media,
-                velocidade_escrita_atual
+                velocidade_escrita_atual,
+                alertas24h
             });
         })
         .catch(erro => {
@@ -92,8 +95,26 @@ function pegarDadosGraficoLeitura(req, res) {
         });
 }
 
+function carregarAlertas(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var idMaquina = req.params.idMaquina;
+    discoModel
+        .carregarAlertas(idEmpresa, idMaquina)
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(200).json([])
+            }
+        })
+        .catch((erro) => {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     pegarKpis,
     pegarDadosGraficoAlertas,
-    pegarDadosGraficoLeitura
+    pegarDadosGraficoLeitura,
+    carregarAlertas
 };
