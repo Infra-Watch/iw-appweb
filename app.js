@@ -24,6 +24,7 @@ var ramRouter = require("./src/routes/ram");
 var sistemaRouter = require("./src/routes/sistema");
 var cpuRouter = require("./src/routes/cpu");
 var discoRouter = require("./src/routes/disco")
+var redeRouter = require("./src/routes/rede");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,7 +43,7 @@ app.use("/ram", ramRouter);
 app.use("/sistema", sistemaRouter);
 app.use("/cpu", cpuRouter);
 app.use("/disco", discoRouter);
-
+app.use("/rede", redeRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
