@@ -182,7 +182,6 @@ details nav a:hover {
     
 }
 .container-principal {
-    margin-top: 2vh;
     height: 80%;
     width: 80%;
     margin-left: 17vw;
@@ -221,23 +220,23 @@ details nav a:hover {
 
 .graficos-dupla {
     margin-top: 1vh;
-    margin-left: 5vw;
+    margin-left: 7vw;
     height: 30vh;
-    width: 70vw;
+    width: 65vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .grafico-individual {
-    margin-top: 30vh;
+    margin-top: 35vh;
     height: 30vh;
-    width: 70vw;
+    width: 65vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 5vw;
+    margin-left: 7vw;
 }
 
 .grafico-area-porcentagem,
@@ -245,12 +244,16 @@ details nav a:hover {
     height: 100%;
     width: 100%;
     align-self: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color:#FFFFFF;
 }
 
 .grafico-linha-previsao-ram {
     margin-top: -25vw;
     height: 100%;
     width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color:#FFFFFF;
 }
 
 /* .kpi-alerta {

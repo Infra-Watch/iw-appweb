@@ -123,7 +123,7 @@ function gerarGrafico1() {
     const options = {
         chart: {
             type: "area",
-            height: 300,
+            height: 230,
             foreColor: "#999",
             stacked: true,
             dropShadow: {
@@ -135,7 +135,7 @@ function gerarGrafico1() {
                 opacity: 0.06
             }
         },
-        colors: ['#00E396', '#0090FF'],
+        colors: ['#F5773D', '#E8BF99'],
         stroke: {
             curve: "smooth",
             width: 3
@@ -199,7 +199,7 @@ function gerarGrafico1() {
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#grafico-apex-area-porcentagem"), options);
+    var chart = new ApexCharts(document.querySelector("#grafico-apex-previsao-uso-ram"), options);
 
     chart.render();
 
@@ -243,22 +243,20 @@ function gerarGrafico1() {
 function gerarGrafico2(){
     const options = {
           series: [{
-          name: 'XYZ MOTORS',
+          name: 'Previsão',
           data: generateDayWiseTimeSeries(0, 18)
         }],
           chart: {
           type: 'area',
           stacked: false,
-          height: 300,
+          height: 230,
           zoom: {
             type: 'x',
             enabled: true,
             autoScaleYaxis: true
           },
-          toolbar: {
-            autoSelected: 'zoom'
-          }
         },
+        colors: ['#99E8E7'],
         dataLabels: {
           enabled: false
         },
@@ -348,15 +346,16 @@ function gerarGrafico3() {
     const options = {
           series: [{
           name: 'Alertas em Atenção',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+          data: [44]
         }, {
           name: 'Alertas em Criticidade',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+          data: [76]
         }],
           chart: {
           type: 'bar',
-          height: 300
+          height: 260
         },
+        colors: ['#F5CF27', '#BD1515'],
         plotOptions: {
           bar: {
             horizontal: false,
@@ -374,11 +373,11 @@ function gerarGrafico3() {
           colors: ['transparent']
         },
         xaxis: {
-          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+          categories: ['Nov'],
         },
         yaxis: {
           title: {
-            text: '$ (thousands)'
+            text: 'Quantidade de Alertas'
           }
         },
         fill: {
@@ -387,13 +386,13 @@ function gerarGrafico3() {
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands"
+              return val + " Alertas"
             }
           }
         }
         };
 
-        var chart = new ApexCharts(document.querySelector("#grafico-apex-previsao-uso-ram"), options);
+        var chart = new ApexCharts(document.querySelector("#grafico-apex-area-porcentagem"), options);
         chart.render();
 
         function generateDayWiseTimeSeries(s, count) {
@@ -417,9 +416,9 @@ function gerarGrafico3() {
 
 
         var values = [[
-            4, 3, 10, 9, 29, 19, 25, 9, 12, 7, 19, 5, 13, 9, 17
+            4, 3
         ], [
-            2, 3, 8, 7, 22, 16, 23, 7, 11, 5, 12, 5, 10, 4, 15
+            2, 3
         ]];
         var i = 0;
         var series = [];
