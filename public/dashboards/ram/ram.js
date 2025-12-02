@@ -105,5 +105,89 @@ function exibirKpis() {
 	});
 }
 
+let chartAreaPorcentagem = null;
+let chartLinhaGb = null;
+let chartPrevisaoUsoRam = null;
 
+function gerarGraficosRam(componentesArray) {
+    const componentes = {};
+    componentesArray.forEach(c => {
+        try { componentes[c.nome] = JSON.parse(c.leituras); }
+        catch (e) { componentes[c.nome] = c.leituras || []; }
+    });
 
+    const leiturasPorcentagemRam = componentes.ram_uso_porcentagem || [];
+    const leiturasRamGb = componentes.ram_uso_gb || [];
+
+    const porcentagensRam = leiturasPorcentagemRam.map(p => Math.round(Number(p.valor)));
+    const usoRamGb = leiturasRamGb.map(p => Math.round(Number(p.valor) * 100) / 100);
+
+    const graficoAreaPorcentagem = document.getElementById("grafico-apex-area-porcentagem");
+    if (graficoAreaPorcentagem) {
+        if (chartAreaPorcentagem) chartAreaPorcentagem.destroy(); 
+        const opcoesGraficoArea = {
+            chart: { type: 'area', height: 260 },
+            series: [{ name: 'Porcentagem de Uso de RAM', data: porcentagensRam }],
+            xaxis: { categories: Array.from({ length: porcentagensRam.length }, (_, i) => i + 1) },
+            title: { text: 'Uso de RAM (%) ao longo do tempo' },
+        };
+        chartAreaPorcentagem = new ApexCharts(graficoAreaPorcentagem, opcoesGraficoArea);
+        chartAreaPorcentagem.render();
+    }
+
+    const graficoLinhaGb = document.getElementById("grafico-apex-linha-gb");
+    if (graficoLinhaGb) {
+        if (chartLinhaGb) chartLinhaGb.destroy(); 
+        const opcoesGraficoLinha = {
+            chart: { type: 'line', height: 260 },
+            series: [{ name: 'Utilização de RAM (GB)', data: usoRamGb }],
+            xaxis: { categories: Array.from({ length: usoRamGb.length }, (_, i) => i + 1) },
+            title: { text: 'Utilização de RAM (GB) ao longo do tempo' },
+        };
+        chartLinhaGb = new ApexCharts(graficoLinhaGb, opcoesGraficoLinha);
+        chartLinhaGb.render();
+    }
+
+    const graficoPrevisaoUsoRam = document.getElementById("grafico-apex-previsao-uso-ram");
+    if (graficoPrevisaoUsoRam) {
+        if (chartPrevisaoUsoRam) chartPrevisaoUsoRam.destroy(); 
+        const xs = [], ys = [];
+        leiturasPorcentagemRam.forEach(l => {
+            const d = new Date(l.data_hora);
+            if (!isNaN(d)) {
+                xs.push(d.getTime() / (1000 * 60 * 60));
+                ys.push(Number(l.valor));
+            }
+        });
+
+        const horasPrevisao = 24;
+        const labelsPrevisao = [], valoresPrevisao = [];
+        if (xs.length >= 2) {
+            const { m, b } = regressaoLinear(xs, ys);
+            const ultimaHora = xs[xs.length - 1];
+            for (let i = 1; i <= horasPrevisao; i++) {
+                const t = ultimaHora + i;
+                const previsao = m * t + b;
+                const previsaoClamped = Math.max(0, Math.min(100, Math.round(previsao * 100) / 100));
+                labelsPrevisao.push(`+${i}h`);
+                valoresPrevisao.push(previsaoClamped);
+            }
+        } else {
+            const ultimoValor = ys.length ? ys[ys.length - 1] : 0;
+            for (let i = 1; i <= horasPrevisao; i++) {
+                labelsPrevisao.push(`+${i}h`);
+                valoresPrevisao.push(ultimoValor);
+            }
+        }
+
+        const opcoesGraficoPrevisao = {
+            chart: { type: 'line', height: 260 },
+            series: [{ name: 'Previsão % Uso RAM', data: valoresPrevisao }],
+            xaxis: { categories: labelsPrevisao },
+            title: { text: 'Previsão de Uso (RAM) por Hora - próximas 24h (modelo linear simples)' },
+            yaxis: { min: 0, max: 100 },
+        };
+        chartPrevisaoUsoRam = new ApexCharts(graficoPrevisaoUsoRam, opcoesGraficoPrevisao);
+        chartPrevisaoUsoRam.render();
+    }
+}
