@@ -98,7 +98,17 @@ function exibirKpis() {
 				if(text.includes('Utilização em gigabytes médai')) b.innerHTML = `${gigaMed.toFixed(2)} GB`
 			})
 		}
-	})
+        fetch(`/ram/componentes/${idEmpresa}/${idMaquina}/${intervalo}`)
+                .then(resComp => resComp.ok ? resComp.json() : null)
+                .then(componentesJson => {
+                    if (componentesJson && componentesJson.length) {
+                        gerarGraficosRam(componentesJson);
+                    } else {
+                        console.warn('Não há componentes para plotar gráficos de RAM');
+                    }
+                })
+                .catch(console.error);
+        })
 	.catch(err => {
 		console.error(err);
 		bkp.forEach(b => b.innerHTML = 'erro');
@@ -184,7 +194,7 @@ function gerarGraficosRam(componentesArray) {
             chart: { type: 'line', height: 260 },
             series: [{ name: 'Previsão % Uso RAM', data: valoresPrevisao }],
             xaxis: { categories: labelsPrevisao },
-            title: { text: 'Previsão de Uso (RAM) por Hora - próximas 24h (modelo linear simples)' },
+            title: { text: 'Previsão de Uso (RAM) por Hora - próximas 24h' },
             yaxis: { min: 0, max: 100 },
         };
         chartPrevisaoUsoRam = new ApexCharts(graficoPrevisaoUsoRam, opcoesGraficoPrevisao);
