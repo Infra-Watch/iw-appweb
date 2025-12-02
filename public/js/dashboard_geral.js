@@ -40,7 +40,7 @@ function exibirKpis() {
 			let kpis = json[0][0];
 			let query_status = json[1];
 			document.getElementById("kpi-maquinas-ativas").textContent = `${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
-			document.getElementById("kpi-trafego-total").textContent = `${kpis.trafego_total_24h} Kbps`
+			document.getElementById("kpi-trafego-total").textContent = `${Math.round(kpis.trafego_total_24h)} KB`
 			document.getElementById("kpi-maquina-critica").textContent = `${kpis.nome_maquina}`
 			document.getElementById("qtd_ultimos_alertas").textContent = `${kpis.total_alertas}`
 		})
