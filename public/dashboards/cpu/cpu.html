@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dashboard CPU | Infrawatch </title>
     <link rel="stylesheet" href="cpu.css">
-    <link rel="icon" href="../../assets/logo-infrawatch.png">
+    <link rel="icon" href="../../assets/imagens/logo-infrawatch.png">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 
 <body>
@@ -34,11 +36,11 @@
 
                     <nav>
                         <ul>
-                            <a href="dashboard_ram.html" id="current-page">Detalhes da CPU</a>
-                            <a href="dashboard_ram.html">Detalhes da Memória RAM</a>
-                            <a href="dashboard_ram.html">Detalhes de Disco</a>
-                            <a href="dashboard_ram.html">Detalhes de Rede</a>
-                            <a href="dashboard_ram.html">Detalhes do Sistema</a>
+                            <a href="../cpu/cpu.html" id="current-page">Detalhes da CPU</a>
+                            <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+                            <a href="../disco/disco.html">Detalhes de Disco</a>
+                            <a href="../rede/rede.html">Detalhes de Rede</a>
+                            <a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a>
                         </ul>
                     </nav>
 
@@ -46,9 +48,9 @@
 
             </li>
 
-            <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+            <li><a href="../../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
 
-            <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+            <li><a href="../../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
 
         </ul>
 
@@ -58,13 +60,18 @@
             <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank"
                 title="Suporte Plataforma Jira">
                 <h4>Suporte</h4>
-                <img id="suporte-jira" src="../../assets/imagens/jira.png" alt="Suporte Jira">
+                <img id="suporte-jira" src="../../assets/jira.png" alt="Suporte Jira">
+
+                <br><br>
+
+                <p>Data: <span id="date">24/11/2025</span></p>
 
             </a>
 
         </div>
 
     </nav>
+
 
     <!-- ======= CABEÇALHO ======= -->
     <header class="header">
@@ -74,12 +81,6 @@
         <div id="machine-options">
             <select name="maquinas" id="machines">
                 <option selected disabled value="0"> Selecione a máquina </option>
-                <option value="1">Máquina 1</option>
-                <option value="2">Máquina 2</option>
-                <option value="3">Máquina 3</option>
-                <option value="4">Máquina 4</option>
-                <option value="5">Máquina 5</option>
-                <option value="6">Máquina 6</option>
             </select>
         </div>
 
@@ -102,7 +103,7 @@
                 <div class="kpi">
                     <p>
                         <u> <i> Porcentagem de Uso </i> </u> <br>
-                        média / <span class="porcet_max"> máximo </span> <br><br>
+                        média / máximo <br><br>
                         <b> <span id="porcet_uso_cpu"> ... </span> % </b>
                     </p>
                 </div>
@@ -117,7 +118,7 @@
 
                 <div class="kpi">
                     <p>
-                        <u><i> Temperatura </i> </u> <br>
+                        <u> <i> Temperatura </i> </u> <br>
                         máxima/média: <br><br>
                         <b> <span id="porcet_temp_cpu"> ... </span> % </b>
                     </p>
@@ -126,29 +127,27 @@
             </section>
 
             <!-- TODOS OS GRÁFICOS -->
-            <section id="all-graphics">
+            <section id="all-charts">
 
                 <!-- HISTOGRAMAS -->
-                <article id="histograms">
+                <article id="vertical-graph">
 
-                    <div class="histogram">histograma</div>
-                    <div class="histogram">histograma</div>
-                    <div class="histogram">histograma</div>
+                    <div id="porcetagem_uso"></div>
 
                 </article>
 
                 <!-- GRÁFICOS -->
-                <article id="graphics">
+                <article id="horizontal-graphics">
 
                     <div class="graphic">
 
-                        <H1> UTILIZANDO </H1>
+                        <div id="frequencia"></div>
 
                     </div>
 
                     <div class="graphic">
 
-                        <H1> PREVIS'AO POR HORA </H1>
+                        <div id="temperatura"></div>
 
                     </div>
 
@@ -169,34 +168,10 @@
 
             <div class="alert-list">
 
-                <p>Todos os últimos alertas:</p>
+                <div class="alerts">
+                    <p>.....</p>
 
-                <div class="alerts">
-                    <p>.....</p>
                 </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-                <div class="alerts">
-                    <p>.....</p>
-                </div>
-
             </div>
 
         </section>
@@ -204,5 +179,8 @@
     </main>
 
 </body>
+
+<script src="./cpu.js"></script>
+<script></script>
 
 </html>

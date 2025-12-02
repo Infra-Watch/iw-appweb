@@ -6,14 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/gerenciamento.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="../assets/imagens/logo-infrawatch.png" />
   <title>Gerenciamento de Máquinas</title>
 </head>
 <!-- onload="carregarPage()" -->
+
 <body>
 
-   <!-- ===== NAVBAR LATERAL ===== -->
+  <!-- ===== NAVBAR LATERAL ===== -->
   <nav class="sidebar">
     <div class="sidebar-logo">
       <a href="/dashboard_geral.html">
@@ -22,25 +25,25 @@
     </div>
 
     <ul class="sidebar-links">
-        <li><a href="../dashboard_geral.html">Painel Integral</a></li>
-        <li><a href="../dashboard_detalhada.html">Painel Detalhes</a></li>
-        <li>
-            <details name="Componentes" id="componente-exibe">
-               <summary value="0">Componentes</summary>
-               <nav>
-                <ul>
-                    <a href="../dashboards/disco/disco.html">Detalhes da CPU</a>
-                    <a href="../dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
-                    <a href="../dashboards/disco/disco.html">Detalhes de Disco</a>
-                    <a href="../dashboards/rede/rede.html">Detalhes de Rede</a>
-                    <a href="../dashboards/disco/disco.html">Detalhes do Sistema</a>
-                </ul>
-               </nav>
-           </details>
-        </li>
-        <li><a href="../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
-        <li><a href="../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
-        </ul>
+      <li><a href="../dashboard_geral.html">Painel Integral</a></li>
+      <li><a href="../dashboard_detalhada.html">Painel Detalhes</a></li>
+      <li>
+        <details name="Componentes" id="componente-exibe">
+          <summary value="0">Componentes</summary>
+          <nav>
+            <ul>
+              <a href="../dashboards/cpu/cpu.html">Detalhes da CPU</a>
+              <a href="../dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+              <a href="../dashboards/disco/disco.html">Detalhes de Disco</a>
+              <a href="../dashboards/rede/rede.html">Detalhes de Rede</a>
+              <a href="../dashboards/sistema/dashboard_sistema.html">Detalhes do Sistema</a>
+            </ul>
+          </nav>
+        </details>
+      </li>
+      <li><a href="../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+      <li><a href="../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+    </ul>
 
     <div class="sidebar-bottom">
       <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
@@ -94,42 +97,44 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
   <dialog id="modal_config">
-      <div class="options-main flex">
-          <i class="fa-solid fa-circle-xmark icon close-button" onclick="fecharModal(modal_config)"></i>
-          <h3>Editar Máquina</h3>
-          <div class="text-field">
-            <label for="macaddress_editar">MacAddress</label>
-            <input type="text" name="macaddress_editar" id="macaddress_editar" placeholder="Digite o macaddress da máquina" />
-          </div>
-
-          <div class="text-field">
-            <label for="apelido_editar">Apelido</label>
-            <input type="text" name="apelido_editar" id="apelido_editar" placeholder="Digite o apelido da máquina" />
-          </div>
-          <div>
-            <label class="switch-container">
-              <input type="checkbox" class="perm" id="ativacao_editar" onclick="checkText()">
-              <span class="switch"></span>
-              <span class="label-text" id="checkLabel"></span>
-            </label>
-          </div>
-          <div class="button-container">
-              <button onclick="confirmarExecucao('atualizarMaquina()')">Confirma</button>
-              <button onclick="confirmarExecucao('removerMaquina()')">Excluir Máquina</button>
-          </div>
+    <div class="options-main flex">
+      <i class="fa-solid fa-circle-xmark icon close-button" onclick="fecharModal(modal_config)"></i>
+      <h3>Editar Máquina</h3>
+      <div class="text-field">
+        <label for="macaddress_editar">MacAddress</label>
+        <input type="text" name="macaddress_editar" id="macaddress_editar"
+          placeholder="Digite o macaddress da máquina" />
       </div>
+
+      <div class="text-field">
+        <label for="apelido_editar">Apelido</label>
+        <input type="text" name="apelido_editar" id="apelido_editar" placeholder="Digite o apelido da máquina" />
+      </div>
+      <div>
+        <label class="switch-container">
+          <input type="checkbox" class="perm" id="ativacao_editar" onclick="checkText()">
+          <span class="switch"></span>
+          <span class="label-text" id="checkLabel"></span>
+        </label>
+      </div>
+      <div class="button-container">
+        <button onclick="confirmarExecucao('atualizarMaquina()')">Confirma</button>
+        <button onclick="confirmarExecucao('removerMaquina()')">Excluir Máquina</button>
+      </div>
+    </div>
   </dialog>
   <dialog id="modal_confirma">
-      <div>
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <span id="text-aviso">Você tem certeza que quer continuar com essa ação?</span>
-          <span class="button-container">
-              <button id="button_confirma">Confirmar</button>
-              <button onclick="fecharModal(modal_confirma)">Cancelar</button>
-          </span>
-      </div>
+    <div>
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <span id="text-aviso">Você tem certeza que quer continuar com essa ação?</span>
+      <span class="button-container">
+        <button id="button_confirma">Confirmar</button>
+        <button onclick="fecharModal(modal_confirma)">Cancelar</button>
+      </span>
+    </div>
   </dialog>
 </body>
 <script src="../js/gerenciamento_maquinas.js"></script>
 <script src="../js/utils.js"></script>
+
 </html>

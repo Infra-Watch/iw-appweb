@@ -1,5 +1,6 @@
 var database = require("../database/config");
 
+// ======= KPIs =======
 function porcentagemUsoMaximaMedia(idEmpresa, idMaquina, intervalo) {
     intervalo = Number(intervalo) || 1;
     const instrucaoSql =
@@ -46,8 +47,18 @@ function temperaturaCPUMaximaMedia(idEmpresa, idMaquina, intervalo) {
     return database.executar(instrucaoSql);
 }
 
+// ======= BUSCANDO MAQUINAS PARA O SELECT OPTION =======
+function buscarPorEmpresa(idEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idEmpresa);
+
+    var instrucaoSql = `CALL buscar_maquinas(${idEmpresa});`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     porcentagemUsoMaximaMedia,
     frequenciaCPUMaximaMedia,
-    temperaturaCPUMaximaMedia
+    temperaturaCPUMaximaMedia,
+    buscarPorEmpresa
 };

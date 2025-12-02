@@ -3,8 +3,16 @@ var router = express.Router();
 
 var cpuController = require("../controllers/cpuController");
 
+// KPIs
 router.get("/kpis/:idEmpresa/:idMaquina", function(req,res){
-    ramController.pegarKpis(req,res);
+    cpuController.pegarKpis(req,res);
 })
 
+// MÁQUINAS
+router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
+    maquinaController.buscarPorEmpresa(req, res);
+});
+
+
 module.exports = router;
+

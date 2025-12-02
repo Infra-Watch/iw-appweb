@@ -12,14 +12,15 @@
 
 <body>
 
- <nav class="sidebar">
-        <div class="sidebar-logo">
-            <a href="index.html">
-                <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
-            </a>
-        </div>
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html">
+        <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
+      </a>
+    </div>
 
     <ul class="sidebar-links">
+<<<<<<< HEAD
         <li><a href="dashboard_geral.html">Painel Integral</a></li>
         <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
         <li>
@@ -39,14 +40,37 @@
         <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
         <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
         </ul>
+=======
+      <u>
+        <li><a href="../../dashboard_geral.html">Painel Integral</a></li>
+      </u>
+      <li><a href="../../dashboard_detalhada.html">Painel Detalhes</a></li>
+      <li>
+        <details name="Componentes" id="componente-exibe">
+          <summary>Componentes</summary>
+          <nav>
+            <ul>
+              <a href="dashboards/cpu/cpu.html">Detalhes da CPU</a>
+              <a href="dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+              <a href="dashboards/disco/disco.html">Detalhes de Disco</a>
+              <a href="dashboards/rede/rede.html">Detalhes de Rede</a>
+              <a href="dashboards/sistema/dashboard_sistema.html">Detalhes do Sistema</a>
+            </ul>
+          </nav>
+        </details>
+      </li>
+      <li><a href="../../html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+      <li><a href="../../html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+    </ul>
+>>>>>>> 76387ca (:sparkles: feat: dashboard CPU  | realizando fluxo de dados e redirecionamentos)
 
-        <div class="sidebar-bottom">
-            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
-                <h4>Suporte</h4>
-                <img id="suporte-jira" src="../../assets/jira.png" alt="Suporte Jira">
-            </a>
-        </div>
-    </nav>
+    <div class="sidebar-bottom">
+      <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+        <h4>Suporte</h4>
+        <img id="suporte-jira" src="../../assets/jira.png" alt="Suporte Jira">
+      </a>
+    </div>
+  </nav>
 
   <main>
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
@@ -55,10 +79,11 @@
         <h1>Painel de Desempenho do Sistema</h1>
         <h3>Visão geral das máquinas e indicadores chave</h3>
       </div>
-       <div id="nome_usuario">
-        </div>
-        <div id="nome_empresa"></div>
+      <div id="nome_usuario">
+      </div>
+      <div id="nome_empresa"></div>
     </header>
+
     <div id="conteudo-geral">
       <!-- ===== PAINEL GERAL ===== -->
       <section id="main-painel-geral">
@@ -95,7 +120,7 @@
         </section>
 
         <div id="maquinas-alertas">
-          
+
           <!-- MÁQUINAS -->
           <section class="maquinas">
             <h2 class="titulo">Lista de máquinas</h2>
@@ -108,7 +133,7 @@
         </div>
       </section>
     </div>
-    
+
   </main>
 
   <script src="./js/modal_dash.js"></script>
