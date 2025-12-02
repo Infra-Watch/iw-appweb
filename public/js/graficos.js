@@ -1,25 +1,35 @@
 function graficos(componentes) {
-    // console.log(jsonComponentes(componentes));
-    componentes = jsonComponentes(componentes);
-
     //DEFINIR VARIÁVEIS
     // CPU
     let ultimaPorcentagemCPU = getUltimaLeitura(componentes.cpu_uso_porcentagem);
     let valoresPorcentagemCPU = getLeituras(componentes.cpu_uso_porcentagem)
     let valoresTemperaturaCPU = getLeituras(componentes.cpu_temp_c)
     let valoresFrequenciaCPU = getLeituras(componentes.cpu_freq_mhz)
+    let horasTemperaturaCPU = getHoras(componentes.cpu_temp_c)
+    let horasFrequenciaCPU = getHoras(componentes.cpu_freq_mhz)
+    // let parametrosTemperaturaCPU = getParametros(componentes.cpu_temp_c)
+    // let parametrosFrequenciaCPU = getParametros(componentes.cpu_freq_mhz)
     // RAM
     let ultimaPorcentagemRAM = getUltimaLeitura(componentes.ram_uso_porcentagem);
     let valoresPorcentagemRAM = getLeituras(componentes.ram_uso_porcentagem)
-    let valoresUsoGbRAM = getLeituras(componentes.ram_uso_gb)    
+    let valoresUsoGbRAM = getLeituras(componentes.ram_uso_gb)
+    let horasUsoGbRAM = getHoras(componentes.ram_uso_gb)
+    // let parametrosUsoGbRAM = getParametros(componentes.ram_uso_gb)
     // DISCO
     let ultimaPorcentagemDisco = getUltimaLeitura(componentes.disco_uso_porcentagem);
     let valoresPorcentagemDisco = getLeituras(componentes.disco_uso_porcentagem)
     let valoresLeituraDisco = getLeituras(componentes.disco_velocidade_leitura)
     let valoresEscritaDisco = getLeituras(componentes.disco_velocidade_escrita)
+    let horasVelocidadeDisco = getHoras(componentes.disco_velocidade_leitura)
+    // let parametrosLeituraDisco = getParametros(componentes.disco_velocidade_leitura)
+    // let parametrosEscritaDisco = getParametros(componentes.disco_velocidade_escrita)
     // REDE
     let valoresEntradaRede = getLeituras(componentes.transferencia_entrada_kbps)
     let valoresSaidaRede = getLeituras(componentes.transferencia_saida_kbps)
+    let horasEntradaRede = getHoras(componentes.transferencia_entrada_kbps)
+    let horasSaidaRede = getHoras(componentes.transferencia_saida_kbps)
+    // let parametrosEntradaRede = getParametros(componentes.transferencia_entrada_kbps)
+    // let parametrosSaidaRede = getParametros(componentes.transferencia_saida_kbps)
     // SISTEMA
     let ultimaProcessos = getUltimaLeitura(componentes.processos);
     let ultimaServicos = getUltimaLeitura(componentes.servicos);
@@ -39,7 +49,10 @@ function graficos(componentes) {
             offsetY: -30,
             sparkline: {
                 enabled: true
-            }
+            },
+            animations: {
+                enabled: false
+            },
         },
         plotOptions: {
             radialBar: {
@@ -47,10 +60,9 @@ function graficos(componentes) {
                 endAngle: 90,
                 track: {
                     background: "#e7e7e7",
-                    margin: 5, // margin is in pixels
+                    margin: 5,
                     dropShadow: {
                         enabled: true,
-
                         color: '#444',
                         opacity: 1,
                     }
@@ -85,12 +97,28 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
-        colors: ["#9900a3ff"],
+        colors: ["#9900a3ff", "#FFFF00", "#FF0000"],
         series: [{
             name: 'Temperatura CPU',
             data: valoresTemperaturaCPU,
-        }]
+        },
+        // {
+        //     name: 'Atenção',
+        //     data: Array(valoresTemperaturaCPU.length).fill(parametrosTemperaturaCPU.atencao),
+        // },
+        // {
+        //     name: 'Crítico',
+        //     data: Array(valoresTemperaturaCPU.length).fill(parametrosTemperaturaCPU.critico),
+        // }
+        ],
+        xaxis: {
+            categories: horasTemperaturaCPU,
+            range: 9
+        }
     };
     grafico_1.innerHTML = '';
     let chart_1 = new ApexCharts(grafico_1, options_1);
@@ -103,12 +131,28 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
-        colors: ["#9900a3ff"],
+        colors: ["#9900a3ff", "#FFFF00", "#FF0000"],
         series: [{
             name: 'Frequência da CPU (MHz)',
             data: valoresFrequenciaCPU,
-        }]
+        },
+        // {
+        //     name: 'Atenção',
+        //     data: Array(valoresFrequenciaCPU.length).fill(parametrosFrequenciaCPU.atencao),
+        // },
+        // {
+        //     name: 'Crítico',
+        //     data: Array(valoresFrequenciaCPU.length).fill(parametrosFrequenciaCPU.critico),
+        // }
+        ],
+        xaxis: {
+            categories: horasFrequenciaCPU,
+            range: 9
+        }
     };
     grafico_2.innerHTML = '';
     let chart_2 = new ApexCharts(grafico_2, options_2);
@@ -125,7 +169,10 @@ function graficos(componentes) {
             offsetY: -30,
             sparkline: {
                 enabled: true
-            }
+            },
+            animations: {
+                enabled: false
+            },
         },
         plotOptions: {
             radialBar: {
@@ -170,11 +217,28 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
+        colors: ["#0099FF", "#FFFF00", "#FF0000"],
         series: [{
             name: 'Mbps Enviados',
             data: valoresSaidaRede,
-        }]
+        },
+        // {
+        //     name: 'Atenção',
+        //     data: Array(valoresSaidaRede.length).fill(parametrosSaidaRede.atencao),
+        // },
+        // {
+        //     name: 'Crítico',
+        //     data: Array(valoresSaidaRede.length).fill(parametrosSaidaRede.critico),
+        // }
+        ],
+        xaxis: {
+            categories: horasSaidaRede,
+            range: 9
+        }
     };
     grafico_3.innerHTML = '';
     let chart_3 = new ApexCharts(grafico_3, options_3);
@@ -187,11 +251,28 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
+        colors: ["#0099FF", "#FFFF00", "#FF0000"],
         series: [{
             name: 'Mbps Recebidos',
             data: valoresEntradaRede,
-        }]
+        },
+        // {
+        //     name: 'Atenção',
+        //     data: Array(valoresEntradaRede.length).fill(parametrosEntradaRede.atencao),
+        // },
+        // {
+        //     name: 'Crítico',
+        //     data: Array(valoresEntradaRede.length).fill(parametrosEntradaRede.critico),
+        // }
+        ],
+        xaxis: {
+            categories: horasEntradaRede,
+            range: 9
+        }
     };
     grafico_4.innerHTML = '';
     let chart_4 = new ApexCharts(grafico_4, options_4);
@@ -208,7 +289,10 @@ function graficos(componentes) {
             offsetY: -30,
             sparkline: {
                 enabled: true
-            }
+            },
+            animations: {
+                enabled: false
+            },
         },
         plotOptions: {
             radialBar: {
@@ -255,12 +339,28 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
         series: [{
             name: 'Em uso',
             data: valoresUsoGbRAM,
-        }],
-        colors: ["#25bb00ff"]
+        },
+        // {
+        //     name: 'Atenção',
+        //     data: Array(valoresUsoGbRAM.length).fill(parametrosUsoGbRAM.atencao),
+        // },
+        // {
+        //     name: 'Crítico',
+        //     data: Array(valoresUsoGbRAM.length).fill(parametrosUsoGbRAM.critico),
+        // }
+        ],
+        colors: ["#25bb00ff", "#FFFF00", "#FF0000"],
+        xaxis: {
+            categories: horasUsoGbRAM,
+            range: 9
+        }
     };
     grafico_5.innerHTML = '';
     let chart_5 = new ApexCharts(grafico_5, options_5);
@@ -273,6 +373,9 @@ function graficos(componentes) {
             type: 'line',
             width: 300,
             height: 110,
+            zoom: {
+                enabled: true
+            }
         },
         series: [
         {
@@ -282,31 +385,67 @@ function graficos(componentes) {
         {
             name: 'Taxa de Escrita',
             data: valoresEscritaDisco,
-        }
+        },
+        // {
+        //     name: 'Atenção Leitura',
+        //     data: Array(valoresLeituraDisco.length).fill(parametrosLeituraDisco.atencao),
+        // },
+        // {
+        //     name: 'Crítico Leitura',
+        //     data: Array(valoresLeituraDisco.length).fill(parametrosLeituraDisco.critico),
+        // },
+        // {
+        //     name: 'Atenção Escrita',
+        //     data: Array(valoresEscritaDisco.length).fill(parametrosEscritaDisco.atencao),
+        // },
+        // {
+        //     name: 'Crítico Escrita',
+        //     data: Array(valoresEscritaDisco.length).fill(parametrosEscritaDisco.critico),
+        // }
         ],
-        colors: ["#0e1d36", "#cde1ff"]
+        colors: ["#0e1d36", "#cde1ff", "#FFFF00", "#FF0000", "#FFFF00", "#FF0000"],
+        xaxis: {
+            categories: horasVelocidadeDisco,
+            range: 9
+        }
     };
     grafico_6.innerHTML = '';
     let chart_6 = new ApexCharts(grafico_6, options_6);
     chart_6.render();
 }
 
-function jsonComponentes(arrayComponentes) {
-    let json = {}
-    arrayComponentes.forEach(componente => {
-        json[componente.nome] = JSON.parse(componente.leituras)
+function getHoras(json) {
+    return json['leituras'].map((p)=>{
+        let data = new Date(p.data_hora);
+        let horas = String(data.getHours()).padStart(2, '0');
+        let minutos = String(data.getMinutes()).padStart(2, '0');
+        let segundos = String(data.getSeconds()).padStart(2, '0');
+        return `${horas}:${minutos}:${segundos}`;
+    })
+}
+
+function getLeituras(json) {
+    return json['leituras'].map((p)=>{return Math.round(p.valor)})
+}
+
+function getParametros(json) {
+    let parametros = { 'atencao': null, 'critico': null };
+    
+    json['parametros']?.forEach((p) => {
+        if (p.nivel === 1) {
+            parametros['atencao'] = p.valor;
+        } else if (p.nivel === 2) {
+            parametros['critico'] = p.valor;
+        }
     });
-    return json;
+    
+    return parametros;
+}
+function getUltimaLeitura(json) {
+    return json['leituras']?.at(-1)?.valor ?? 0
 }
 
-function getHoras(array) {
-    return array.map((p)=>{return p.data_hora})
-}
-
-function getLeituras(array) {
-    return array.map((p)=>{return Math.round(p.valor)})
-}
-
-function getUltimaLeitura(array) {
-    return array.at(-1).valor
+function dataFormatada(dataString) {
+	const data = new Date(dataString);
+	return data.toLocaleString();
 }

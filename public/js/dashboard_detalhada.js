@@ -6,6 +6,7 @@ const painelGeral = document.getElementById('main-painel-graficos')
 const painelGraficos = document.getElementById('graficos')
 const painelAlertas = document.getElementById('alertas')
 const avisoDefault = document.getElementById('aviso-default')
+const listaAlertas = document.getElementById('lista-alertas')
 
 window.addEventListener('load', () => {
 	exibirMaquinas();
@@ -25,9 +26,11 @@ function plotarDashboard () {
 		avisoDefault.style.display = 'none'
 		painelGraficos.style.display = 'flex'
 		painelAlertas.style.display = 'flex'
-		exibirKpis();
-		exibirAlertas();
-		exibirComponentes();
+
+		let intervaloAtualizar = setInterval(() => {
+			exibirAlertas();
+			exibirComponentes();
+		}, 1000)
 	}
 };
 
@@ -50,70 +53,13 @@ function exibirComponentes() {
 	})
 	.then((json) => {
 		if(!json)return;
-		console.log(json)
-		let componentes = json[0];
-		console.log(componentes)
-		let query_status = json[1];
-		graficos(componentes);
-		componentes.forEach((componente) => {
-			console.log(componente)
-			JSON.parse(componente.parametros).forEach((parametro) => {
-				console.log(parametro)
-			})
-			JSON.parse(componente.leituras).forEach((leitura) => {
-				console.log(leitura)
-			})
-			// document.getElementById('lista-alertas').innerHTML += `
-            // // <article class="alerta">
-            // //   <p id="alerta_${alerta.idAlerta}">
-            // //     Máquina: <span>${alerta.maquina}</span> <br>
-            // //     Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
-            // //     Componente: <span>${alerta.componente}</span> <br>
-            // //     Registro: <span>${alerta.leitura}</span> <br>
-            // //     Horário: <span>${dataFormatada(alerta.data_hora)}</span>
-            // //   </p>
-            // // </article>
-			// // `
-		})
+		graficos(json);
 	})
 	.catch((error) => {
 		console.error(error);
 	})
 }
 
-function exibirKpis() {
-	fetch(`/maquinas/buscarKpisGeral/${idEmpresa}/${intervalo}`
-		, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			}
-		}
-		)
-			.then((resposta) => {
-				if (resposta.ok) {
-					return resposta.json();
-				} else {
-					exibeErro('Não foi possível exibir KPIs');
-					return resposta.text().then(texto => console.error(texto));
-					
-				}
-			})
-			.then((json) => {
-				if(!json)return;
-				let kpis = json[0][0];
-				let query_status = json[1];
-				console.log(json)
-				console.log(kpis)
-				// document.getElementById("kpi-maquinas-ativas").textContent=`${kpis.maquinas_ativas}/${kpis.maquinas_totais}`
-				// document.getElementById("kpi-trafego-total").textContent=`${kpis.trafego_total_24h} Kbps`
-				// document.getElementById("kpi-maquina-critica").textContent=`${kpis.nome_maquina}`
-				// document.getElementById("qtd_ultimos_alertas").textContent=`${kpis.total_alertas}`
-			})
-			.catch((erro) => {
-				console.error(erro);
-			});
-}
 function exibirMaquinas() {
 	fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`
 	, {
@@ -136,8 +82,6 @@ function exibirMaquinas() {
 			if(!json)return;
 			let maquinas = json[0];
 			let query_status = json[1];
-			console.log(json)
-			console.log(maquinas)
 			maquinas.forEach(maquina => {
 				selectMaquinas.innerHTML += `<option value="${maquina.idMaquina}">${maquina.nome_maquina} | ${maquina.mac_address}</option>`
 			});
@@ -165,23 +109,22 @@ function exibirAlertas() {
 	})
 	.then((json) => {
 		if(!json)return;
-		console.log(json)
 		let alertas = json[0];
-		console.log(alertas)
-		// let query_status = json[1];
-		// alertas.forEach((alerta) => {
-		// 	document.getElementById('lista-alertas').innerHTML += `
-        //     <article class="alerta">
-        //       <p id="alerta_${alerta.idAlerta}">
-        //         Máquina: <span>${alerta.maquina}</span> <br>
-        //         Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
-        //         Componente: <span>${alerta.componente}</span> <br>
-        //         Registro: <span>${alerta.leitura}</span> <br>
-        //         Horário: <span>${dataFormatada(alerta.data_hora)}</span>
-        //       </p>
-        //     </article>
-		// 	`
-		// })
+		let query_status = json[1];
+		document.getElementById('qtd_ultimos_alertas').textContent = alertas.length
+		listaAlertas.innerHTML = '';
+		alertas.forEach((alerta) => {
+			document.getElementById('lista-alertas').innerHTML += `
+            <article class="alerta">
+              <p id="alerta_${alerta.idAlerta}">
+                Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
+                Componente: <span>${alerta.componente}</span> <br>
+                Registro: <span>${alerta.leitura}</span> <br>
+                Horário: <span>${dataFormatada(alerta.data_hora)}</span>
+              </p>
+            </article>
+			`
+		})
 	})
 	.catch((error) => {
 		console.error(error);
