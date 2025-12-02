@@ -74,11 +74,18 @@
                     <p>Utilização em gigabytes média: <br><br><b></b></p>
                 </div>
             </div>
-            <div class="graficos">
-                <div id="grafico1">histograma</div>
-                <div id="grafico2">histograma</div>
-                <div id="grafico3">linha</div>
-                <div id="grafico4">barra</div>
+            <div class="graficos-dupla">
+                <article class="grafico-area-porcentagem">
+                    <div id="grafico-apex-area-porcentagem"></div>
+                </article>
+                <article class="grafico-linha-gb">
+                    <div id="grafico-apex-linha-gb"></div>
+                </article>
+            </div>
+            <div class="grafico-individual">
+                <article class="grafico-linha-previsao-ram">
+                    <div id="grafico-apex-previsao-uso-ram"></div>
+                </article>
             </div>
         </section>
         
@@ -104,6 +111,7 @@
         </section>
     </main>
     <script src="../../js/sessionStorage_usage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="ram.js"></script>
 </body>
 </html>

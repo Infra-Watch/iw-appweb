@@ -43,6 +43,7 @@ app.use("/sistema", sistemaRouter);
 app.use("/cpu", cpuRouter);
 app.use("/disco", discoRouter);
 
+
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
