@@ -1,273 +1,209 @@
 const idEmpresa = sessionStorage.ID_EMPRESA;
 const intervalo = sessionStorage.INTERVALO_DIAS != undefined ? sessionStorage.INTERVALO_DIAS : 1;
 
-const selectMaquinas = document.getElementById('maquina-exibe')
-const painelGeral = document.getElementById('main-painel-graficos')
+const selectMaquinas = document.getElementById('maquina-exibe');
+const painelGeral = document.getElementById('graficos');
+
+var intervaloAtualizacao;
+
+let graficoProcessos = null;
+let graficoServicos = null;
+let graficoThreads = null;
 
 window.addEventListener('load', () => {
-	exibirMaquinas().then(() => {
-		plotarDashboard();
-	});
+    exibirMaquinas();
+    iniciarGraficos();
 });
 
 selectMaquinas.addEventListener('change', () => {
-	plotarDashboard();
+    atualizarGraficos();
 });
 
-function plotarDashboard() {
-	if (selectMaquinas.value == 0) {
-		painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`
-		return false;
-	} else {
-		exibirKpis();
-	}
-};
-
-function exibirMaquinas() {
-	return fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		}
-	})
-		.then((resposta) => {
-			if (resposta.ok) {
-				return resposta.json();
-			} else {
-				exibeErro('Não foi possível exibir máquinas');
-				return resposta.text().then(texto => console.error(texto));
-			}
-		})
-		.then((json) => {
-			if (!json) return;
-			let maquinas = json[0];
-			let query_status = json[1];
-			console.log(json)
-			console.log(maquinas)
-
-			maquinas.forEach(maquina => {
-				selectMaquinas.innerHTML += `<option value="${maquina.idMaquina}">${maquina.nome_maquina} | ${maquina.mac_address}</option>`
-			});
-		})
-		.catch((erro) => {
-			console.error(erro);
-		});
+async function iniciarGraficos() {
+    intervaloAtualizacao = setInterval(atualizarGraficos, 10000);
 }
 
-function exibirAlertas() {
-	fetch(`/alertas/buscarPorEmpresa/${idEmpresa}/${intervalo}`
-		, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			}
-		})
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				exibeErro('Não foi possível exibir alertas');
-				return response.text().then(texto => console.error(texto));
-			}
-		})
-		.then((json) => {
-			if (!json) return;
-			console.log(json)
-			let alertas = json[0];
-			console.log(alertas)
-			let query_status = json[1];
-			alertas.forEach((alerta) => {
-				document.getElementById('lista-alertas').innerHTML += `
-            <article class="alerta">
-             <p id="alerta_${alerta.idAlerta}">
-               Máquina: <span>${alerta.maquina}</span> <br>
-                Nível: <span style="color: ${cor_alerta(alerta.nivel_num)};">${alerta.nivel_label}</span> <br>
-                Componente: <span>${alerta.componente}</span> <br>
-                Registro: <span>${alerta.leitura}</span> <br>
-                 Horário: <span>${dataFormatada(alerta.data_hora)}</span>
-               </p>
-             </article>
-		 	`
-			})
-		})
-		.catch((error) => {
-			console.error(error);
-		})
+function plotarGraficos(componentes) {
+
+    const categorias = [];
+    for (let i = 1; i <= Math.max(componentes.processos.length, componentes.threads.length); i++) {
+        categorias.push(i);
+    }
+
+    if (graficoProcessos) graficoProcessos.destroy();
+    if (graficoThreads) graficoThreads.destroy();
+
+    configProcessos(componentes, categorias);
+    configThreads(componentes, categorias);
+
+}
+
+async function atualizarGraficos() {
+    const idMaquina = selectMaquinas.value;
+
+    if (idMaquina == 0) {
+        painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`;
+        return;
+    }
+
+    exibirKpis();
+    const componentes = await buscarLeiturasHistoricas();
+    plotarGraficos(componentes);
+}
+
+async function buscarLeiturasHistoricas() {
+    const idMaquina = selectMaquinas.value;
+    const res = await fetch(`/sistema/leituras/${idEmpresa}/${idMaquina}`);
+    const dados = await res.ok ? await res.json() : [];
+
+    const processos = [];
+    const servicos = [];
+    const threads = [];
+
+    for (let i = 0; i < dados.length; i++) {
+        if (dados[i].fkRecurso === 1011) processos.push(dados[i].leitura);
+        else if (dados[i].fkRecurso === 1012) servicos.push(dados[i].leitura);
+        else if (dados[i].fkRecurso === 1013) threads.push(dados[i].leitura);
+    }
+
+    return { processos, servicos, threads };
+}
+
+function exibirMaquinas() {
+    fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(res => res.ok ? res.json() : null)
+        .then(json => {
+            if (!json) return;
+            const maquinas = json[0];
+            maquinas.forEach(maquina => {
+                selectMaquinas.innerHTML += `<option value="${maquina.idMaquina}">${maquina.nome_maquina} | ${maquina.mac_address}</option>`;
+            });
+        })
+        .catch(erro => console.error(erro));
 }
 
 function exibirKpis() {
-	const idMaquina = selectMaquinas.value;
-	if (!idMaquina || idMaquina == 0) return;
+    const idMaquina = selectMaquinas.value;
+    if (!idMaquina || idMaquina == 0) return;
 
-	const bkp = document.querySelectorAll('.kpis .kpi b');
+    const bkp = document.querySelectorAll('.kpis .kpi b');
+    bkp.forEach(b => b.innerHTML = '...');
 
-	bkp.forEach(b => b.innerHTML = '...');
+    fetch(`/sistema/kpis/${idEmpresa}/${idMaquina}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(json => {
+            if (!json) {
+                bkp.forEach(b => b.innerHTML = '-');
+                return;
+            }
 
-	const url = `/sistema/kpis/${idEmpresa}/${idMaquina}`;
+            const processosMax = Number(json.qtd_processos_maxima) || 0;
+            const processosMed = Number(json.qtd_processos_media) || 0;
+            const threadsMax = Number(json.qtd_threads_maxima) || 0;
+            const threadsMed = Number(json.qtd_threads_media) || 0;
+            const servicosMax = Number(json.qtd_servicos_maxima) || 0;
+            const servicosMed = Number(json.qtd_servicos_media) || 0;
 
-	fetch(url)
-		.then(res => {
-			if (!res.ok) return null;
-			return res.json();
-		})
-		.then(json => {
-			if (!json) {
-				bkp.forEach(b => b.innerHTML = '-');
-				return;
-			}
+            if (bkp.length >= 6) {
+                bkp[0].innerHTML = `${processosMax}`;
+                bkp[1].innerHTML = `${processosMed}`;
+                bkp[2].innerHTML = `${threadsMax}`;
+                bkp[3].innerHTML = `${threadsMed}`;
+                bkp[4].innerHTML = `${servicosMax}`;
+                bkp[5].innerHTML = `${servicosMed}`;
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            bkp.forEach(b => b.innerHTML = 'erro');
+        });
+}
+function configProcessos(componentes, categorias) {
 
-			const processosMax = Number(json.qtd_processos_maxima) || 0;
-			const processosMed = Number(json.qtd_processos_media) || 0;
-			const threadsMax = Number(json.qtd_threads_maxima) || 0;
-			const threadsMed = Number(json.qtd_threads_media) || 0;
-			const servicosMax = Number(json.qtd_servicos_maxima) || 0;
-			const servicosMed = Number(json.qtd_servicos_media) || 0;
+    document.querySelector("#chart-apex-evolucao").innerHTML = "";
 
-			if (bkp.length >= 6) {
-				bkp[0].innerHTML = `${processosMax}`
-				bkp[1].innerHTML = `${processosMed}`
-				bkp[2].innerHTML = `${threadsMax}`
-				bkp[3].innerHTML = `${threadsMed}`
-				bkp[4].innerHTML = `${servicosMax}`
-				bkp[5].innerHTML = `${servicosMed}`
-			} else {
-				document.querySelectorAll('.kpis .kpi').forEach(block => {
-					const text = (block.innerHTML || '').toLowerCase();
-					const b = block.querySelector('b');
-					if (!b) return;
-					if (text.includes('Quantidade de Processos máxima')) b.innerHTML = `${processosMax}`
-					if (text.includes('Quantidade de Processos média')) b.innerHTML = `${processosMed}`
-					if (text.includes('Quantidade de Threads máxima')) b.innerHTML = `${threadsMax}`
-					if (text.includes('Quantidade de Threads média')) b.innerHTML = `${threadsMed}`
-					if (text.includes('Quantidade de Serviços máxima')) b.innerHTML = `${servicosMax}`
-					if (text.includes('Quantidade de Serviços média')) b.innerHTML = `${servicosMed}`
-				})
-			}
-		})
-		.catch(err => {
-			console.error(err);
-			bkp.forEach(b => b.innerHTML = 'erro');
-		});
+    const options = {
+        chart: {
+            type: "line",
+            height: 300,
+            toolbar: { show: false }
+        },
+        series: [
+            { name: "Processos", data: componentes.processos },
+            { name: "Threads", data: componentes.threads },
+            { name: "Serviços", data: componentes.servicos }
+        ],
+        xaxis: {
+            categories: categorias,
+            title: { text: "Leituras" }
+        },
+        yaxis: {
+            title: { text: "Quantidade" }
+        },
+        stroke: {
+            width: 2
+        }
+    };
+
+    graficoProcessos = new ApexCharts(
+        document.querySelector("#chart-apex-evolucao"),
+        options
+    );
+
+    graficoProcessos.render();
 }
 
-function graficos(componentes) {
-	let ultimaProcessos = getUltimaLeitura(componentes.processos);
-	let ultimaServicos = getUltimaLeitura(componentes.servicos);
-	let ultimaThreads = getUltimaLeitura(componentes.threads);
-	let valoresProcessos = getLeituras(componentes.processos)
-	let valoresServicos = getLeituras(componentes.servicos)
-	let valoresThreads = getLeituras(componentes.threads)
 
-	letoptions_sistema = document.getElementById("chart-apex-processos-sistema");
-	let options_sistema = {
-		series: [{
-			name: 'Frequência',
-			type: 'column',
-			data: [valoresProcessos]
-		}, {
-			name: 'Social Media',
-			type: 'line',
-			data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
-		}],
-		chart: {
-			height: 350,
-			type: 'line',
-		},
-		stroke: {
-			width: [0, 4]
-		},
-		title: {
-			text: 'Traffic Sources'
-		},
-		dataLabels: {
-			enabled: true,
-			enabledOnSeries: [1]
-		},
-		labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
-		yaxis: [{
-			title: {
-				text: 'Website Blog',
-			},
+function configThreads(componentes, categorias) {
 
-		}, {
-			opposite: true,
-			title: {
-				text: 'Social Media'
-			}
-		}]
-	};
+    document.querySelector("#chart-apex-correlacao").innerHTML = "";
 
-	var chart = new ApexCharts(options_sistema, options_sistema);
-	chart.render();
+    const scatterData = [];
 
-	let grafico_servicos = document.getElementById("chart-apex-servicos-sistema");
-	let options_sistema2 = {
-		series: [{
-			data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-		}],
-		chart: {
-			type: 'bar',
-			height: 350
-		},
-		plotOptions: {
-			bar: {
-				borderRadius: 4,
-				borderRadiusApplication: 'end',
-				horizontal: true,
-			}
-		},
-		dataLabels: {
-			enabled: false
-		},
-		xaxis: {
-			categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-				'United States', 'China', 'Germany'
-			],
-		}
-	};
+    for (let i = 0; i < componentes.processos.length; i++) {
+        scatterData.push({
+            x: componentes.processos[i] || 0,
+            y: componentes.threads[i] || 0
+        });
+    }
 
-	var chart = new ApexCharts(grafico_servicos, options_sistema2);
-	chart.render();
+    const options = {
+        chart: {
+            type: "scatter",
+            height: 300,
+            toolbar: { show: false }
+        },
+        series: [
+            {
+                name: "Correlação",
+                data: scatterData
+            }
+        ],
+        xaxis: {
+            title: { text: "Processos" }
+        },
+        yaxis: {
+            title: { text: "Threads" }
+        }
+    };
 
-	let grafico_threads = document.getElementById("chart-apex-threads-sistema");
-	let options_sistema3 = {
-		series: [{
-			name: 'Frequência',
-			type: 'column',
-			data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
-		}, {
-			name: 'Social Media',
-			type: 'line',
-			data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
-		}],
-		chart: {
-			height: 350,
-			type: 'line',
-		},
-		stroke: {
-			width: [0, 4]
-		},
-		title: {
-			text: 'Traffic Sources'
-		},
-		dataLabels: {
-			enabled: true,
-			enabledOnSeries: [1]
-		},
-		labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
-		yaxis: [{
-			title: {
-				text: 'Website Blog',
-			},
+    graficoThreads = new ApexCharts(
+        document.querySelector("#chart-apex-correlacao"),
+        options
+    );
 
-		}, {
-			opposite: true,
-			title: {
-				text: 'Social Media'
-			}
-		}]
-	};
+    graficoThreads.render();
+}
 
-	var chart = new ApexCharts(grafico_threads, options_sistema3);
-	chart.render();
+
+function dataFormatada(dataString) {
+    const data = new Date(dataString);
+    return data.toLocaleString();
+}
+
+function exibeErro(msg) {
+    alert(msg);
 }

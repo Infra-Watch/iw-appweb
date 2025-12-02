@@ -7,12 +7,14 @@
     <title>Dashboard Sistema | Infrawatch</title>
     <link rel="stylesheet" href="dashboard_sistema.css">
     <link rel="icon" href="../../assets/logo-infrawatch.png">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 
 <body>
     <nav class="sidebar">
         <div class="sidebar-logo">
-            <a href="index.html">
+            <a href="../../">
                 <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
             </a>
         </div>
@@ -29,7 +31,7 @@
                             <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
                             <a href="../disco/disco.html">Detalhes de Disco</a>
                             <a href="../rede/rede.html">Detalhes de Rede</a>
-                            <u> <a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a></u>
+                            <u><a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a></u>
                         </ul>
                     </nav>
                 </details>
@@ -45,6 +47,7 @@
             </a>
         </div>
     </nav>
+
     <header id="cabecalho">
         <h1>Detalhes de Sistema</h1>
         <div id="titulo-maq">
@@ -52,13 +55,14 @@
                 <option value="0">Selecione a máquina</option>
             </select>
         </div>
-        <div id="nome_usuario">
-        </div>
+        <div id="nome_usuario"></div>
         <div id="nome_empresa"></div>
     </header>
 
     <main class="container-pai">
+
         <section class="container-principal">
+
             <div class="kpis">
                 <div class="kpi">
                     <p>Quantidade de Processos<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
@@ -71,55 +75,26 @@
                 </div>
             </div>
 
-           <div id="graficos" class="graficos">
-           <div class="graficos-componentes">
-
+            <div id="graficos" class="graficos">
+                <div class="graficos-componentes">
                     <article class="grafico-chart">
-                        <p> Quantidade de <span id="componente"> Processos </span></p>
-                        <div id="chart-apex-processos-sistema"></div>
+                        <p>Evolução ao longo do tempo</p>
+                        <div id="chart-apex-evolucao"></div>
                     </article>
 
                     <article class="grafico-chart">
-                        <p> Quantidade de <span id="componente"> Threads </span></p>
-                        <div id="chart-apex-threads-sistema"></div>
-                    </article>
-
-                    <article class="grafico-chart">
-                        <p> Quantidade de <span id="componente"> Serviços </span></p>
-                        <div id="chart-apex-servicos-sistema"></div>
-                    </article>
-
-                      <article class="grafico-chart">
-                        <p> Quantidade de <span id="componente"> Alertas </span></p>
-                        <div id="chart-apex-alertas-sistema"></div>
+                        <p>Correlação Threads x Processos</p>
+                        <div id="chart-apex-correlacao"></div>
                     </article>
 
                 </div>
             </div>
+
         </section>
-        <section class="container-alertas">
-            <div class="kpi-alerta">
-                <p>Tempo: Últimas 24 horas</p>
-                <h2>Alertas Totais: <span id="qtd_ultimos_alertas"></span></h2>
-            </div>
-            <div class="alertas-scroll">
-                <p>Todos os Últimos Alertas:</p>
-                <div class="alertas">
-                    <p>Alerta</p>
-                </div>
-                <div class="alertas">
-                    <p>Alerta</p>
-                </div>
-                <div class="alertas">
-                    <p>Alerta</p>
-                </div>
-                <div class="alertas">
-                    <p>Alerta</p>
-                </div>
-        </section>
+
     </main>
-
-<script src="../../js/sessionStorage_usage.js"></script>
-<script src="dashboard_sistema.js"></script>
+    <script src="../../js/sessionStorage_usage.js"></script>
+    <script src="dashboard_sistema.js"></script>
 </body>
+
 </html>
