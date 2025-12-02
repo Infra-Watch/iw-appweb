@@ -7,6 +7,7 @@
     <title>Dashboard Sistema | Infrawatch</title>
     <link rel="stylesheet" href="dashboard_sistema.css">
     <link rel="icon" href="../../assets/logo-infrawatch.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
@@ -87,12 +88,25 @@
             <div id="graficos" class="graficos">
                 <div class="graficos-componentes">
                     <article class="grafico-chart">
-                        <p>Evolução ao longo do tempo</p>
+                        <p>Linha de tempo</p>
+
+                        <div class="tooltip-icon">
+                            <i class="bi bi-info-circle-fill"></i>
+                            <span class="tooltip-text">
+                                Evolução de CPU, memória, threads e processos ao longo do tempo.
+                            </span>
+                        </div>
                         <div id="chart-apex-evolucao"></div>
                     </article>
 
                     <article class="grafico-chart">
                         <p>Correlação Threads x Processos</p>
+                        <div class="tooltip-icon">
+                            <i class="bi bi-info-circle-fill"></i>
+                            <span class="tooltip-text">
+                                Apresenta se mais threads estão sendo eficientes ou se há sobrecarga.
+                            </span>
+                        </div>
                         <div id="chart-apex-correlacao"></div>
                     </article>
 

@@ -4,255 +4,180 @@ const intervalo = sessionStorage.INTERVALO_DIAS != undefined ? sessionStorage.IN
 const selectMaquinas = document.getElementById('maquina-exibe');
 const painelGeral = document.getElementById('graficos');
 
-var intervaloAtualizacao;
-
+let intervaloAtualizacao;
 let graficoProcessos = null;
-let graficoServicos = null;
 let graficoThreads = null;
 
 window.addEventListener('load', () => {
-    exibirMaquinas();
-    iniciarGraficos();
+  exibirMaquinas();
+  iniciarGraficos();
 });
 
 selectMaquinas.addEventListener('change', () => {
-    atualizarGraficos();
+  atualizarGraficos();
 });
 
 async function iniciarGraficos() {
-    intervaloAtualizacao = setInterval(atualizarGraficos, 10000);
-}
-
-function plotarGraficos(componentes) {
-
-    const categorias = [];
-    for (let i = 1; i <= Math.max(componentes.processos.length, componentes.threads.length); i++) {
-        categorias.push(i);
-    }
-
-    if (graficoProcessos) graficoProcessos.destroy();
-    if (graficoThreads) graficoThreads.destroy();
-
-    configProcessos(componentes, categorias);
-    configThreads(componentes, categorias);
-
+  intervaloAtualizacao = setInterval(atualizarGraficos, 10000);
 }
 
 async function atualizarGraficos() {
-    const idMaquina = selectMaquinas.value;
+  const idMaquina = selectMaquinas.value;
 
-    if (idMaquina == 0) {
-        painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`;
-        return;
-    }
+  if (!idMaquina || idMaquina == 0) {
+    painelGeral.innerHTML = `<h1>Selecione uma máquina para visualizar os detalhes</h1>`;
+    return;
+  }
 
-    exibirKpis();
-    const componentes = await buscarLeiturasHistoricas();
-    plotarGraficos(componentes);
+  exibirKpis();
+  const componentes = await buscarLeiturasHistoricas();
+  plotarGraficos(componentes);
 }
 
 async function buscarLeiturasHistoricas() {
-    const idMaquina = selectMaquinas.value;
-    const res = await fetch(`/sistema/leituras/${idEmpresa}/${idMaquina}`);
-    const dados = await res.ok ? await res.json() : [];
+  const idMaquina = selectMaquinas.value;
+  const res = await fetch(`/sistema/leituras/${idEmpresa}/${idMaquina}`);
+  const dados = await res.ok ? await res.json() : [];
 
-    const processos = [];
-    const servicos = [];
-    const threads = [];
+  const processos = [];
+  const servicos = [];
+  const threads = [];
+  const cpu = [];
+  const ram = [];
 
-    for (let i = 0; i < dados.length; i++) {
-        if (dados[i].fkRecurso === 1011) processos.push(dados[i].leitura);
-        else if (dados[i].fkRecurso === 1012) servicos.push(dados[i].leitura);
-        else if (dados[i].fkRecurso === 1013) threads.push(dados[i].leitura);
-    }
+  for (let i = 0; i < dados.length; i++) {
+    if (dados[i].fkRecurso === 1011) processos.push(dados[i].leitura);
+    else if (dados[i].fkRecurso === 1012) servicos.push(dados[i].leitura);
+    else if (dados[i].fkRecurso === 1013) threads.push(dados[i].leitura);
+    else if (dados[i].fkRecurso === 1001) cpu.push(dados[i].leitura);
+    else if (dados[i].fkRecurso === 1004) ram.push(dados[i].leitura);
+  }
 
-    return { processos, servicos, threads };
+  return { processos, servicos, threads, cpu, ram };
 }
 
 function exibirMaquinas() {
-    fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+  fetch(`/maquinas/buscarPorEmpresa/${idEmpresa}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(res => res.ok ? res.json() : null)
+    .then(json => {
+      if (!json) return;
+      const maquinas = json[0];
+      maquinas.forEach(maquina => {
+        selectMaquinas.innerHTML += `<option value="${maquina.idMaquina}">${maquina.nome_maquina} | ${maquina.mac_address}</option>`;
+      });
     })
-        .then(res => res.ok ? res.json() : null)
-        .then(json => {
-            if (!json) return;
-            const maquinas = json[0];
-            maquinas.forEach(maquina => {
-                selectMaquinas.innerHTML += `<option value="${maquina.idMaquina}">${maquina.nome_maquina} | ${maquina.mac_address}</option>`;
-            });
-        })
-        .catch(erro => console.error(erro));
+    .catch(erro => console.error(erro));
 }
 
 function exibirKpis() {
-    const idMaquina = selectMaquinas.value;
-    if (!idMaquina || idMaquina == 0) return;
+  const idMaquina = selectMaquinas.value;
+  if (!idMaquina || idMaquina == 0) return;
 
-    const bkp = document.querySelectorAll('.kpis .kpi b');
-    bkp.forEach(b => b.innerHTML = '...');
+  const bkp = document.querySelectorAll('.kpis .kpi b');
+  bkp.forEach(b => b.innerHTML = '...');
 
-    fetch(`/sistema/kpis/${idEmpresa}/${idMaquina}`)
-        .then(res => res.ok ? res.json() : null)
-        .then(json => {
-            if (!json) {
-                bkp.forEach(b => b.innerHTML = '-');
-                return;
-            }
+  fetch(`/sistema/kpis/${idEmpresa}/${idMaquina}`)
+    .then(res => res.ok ? res.json() : null)
+    .then(json => {
+      if (!json) {
+        bkp.forEach(b => b.innerHTML = '-');
+        return;
+      }
 
-            const processosMax = Number(json.qtd_processos_maxima) || 0;
-            const processosMed = Number(json.qtd_processos_media) || 0;
-            const threadsMax = Number(json.qtd_threads_maxima) || 0;
-            const threadsMed = Number(json.qtd_threads_media) || 0;
-            const servicosMax = Number(json.qtd_servicos_maxima) || 0;
-            const servicosMed = Number(json.qtd_servicos_media) || 0;
+      const processosMax = Number(json.qtd_processos_maxima) || 0;
+      const processosMed = Number(json.qtd_processos_media) || 0;
+      const threadsMax = Number(json.qtd_threads_maxima) || 0;
+      const threadsMed = Number(json.qtd_threads_media) || 0;
+      const servicosMax = Number(json.qtd_servicos_maxima) || 0;
+      const servicosMed = Number(json.qtd_servicos_media) || 0;
 
-            if (bkp.length >= 6) {
-                bkp[0].innerHTML = `${processosMax}`;
-                bkp[1].innerHTML = `${processosMed}`;
-                bkp[2].innerHTML = `${threadsMax}`;
-                bkp[3].innerHTML = `${threadsMed}`;
-                bkp[4].innerHTML = `${servicosMax}`;
-                bkp[5].innerHTML = `${servicosMed}`;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            bkp.forEach(b => b.innerHTML = 'erro');
-        });
+      if (bkp.length >= 6) {
+        bkp[0].innerHTML = `${processosMax}`;
+        bkp[1].innerHTML = `${processosMed}`;
+        bkp[2].innerHTML = `${threadsMax}`;
+        bkp[3].innerHTML = `${threadsMed}`;
+        bkp[4].innerHTML = `${servicosMax}`;
+        bkp[5].innerHTML = `${servicosMed}`;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      bkp.forEach(b => b.innerHTML = 'erro');
+    });
 }
+
+function plotarGraficos(componentes) {
+  const categorias = componentes.processos.map((_, i) => i + 1);
+
+  if (graficoProcessos) graficoProcessos.destroy();
+  if (graficoThreads) graficoThreads.destroy();
+
+  configProcessos(componentes, categorias);
+  configThreads(componentes, categorias);
+}
+
 function configProcessos(componentes, categorias) {
+  const options = {
+    chart: {
+      type: 'line',
+      height: 350,
+      zoom: { enabled: true }
+    },
+    series: [
+      { name: 'CPU %', data: componentes.cpu },
+      { name: 'Memória (MB)', data: componentes.ram },
+      { name: 'Threads', data: componentes.threads },
+      { name: 'Processos', data: componentes.processos }
+    ],
+    xaxis: { categories: categorias },
+    tooltip: { shared: true },
+    colors: ['#ED145B', '#0762C8', '#198754', '#FFC107']
+  };
 
-    var options = {
-          series: [{
-            name: "Processos",
-            data: componentes.processos
-          },
-          {
-            name: "Threads",
-            data: componentes.threads
-          },
-          {
-            name: 'Serviços',
-            data: componentes.servicos
-          }
-        ],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          },
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: [5, 7, 5],
-          curve: 'straight',
-          dashArray: [0, 8, 5]
-        },
-        legend: {
-          tooltipHoverFormatter: function(val, opts) {
-            return val + ' - <strong>' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + '</strong>'
-          }
-        },
-        markers: {
-          size: 0,
-          hover: {
-            sizeOffset: 6
-          }
-        },
-        xaxis: {
-          categories: [],
-        },
-        tooltip: {
-          y: [
-            {
-              title: {
-                formatter: function (val) {
-                  return val + " (mins)"
-                }
-              }
-            },
-            {
-              title: {
-                formatter: function (val) {
-                  return val + " per session"
-                }
-              }
-            },
-            {
-              title: {
-                formatter: function (val) {
-                  return val;
-                }
-              }
-            }
-          ]
-        },
-        grid: {
-          borderColor: '#f1f1f1',
-        }
-        };
-
-    graficoProcessos = new ApexCharts(
-        document.querySelector("#chart-apex-evolucao"),
-        options
-    );
-
-    graficoProcessos.render();
+  graficoProcessos = new ApexCharts(
+    document.querySelector("#chart-apex-evolucao"),
+    options
+  );
+  graficoProcessos.render();
 }
-
-
 
 function configThreads(componentes, categorias) {
+  document.querySelector("#chart-apex-correlacao").innerHTML = "";
 
-    document.querySelector("#chart-apex-correlacao").innerHTML = "";
-
-    const scatterData = [];
-
-    for (let i = 0; i < componentes.processos.length; i++) {
-        scatterData.push({
-            x: componentes.processos[i] || 0,
-            y: componentes.threads[i] || 0
-        });
-    }
-
-    const options = {
-        chart: {
-            type: "scatter",
-            height: 300,
-            toolbar: { show: false }
-        },
-        series: [
-            {
-                name: "Correlação",
-                data: scatterData
-            }
-        ],
-        xaxis: {
-            title: { text: "Processos" }
-        },
-        yaxis: {
-            title: { text: "Threads" }
-        }
+  const scatterData = componentes.processos.map((p, i) => {
+    const t = componentes.threads[i] || 0;
+    const s = componentes.servicos[i] || 1;
+    return {
+      x: p,
+      y: t,
+      z: s,
+      fillColor: s > 20 ? '#ED145B' : '#0762C8'
     };
+  });
 
-    graficoThreads = new ApexCharts(
-        document.querySelector("#chart-apex-correlacao"),
-        options
-    );
+  const options = {
+    chart: { type: 'bubble', height: 350, toolbar: { show: false } },
+    series: [{ name: "Correlação", data: scatterData }],
+    xaxis: { title: { text: "Processos" } },
+    yaxis: { title: { text: "Threads" } },
+    dataLabels: { enabled: false }
+  };
 
-    graficoThreads.render();
+  graficoThreads = new ApexCharts(
+    document.querySelector("#chart-apex-correlacao"),
+    options
+  );
+  graficoThreads.render();
 }
 
-
 function dataFormatada(dataString) {
-    const data = new Date(dataString);
-    return data.toLocaleString();
+  const data = new Date(dataString);
+  return data.toLocaleString();
 }
 
 function exibeErro(msg) {
-    alert(msg);
+  alert(msg);
 }

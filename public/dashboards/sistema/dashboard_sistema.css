@@ -239,3 +239,50 @@ details nav a:hover {
     width: 100%;
     height: calc(100% - 30px); 
 }
+
+
+.tooltip-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.tooltip-icon .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 260px;
+    background-color: #1f2937; 
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+
+    position: absolute;
+    top: 120%;
+    right: 0;
+
+    transform: translateY(5px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index:  999999;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.tooltip-icon .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 8px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #1f2937 transparent;
+}
+
+
+.tooltip-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}

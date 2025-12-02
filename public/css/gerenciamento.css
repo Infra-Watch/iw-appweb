@@ -215,12 +215,17 @@ body * {
 
 .labels {
     width: 100%;
-    height: 40px;
+    height: auto;
     justify-content: space-evenly;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     border-bottom: 1px solid #ccc;
     color: #000266;
+}
+
+.linha_retorno{
+    display: flex;
+    align-self: self-start;
 }
 
 .labels p {
