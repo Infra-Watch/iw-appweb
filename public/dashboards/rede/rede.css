@@ -238,8 +238,16 @@ details nav a:hover {
     }
     .kpi {
         margin: 0;
-        font-size: x-large;
+        font-size: xx-large;
         font-weight: bold;
+    }
+    div {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        .kpi {
+            margin-right: 2%;
+        }
     }
 }
 

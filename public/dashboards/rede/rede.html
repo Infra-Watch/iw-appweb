@@ -54,7 +54,7 @@
             <h1>Métricas de Rede</h1>
             <div id="titulo-maq">
                 <select name="maquinas" id="maquina-exibe">
-                    <option value="0">Selecione a máquina</option>
+                    <option value="0">Todas as máquinas</option>
                 </select>
             </div>
             <div id="nome_usuario">
@@ -64,29 +64,44 @@
             <section class="container-principal">
                 <div class="kpis">
                     <div class="kpi-card">
-                        <p>Throughput:</p>
-                        <p class="kpi">X</p>
-                    </div>
-                    <div class="kpi-card">
-                        <p>Jitter:</p>
-                        <p class="kpi">X</p>
+                        <p>Throughput Instântaneo:</p>
+                        <div>
+                            <p class="kpi" id="kpi-throughput">X</p>
+                            <p>KBps</p>
+                        </div>
                     </div>
                     <div class="kpi-card">
                         <p>Taxa de sáida média:</p>
-                        <p class="kpi">X</p>
+                        <div>
+                            <p class="kpi" id="kpi-saidaMedia">X</p>
+                            <p>KBps</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <p>Taxa de sáida máxima:</p>
+                        <div>
+                            <p class="kpi" id="kpi-saidaMaxima">X</p>
+                            <p>KBps</p>
+                        </div>
                     </div>
                     <div class="kpi-card">
                         <p>Taxa de entrada média:</p>
-                        <p class="kpi">X</p>
+                        <div>
+                            <p class="kpi" id="kpi-entradaMedia">X</p>
+                            <p>KBps</p>
+                        </div>
                     </div>
                     <div class="kpi-card">
-                        <p>Taxa de entrada média:</p>
-                        <p class="kpi">X</p>
+                        <p>Taxa de entrada máxima:</p>
+                        <div>
+                            <p class="kpi" id="kpi-entradaMaxima">X</p>
+                            <p>KBps</p>
+                        </div>
                     </div>
                 </div>
                 <div class="container-graficos">
                     <div class="graficos-container grafico">
-                        <h4>gráfico de barras | Kb médio por hora</h4>
+                        <h4>Soma Kilobytes Distribuído por Hora</h4>
                         <div id="grafico1"></div>
                     </div>
                     <!-- <div class="grafico">
