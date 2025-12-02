@@ -7,6 +7,8 @@
     <title>Dashboard Disco | Infrawatch</title>
     <link rel="stylesheet" href="disco.css">
     <link rel="icon" href="../../assets/imagens/logo-infrawatch.png">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 
 <body>
@@ -44,7 +46,7 @@
                 <h4>Suporte</h4>
                 <img id="suporte-jira" src="../../assets/imagens/jira.png" alt="Suporte Jira">
             </a>
-            <p>Data: <span id="date">24/11/2025</span></p>
+
         </div>
     </nav>
 
@@ -70,21 +72,20 @@
         <section class="container-principal">
             <div class="kpis">
                 <div class="kpi">
-                    <p>Porcentagem de uso máxima/média: <br><br><b>XX% | XX%</b></p>
-
+                    <p>Porcentagem de uso <br><br><b id="dado-kpi-uso">--% | --%</b></p>
                 </div>
                 <div class="kpi">
-                    <p>Velocidade de leitura máxima/média: <br><br><b>XX% | XX%</b> </p>
+                    <p>Velocidade de leitura <br><br><b id="dado-kpi-velocidade-leitura">--mb/s | --mb/s</b> </p>
                 </div>
                 <div class="kpi">
-                    <p>Velocidade de escrita máxima/média: <br><br><b>XX% | XX%</b></p>
+                    <p>Velocidade de escrita <br><br><b id="dado-kpi-velocidade-escrita">--mb/s | --mb/s</b></p>
                 </div>
             </div>
             <div class="graficos">
-                <div id="grafico1">histograma</div>
-                <div id="grafico2">histograma</div>
-                <div id="grafico3">linha</div>
-                <div id="grafico4">barra</div>
+                <div id="grafico1">
+                </div>
+                <div id="grafico2">
+                </div>
             </div>
         </section>
         <section class="container-alertas">
@@ -110,4 +111,5 @@
     </main>
 </body>
 
+    <script src="disco.js" defer></script>
 </html>
