@@ -116,6 +116,8 @@ details nav a:hover {
 }
 
 .sidebar-bottom a {
+    padding-left: 15px;
+    padding-right: 15px;
     color: #5a61a1;
     text-decoration: none;
     display: flex;
@@ -123,6 +125,8 @@ details nav a:hover {
     gap: 8px;
     font-weight: 500;
     transition: all 0.3s ease;
+    border-top: #959595bc solid 1px;
+
 }
 
 .sidebar-bottom a:hover {
@@ -139,6 +143,10 @@ details nav a:hover {
     font-size: 0.9rem;
     color: #353960;
     margin: 0;
+}
+
+.sidebar-bottom p{
+    margin-bottom: 50px;
 }
 
 #current-page {

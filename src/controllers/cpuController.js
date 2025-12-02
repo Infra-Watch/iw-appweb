@@ -1,4 +1,24 @@
+var maquinaModel = require("../models/maquinaModel");
 var cpuModel = require("../models/cpuModel");
+
+// ======= BUSCANDO MAQUINAS PARA O SELECT OPTION =======
+function buscarPorEmpresa(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (!idEmpresa) {
+        return res.status(400).json({ mensagem: "idEmpresa não informado" });
+    }
+
+    maquinaModel.buscarPorEmpresa(idEmpresa)
+        .then((rows) => {
+            res.json(rows);
+        })
+
+        .catch((error) => {
+            res.status(500).json(error.sqlMessage)
+        })
+}
+
 
 // ======= KPIs =======
 function pegarKpis(req, res) {
@@ -16,51 +36,60 @@ function pegarKpis(req, res) {
     idMaquina = Number(idMaquina);
 
     Promise.all([
-        cpuModel.porcentagemUsoMaximaMedia(idEmpresa, idMaquina, intervalo),
-        cpuModel.frequenciaCPUMaximaMedia(idEmpresa, idMaquina, intervalo),
-        cpuModel.temperaturaCPUMaximaMedia(idEmpresa, idMaquina, intervalo),
+        cpuModel.porcentagemUsoMedia(idEmpresa, idMaquina, intervalo),
+        cpuModel.frequenciaMedia(idEmpresa, idMaquina, intervalo),
+        cpuModel.temperaturaMedia(idEmpresa, idMaquina, intervalo),
     ])
-        .then(([resPorcetUsoMaxMed, resFreqMaxMed, resTempMaxMed]) => {
-            const porcentagem_uso_maxima_media = (resPorcetUsoMaxMed && resPorcetUsoMaxMed[0]) ? resPorcetUsoMaxMed[0].porcentagem_uso_maxima_media : 0;
-            const porcentagem_freq_maxima_media = (resFreqMaxMed && resFreqMaxMed[0]) ? resFreqMaxMed[0].porcentagem_freq_maxima_media : 0;
-            const utilizacao_temp_maxima_media = (resTempMaxMed && resTempMaxMed[0]) ? resTempMaxMed[0].utilizacao_temp_maxima_media : 0;
-
+        .then(([uso, freq, temp]) => {
             return res.status(200).json({
-                porcentagem_uso_maxima_media,
-                porcentagem_freq_maxima_media,
-                utilizacao_temp_maxima_media
+                porcentagem_uso_media: uso[0]?.porcentagem_uso_medio || 0,
+                frequencia_media: freq[0]?.frequencia_media || 0,
+                temperatura_media: temp[0]?.temperatura_media || 0
             });
         })
+
         .catch(erro => {
             console.error("Erro ao buscar KPIs", erro);
             res.status(500).json({ erro: erro.sqlMessage || erro.message || erro });
         });
 }
 
-// ======= BUSCANDO MAQUINAS PARA O SELECT OPTION =======
-function buscarPorEmpresa(req, res) {
-    var idEmpresa = req.params.idEmpresa;
 
-    switch (undefined) {
-        case idEmpresa:
-            res.status(400).send("id Empresa está undefined!");
-            break;
-        default:
-            break;
+// ======= GRÁFICOS =======
+function pegarGraficos(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var idMaquina = req.params.idMaquina;
+    var idRecurso = req.params.idRecurso;
+
+    if (!idEmpresa || !idMaquina || !idRecurso) {
+        return res.status(400).json({ mensagem: "idEmpresa ou idMaquina ou idRecurso estão default" });
     }
 
-    maquinaModel.buscarPorEmpresa(idEmpresa)
-    .then((response) => {
-        console.log(response.data)
-        res.json(response)
+    idEmpresa = Number(idEmpresa);
+    idMaquina = Number(idMaquina);
+    idRecurso = Number(idRecurso);
+
+    Promise.all([
+        cpuModel.usoAtual(idEmpresa, idMaquina, intervalo),
+        cpuModel.frequenciaAtual(idEmpresa, idMaquina, intervalo),
+        cpuModel.temperaturaAtual(idEmpresa, idMaquina, intervalo),
+    ]).then(([usoAtual, freqAtual, tempAtual]) => {
+        return res.status(200).json({
+            usoAtual: uso[0]?.usoAtual || 0,
+            fruquencia_media: freq[0]?.frequencia_media || 0,
+            temperatura_media: temp[0]?.temperatura_media || 0
+        });
     })
-    .catch((error) => {
-        res.status(500).json(error.sqlMessage)
-    })
+
+        .catch(erro => {
+            console.error("Erro ao buscar KPIs", erro);
+            res.status(500).json({ erro: erro.sqlMessage || erro.message || erro });
+        });
 }
 
 
 module.exports = {
+    buscarPorEmpresa,
     pegarKpis,
-    buscarPorEmpresa
+    pegarGraficos
 };

@@ -25,8 +25,8 @@
         <!-- PÁGINAS / TELAS -->
         <ul class="sidebar-links">
 
-            <li><a href="dashboard_geral.html">Painel Integral</a></li>
-            <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
+            <li><a href="../../dashboard_geral.html">Painel Integral</a></li>
+            <li><a href="../../dashboard_detalhada.html">Painel Detalhes</a></li>
 
             <li>
 
@@ -55,18 +55,15 @@
         </ul>
 
         <!-- LINK SUPORTE (JIRA) -->
-        <div class="sidebar-bottom cursor-present">
+        <div class="sidebar-bottom">
 
             <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank"
-                title="Suporte Plataforma Jira">
+                title="Suporte Plataforma Jira" class=" cursor-present">
                 <h4>Suporte</h4>
                 <img id="suporte-jira" src="../../assets/jira.png" alt="Suporte Jira">
-
-                <br><br>
-
-                <p>Data: <span id="date">24/11/2025</span></p>
-
             </a>
+
+            <p>Data: <span id="date"> / / </span></p>
 
         </div>
 
@@ -104,7 +101,7 @@
                     <p>
                         <u> <i> Porcentagem de Uso </i> </u> <br>
                         média / máximo <br><br>
-                        <b> <span id="porcet_uso_cpu"> ... </span> % </b>
+                        <b> </b>
                     </p>
                 </div>
 
@@ -112,7 +109,7 @@
                     <p>
                         <u> <i> Frequência </i> </u> <br>
                         máxima/média: <br><br>
-                        <b> <span id="porcet_freq_cpu"> ... </span> % </b>
+                        <b> </b>
                     </p>
                 </div>
 
@@ -120,7 +117,7 @@
                     <p>
                         <u> <i> Temperatura </i> </u> <br>
                         máxima/média: <br><br>
-                        <b> <span id="porcet_temp_cpu"> ... </span> % </b>
+                        <b> </b>
                     </p>
                 </div>
 
@@ -129,14 +126,13 @@
             <!-- TODOS OS GRÁFICOS -->
             <section id="all-charts">
 
-                <!-- HISTOGRAMAS -->
+                <!-- GRÁFICOS -->
                 <article id="vertical-graph">
 
                     <div id="porcetagem_uso"></div>
 
                 </article>
 
-                <!-- GRÁFICOS -->
                 <article id="horizontal-graphics">
 
                     <div class="graphic">

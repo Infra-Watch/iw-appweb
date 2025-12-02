@@ -10,9 +10,12 @@ router.get("/kpis/:idEmpresa/:idMaquina", function(req,res){
 
 // MÁQUINAS
 router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
-    maquinaController.buscarPorEmpresa(req, res);
+    cpuController.buscarPorEmpresa(req, res);
 });
 
+// GRÁFICOS
+router.get("/buscarUsoCPU/:idEmpresa/:idMaquina/:idRecurso", function (req, res) {
+    cpuController.buscarPorEmpresa(req, res);
+});
 
 module.exports = router;
-
