@@ -14,8 +14,8 @@ router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
 });
 
 // GRÁFICOS
-router.get("/buscarUsoCPU/:idEmpresa/:idMaquina/:idRecurso", function (req, res) {
-    cpuController.buscarPorEmpresa(req, res);
+router.get("/buscarGraficos/:idEmpresa/:idMaquina/:idRecurso", function (req, res) {
+    cpuController.pegarGraficos(req, res);
 });
 
 module.exports = router;

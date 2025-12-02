@@ -70,19 +70,23 @@ function pegarGraficos(req, res) {
     idRecurso = Number(idRecurso);
 
     Promise.all([
-        cpuModel.usoAtual(idEmpresa, idMaquina, intervalo),
-        cpuModel.frequenciaAtual(idEmpresa, idMaquina, intervalo),
-        cpuModel.temperaturaAtual(idEmpresa, idMaquina, intervalo),
+        cpuModel.usoAtual(idEmpresa, idMaquina, idRecurso),
+        cpuModel.frequenciaAtual(idEmpresa, idMaquina, idRecurso),
+        cpuModel.temperaturaAtual(idEmpresa, idMaquina, idRecurso),
     ]).then(([usoAtual, freqAtual, tempAtual]) => {
+
+        console.log(porcetagem_uso)
+        console.log(frequencia)
+        console.log(temperatura)
+        
         return res.status(200).json({
-            usoAtual: uso[0]?.usoAtual || 0,
-            fruquencia_media: freq[0]?.frequencia_media || 0,
-            temperatura_media: temp[0]?.temperatura_media || 0
+            porcetagem_uso: usoAtual[0]?.porcetagem_uso || 0,
+            frequencia: freqAtual[0]?.frequencia || 0,
+            temperatura: tempAtual[0]?.temperatura || 0
         });
     })
-
         .catch(erro => {
-            console.error("Erro ao buscar KPIs", erro);
+            console.error("Erro ao buscar Gráficos!", erro);
             res.status(500).json({ erro: erro.sqlMessage || erro.message || erro });
         });
 }

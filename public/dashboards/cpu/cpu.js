@@ -131,7 +131,7 @@ function exibirKpis() {
 
 // ======= GRÁFICO DE PORCETAGEM DE USO =======
 function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
-
+  
     var options_uso_cpu = {
         chart: {
             type: 'bar',
