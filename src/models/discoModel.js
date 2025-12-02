@@ -183,7 +183,6 @@ function carregarAlertas(idEmpresa, idMaquina) {
             on c.fkMaquina = m.idMaquina
         WHERE 
             r.nome LIKE 'disco%' 
-            AND c.data_hora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
             AND a.fkEmpresa = ${idEmpresa}
             AND a.fkMaquina = ${idMaquina}
         ORDER BY c.data_hora DESC;

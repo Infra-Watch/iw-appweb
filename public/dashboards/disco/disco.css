@@ -331,6 +331,11 @@ details nav a:hover {
   width: 100%;
 }
 
+#title-grafico1,
+#title-grafico2 {
+  font-weight: bold;
+}
+
 .kpi-alerta {
   margin-top: 1.6vh;
   margin-left: 0vw;

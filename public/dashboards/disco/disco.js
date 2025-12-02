@@ -302,7 +302,6 @@ function plotarGraficoAlertas() {
         plotOptions: {
             bar: {
                 horizontal: false,
-                borderRadius: 10,
                 borderRadiusApplication: 'end',
                 borderRadiusWhenStacked: 'last',
                 dataLabels: {
@@ -326,7 +325,7 @@ function plotarGraficoAlertas() {
         },
         fill: {
             opacity: 1,
-            colors: ['#ff0000ff', '#ece13baa']
+            colors: ['#ff0000ff', 'orange']
         }
     };
 
@@ -342,7 +341,6 @@ function carregarAlertas() {
                 response.json().then(function (resposta) {
                     const alertasScroll = document.getElementById("box-container-alertas")
                     alertasScroll.innerHTML = ''
-                    console.log(resposta)
                     const formatarData = data => {
                         const date = new Date(data);
                         const dia = date.getDate().toString();
@@ -356,13 +354,14 @@ function carregarAlertas() {
                     };
 
                     for (let i = 0; i < resposta.length; i++) {
+                        let nivel = (resposta[i].nivel == 1 ? '<b style="color:orange">Importante</b>' : '<b style="color:red">Crítico</b>')
                         alertasScroll.innerHTML += `
                         <div class="alertas">
-                            <span>Máquina: ${resposta[i].apelido}</span>
-                            <span>Nível: ${resposta[i].nivel}</span>
-                            <span>Componente: ${resposta[i].descricao}</span>
-                            <span>Registro: ${resposta[i].leitura}${resposta[i].unidade_de_medida}</span>
-                            <span>Horário: ${formatarData(resposta[i].data_hora)}</span>
+                            <span><b>Máquina:</b> ${resposta[i].apelido}</span>
+                            <span><b>Nível: ${nivel}</b></span>
+                            <span><b>Métrica:</b> ${resposta[i].descricao}</span>
+                            <span><b>Registro:</b> ${resposta[i].leitura}${resposta[i].unidade_de_medida}</span>
+                            <span><b>Horário:</b> ${formatarData(resposta[i].data_hora)}</span>
                         </div>
                         `
                     }
