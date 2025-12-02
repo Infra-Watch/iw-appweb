@@ -123,30 +123,78 @@ function exibirKpis() {
 }
 function configProcessos(componentes, categorias) {
 
-    document.querySelector("#chart-apex-evolucao").innerHTML = "";
-
-    const options = {
-        chart: {
-            type: "line",
-            height: 300,
-            toolbar: { show: false }
-        },
-        series: [
-            { name: "Processos", data: componentes.processos },
-            { name: "Threads", data: componentes.threads },
-            { name: "Serviços", data: componentes.servicos }
+    var options = {
+          series: [{
+            name: "Processos",
+            data: componentes.processos
+          },
+          {
+            name: "Threads",
+            data: componentes.threads
+          },
+          {
+            name: 'Serviços',
+            data: componentes.servicos
+          }
         ],
-        xaxis: {
-            categories: categorias,
-            title: { text: "Leituras" }
+          chart: {
+          height: 350,
+          type: 'line',
+          zoom: {
+            enabled: false
+          },
         },
-        yaxis: {
-            title: { text: "Quantidade" }
+        dataLabels: {
+          enabled: false
         },
         stroke: {
-            width: 2
+          width: [5, 7, 5],
+          curve: 'straight',
+          dashArray: [0, 8, 5]
+        },
+        legend: {
+          tooltipHoverFormatter: function(val, opts) {
+            return val + ' - <strong>' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + '</strong>'
+          }
+        },
+        markers: {
+          size: 0,
+          hover: {
+            sizeOffset: 6
+          }
+        },
+        xaxis: {
+          categories: [],
+        },
+        tooltip: {
+          y: [
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " (mins)"
+                }
+              }
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " per session"
+                }
+              }
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val;
+                }
+              }
+            }
+          ]
+        },
+        grid: {
+          borderColor: '#f1f1f1',
         }
-    };
+        };
 
     graficoProcessos = new ApexCharts(
         document.querySelector("#chart-apex-evolucao"),
@@ -155,6 +203,7 @@ function configProcessos(componentes, categorias) {
 
     graficoProcessos.render();
 }
+
 
 
 function configThreads(componentes, categorias) {

@@ -101,13 +101,13 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 80%;
-    margin-left: 15vw;
-    margin-top: 2vh;
+    margin-left: 20vw;
+    margin-top: 1vh;
 }
 
 #cabecalho h1 {
     color: #043b4d;
-    padding-top: 0.5%;
+    padding-top: 0.1%;
 }
 
 #titulo-maq {
@@ -125,6 +125,12 @@ body {
 #nome_usuario {
     font-size: x-large;
     color: #000266;
+}
+
+#nome_empresa {
+    font-size: x-large; 
+    color: #000266;
+    margin-right: 30px;
 }
 
 /* ==================== DETAILS ==================== */
@@ -157,11 +163,12 @@ details nav a:hover {
 
 .container-principal {
     margin-top: 2vh;
-    margin-left: 15vw;
+    margin-left: 23%;
     width: 68%;
     height: 80%;
     display: flex;
     flex-direction: column;
+    gap: 5%;
 }
 
 .container-alertas {
@@ -172,26 +179,30 @@ details nav a:hover {
 
 /* ==================== KPIS ==================== */
 .kpis {
-    width: 100%;
-    height: 20%;
+   width: 100%;
+    height: 18%;
+    text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 22px;
 }
 
 .kpi {
-    width: 20%;
-    height: 90px;
+    width: 18%;
     border-radius: 25px;
-    background-color: #fff;
+    height: 90px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     font-size: small;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
-
+.kpi p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .kpi b {
     font-size: x-large;
 }
@@ -221,7 +232,7 @@ details nav a:hover {
     justify-content: flex-start;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 15px;
+    padding: 5%;
 }
 
 .graficos-componentes article div {
