@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<nav class="sidebar">
+    <nav class="sidebar">
         <div class="sidebar-logo">
             <a href="index.html">
                 <img src="../../assets/logo-infrawatch.png" alt="InfraWatch">
@@ -26,10 +26,10 @@
                     <nav>
                         <ul>
                             <a href="../cpu/cpu.html">Detalhes da CPU</a>
-                           <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+                            <a href="../ram/dashboard_ram.html">Detalhes da Memória RAM</a>
                             <a href="../disco/disco.html">Detalhes de Disco</a>
                             <a href="../rede/rede.html">Detalhes de Rede</a>
-                           <u> <a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a></u>
+                            <u> <a href="../sistema/dashboard_sistema.html">Detalhes do Sistema</a></u>
                         </ul>
                     </nav>
                 </details>
@@ -45,7 +45,7 @@
             </a>
         </div>
     </nav>
-     <header id="cabecalho">
+    <header id="cabecalho">
         <h1>Detalhes de Sistema</h1>
         <div id="titulo-maq">
             <select name="maquinas" id="maquina-exibe">
@@ -61,20 +61,40 @@
         <section class="container-principal">
             <div class="kpis">
                 <div class="kpi">
-                    <p>Quantidade de Processos<br>Máxima | Média<br><br></p>
+                    <p>Quantidade de Processos<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
                 <div class="kpi">
-                     <p>Quantidade de Threads<br>Máxima | Média<br><br></p>
+                    <p>Quantidade de Threads<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
                 <div class="kpi">
-                   <p>Quantidade de Serviços<br>Máxima | Média<br><br></p>
+                    <p>Quantidade de Serviços<br>Máxima/Média<br><b>_</b> | <b>_</b></p>
                 </div>
             </div>
-            <div class="graficos">
-                <div id="grafico1">histograma</div>
-                <div id="grafico2">histograma</div>
-                <div id="grafico3">histograma</div>
-                <div id="grafico4">barra</div>
+
+           <div id="graficos" class="graficos">
+           <div class="graficos-componentes">
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Processos </span></p>
+                        <div id="chart-apex-processos-sistema"></div>
+                    </article>
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Threads </span></p>
+                        <div id="chart-apex-threads-sistema"></div>
+                    </article>
+
+                    <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Serviços </span></p>
+                        <div id="chart-apex-servicos-sistema"></div>
+                    </article>
+
+                      <article class="grafico-chart">
+                        <p> Quantidade de <span id="componente"> Alertas </span></p>
+                        <div id="chart-apex-alertas-sistema"></div>
+                    </article>
+
+                </div>
             </div>
         </section>
         <section class="container-alertas">
@@ -99,7 +119,7 @@
         </section>
     </main>
 
-     <script src="../../js/sessionStorage_usage.js"></script>
-    <script src="dashboard_sistema.js"></script>
-
+<script src="../../js/sessionStorage_usage.js"></script>
+<script src="dashboard_sistema.js"></script>
+</body>
 </html>

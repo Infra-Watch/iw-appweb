@@ -3,8 +3,6 @@ var sistemaModel = require("../models/sistemaModel");
 function pegarKpis(req, res){
     var idEmpresa = req.params.idEmpresa;
     var idMaquina = req.params.idMaquina;
-    var intervalo = parseInt(req.query.intervalo || "1", 10);
-    if(isNaN(intervalo) || intervalo <= 0 ) intervalo = 1;
 
     if(!idEmpresa || !idMaquina){
         return res.status(400).json({mensagem: "idEmpresa ou idMaquina default"});
@@ -13,12 +11,12 @@ function pegarKpis(req, res){
     idEmpresa = Number(idEmpresa);
     idMaquina = Number(idMaquina);
     Promise.all([
-        sistemaModel.qtdProcessosMaxima(idEmpresa,idMaquina,intervalo),
-        sistemaModel.qtdProcessosMedia(idEmpresa,idMaquina,intervalo),
-        sistemaModel.qtdThreadsMaxima(idEmpresa,idMaquina,intervalo),
-        sistemaModel.qtdThreadsMedia(idEmpresa,idMaquina,intervalo),
-        sistemaModel.qtdServicosMaxima(idEmpresa,idMaquina,intervalo),
-        sistemaModel.qtdServicosMedia(idEmpresa,idMaquina,intervalo)
+        sistemaModel.qtdProcessosMaxima(idEmpresa,idMaquina),
+        sistemaModel.qtdProcessosMedia(idEmpresa,idMaquina),
+        sistemaModel.qtdThreadsMaxima(idEmpresa,idMaquina),
+        sistemaModel.qtdThreadsMedia(idEmpresa,idMaquina),
+        sistemaModel.qtdServicosMaxima(idEmpresa,idMaquina),
+        sistemaModel.qtdServicosMedia(idEmpresa,idMaquina)
     ])
     .then(([qtdProcessosMax, qtdProcessosMed, qtdThreadsMax, qtdThreadsMed, qtdServicosMax, qtdServicosMed]) => {
         const qtd_processos_maxima = (qtdProcessosMax && qtdProcessosMax[0]) ? qtdProcessosMax[0].qtd_processos_maxima : 0;
