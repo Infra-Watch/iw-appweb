@@ -70,7 +70,7 @@ function historicoPorcentagem(idEmpresa, idMaquina, dias = 7) {
         AND fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
         AND data_hora >= DATE_SUB(NOW(), INTERVAL ${Number(dias)} DAY)
-        ORDER BY data_hora;`;
+        ORDER BY data_hora limit 10;`;
     console.log("Executando (historicoPorcentagem): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

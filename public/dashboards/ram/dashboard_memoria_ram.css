@@ -184,15 +184,15 @@ details nav a:hover {
 .container-principal {
     margin-top: 2vh;
     height: 80%;
-    width: 68%;
-    margin-left: 14vw;
+    width: 80%;
+    margin-left: 17vw;
     
 }
-.container-alertas {
+/* .container-alertas {
     margin-top: 2vh;
     height: 80%;
     width: 20%;
-}
+} */
 
 .kpis {
     width: 100%;
@@ -221,9 +221,9 @@ details nav a:hover {
 
 .graficos-dupla {
     margin-top: 1vh;
-    margin-left: 4.5vw;
+    margin-left: 5vw;
     height: 30vh;
-    width: 57vw;
+    width: 70vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -233,17 +233,17 @@ details nav a:hover {
 .grafico-individual {
     margin-top: 30vh;
     height: 30vh;
-    width: 57vw;
+    width: 70vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 4vw;
+    margin-left: 5vw;
 }
 
 .grafico-area-porcentagem,
 .grafico-linha-gb {
     height: 100%;
-    width: 50%;
+    width: 100%;
     align-self: center;
 }
 
@@ -253,7 +253,7 @@ details nav a:hover {
     width: 100%;
 }
 
-.kpi-alerta {
+/* .kpi-alerta {
     margin-top: 1.3vh;
     margin-left: 0vw;
     border-radius: 20px;
@@ -293,4 +293,4 @@ details nav a:hover {
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: #FFFFFF;
-}
+} */

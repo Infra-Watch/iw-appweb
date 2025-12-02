@@ -15,12 +15,12 @@
         ramController.buscarHistoricoPorcentagem(req, res);
     });
 
-    router.get("/historico-gb/:idEmpresa/:idMaquina/:dias", function(req, res) {
-        ramController.buscarHistoricoGb(req, res);
-    });
+    // router.get("/historico-gb/:idEmpresa/:idMaquina/:dias", function(req, res) {
+    //     ramController.buscarHistoricoGb(req, res);
+    // });
 
-    router.get("/previsao-uso-ram/:idEmpresa/:idMaquina/:dias", function(req, res) {
-        ramController.buscarPrevisaoUsoRam(req, res);
-    });
+    // router.get("/previsao-uso-ram/:idEmpresa/:idMaquina/:dias", function(req, res) {
+    //     ramController.buscarPrevisaoUsoRam(req, res);
+    // });
 
     module.exports = router;
