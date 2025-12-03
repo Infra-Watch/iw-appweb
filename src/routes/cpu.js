@@ -14,7 +14,7 @@ router.get("/buscarPorEmpresa/:idEmpresa", function (req, res) {
 });
 
 // GRÁFICOS
-router.get("/buscarGraficos/:idEmpresa/:idMaquina/:idRecurso", function (req, res) {
+router.get("/buscarGraficos/:idEmpresa/:idMaquina", function (req, res) {
     cpuController.pegarGraficos(req, res);
 });
 

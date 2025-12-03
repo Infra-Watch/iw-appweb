@@ -56,17 +56,9 @@ function temperaturaMedia(idEmpresa, idMaquina, intervalo) {
 
 
 // ======= GRÁFICOS =======
-function usoAtual(idEmpresa, idMaquina, idRecurso) {
+function usoAtual(idEmpresa, idMaquina) {
     const instrucaoSql =
         `SELECT
-            MAX(CASE WHEN nivel = 1 THEN valor END) AS limite_amarelo,
-            MAX(CASE WHEN nivel = 2 THEN valor END) AS limite_vermelho
-            FROM parametro
-            WHERE fkEmpresa = ${Number(idEmpresa)}
-            AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)};
-            
-        SELECT
             p.limite_amarelo,
             p.limite_vermelho,
             rc.ultima_leitura
@@ -77,30 +69,25 @@ function usoAtual(idEmpresa, idMaquina, idRecurso) {
         FROM parametro
         WHERE fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
-        AND fkRecurso = ${Number(idRecurso)}
+        AND fkRecurso = 1001
         ) AS p
         CROSS JOIN (
             SELECT leitura AS ultima_leitura
             FROM registro_coleta
             WHERE fkEmpresa = ${Number(idEmpresa)}
             AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)}
+            AND fkRecurso = 1001
             ORDER BY data_hora DESC
             LIMIT 1
         ) AS rc;`;
+
+    console.log("Executando (usoAtual):\n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-function frequenciaAtual(idEmpresa, idMaquina, idRecurso) {
+function frequenciaAtual(idEmpresa, idMaquina) {
     const instrucaoSql =
         `SELECT
-            MAX(CASE WHEN nivel = 1 THEN valor END) AS limite_amarelo,
-            MAX(CASE WHEN nivel = 2 THEN valor END) AS limite_vermelho
-            FROM parametro
-            WHERE fkEmpresa = ${Number(idEmpresa)}
-            AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)};
-            
-        SELECT
             p.limite_amarelo,
             p.limite_vermelho,
             rc.ultima_leitura
@@ -111,30 +98,25 @@ function frequenciaAtual(idEmpresa, idMaquina, idRecurso) {
         FROM parametro
         WHERE fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
-        AND fkRecurso = ${Number(idRecurso)}
+        AND fkRecurso = 1002
         ) AS p
         CROSS JOIN (
             SELECT leitura AS ultima_leitura
             FROM registro_coleta
             WHERE fkEmpresa = ${Number(idEmpresa)}
             AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)}
+            AND fkRecurso = 1002
             ORDER BY data_hora DESC
             LIMIT 1
         ) AS rc;`;
+
+    console.log("Executando (frequenciaAtual):\n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-function temperaturaAtual(idEmpresa, idMaquina, idRecurso) {
+function temperaturaAtual(idEmpresa, idMaquina) {
     const instrucaoSql =
         `SELECT
-            MAX(CASE WHEN nivel = 1 THEN valor END) AS limite_amarelo,
-            MAX(CASE WHEN nivel = 2 THEN valor END) AS limite_vermelho
-            FROM parametro
-            WHERE fkEmpresa = ${Number(idEmpresa)}
-            AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)};
-            
-        SELECT
             p.limite_amarelo,
             p.limite_vermelho,
             rc.ultima_leitura
@@ -145,17 +127,20 @@ function temperaturaAtual(idEmpresa, idMaquina, idRecurso) {
         FROM parametro
         WHERE fkEmpresa = ${Number(idEmpresa)}
         AND fkMaquina = ${Number(idMaquina)}
-        AND fkRecurso = ${Number(idRecurso)}
+        AND fkRecurso = 1003
         ) AS p
         CROSS JOIN (
             SELECT leitura AS ultima_leitura
             FROM registro_coleta
             WHERE fkEmpresa = ${Number(idEmpresa)}
             AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = ${Number(idRecurso)}
+            AND fkRecurso = 1003
             ORDER BY data_hora DESC
             LIMIT 1
         ) AS rc;`;
+
+    console.log("Executando (temperaturaAtual):\n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 module.exports = {
