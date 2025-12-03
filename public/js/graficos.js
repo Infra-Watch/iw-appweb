@@ -83,7 +83,7 @@ function graficos(componentes) {
                 top: -10
             }
         },
-        colors: ["#ff0000ff"],
+        colors: ["#004c6d"],
         labels: ['Average Results'],
     };
     gauge_cpu.innerHTML = '';
@@ -96,7 +96,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }
@@ -130,7 +130,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }
@@ -204,6 +204,7 @@ function graficos(componentes) {
                 top: -10
             }
         },
+        colors: ["#006c9b"],
         labels: ['Average Results'],
     };
     gauge_disco.innerHTML = '';
@@ -216,7 +217,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }
@@ -250,7 +251,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }
@@ -325,7 +326,7 @@ function graficos(componentes) {
             }
         },
         labels: ['Average Results'],
-        colors: ["#25bb00ff"]
+        colors: ["#008dcc"],
 
     };
     gauge_ram.innerHTML = '';
@@ -338,7 +339,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }
@@ -372,7 +373,7 @@ function graficos(componentes) {
         chart: {
             type: 'line',
             width: 300,
-            height: 110,
+            height: 200,
             zoom: {
                 enabled: true
             }

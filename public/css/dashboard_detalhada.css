@@ -234,6 +234,9 @@ border-radius: 10px;
 padding: 0.5rem;
 width: 21vw;
 height: 22vh;
+p {
+    margin-bottom: 0;
+}
 /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
 }
 
