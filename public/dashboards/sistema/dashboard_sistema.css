@@ -233,9 +233,10 @@ details nav a:hover {
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 5%;
+    width: 100%;
 }
 
-.graficos-componentes article div {
+.tooltip-icon, #chart-apex-evolucao, #chart-apex-correlacao{
     width: 100%;
     height: calc(100% - 30px); 
 }

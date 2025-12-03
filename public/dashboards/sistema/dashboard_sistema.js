@@ -132,9 +132,9 @@ function configProcessos(componentes, categorias) {
       { name: 'Threads', data: componentes.threads },
       { name: 'Processos', data: componentes.processos }
     ],
-    xaxis: { categories: categorias },
+    xaxis: { categories: categorias, range: 20 },
     tooltip: { shared: true },
-    colors: ['#ED145B', '#0762C8', '#198754', '#FFC107']
+    colors: ['#ED145B', '#0762C8', '#198754', '#FFC107'],
   };
 
   graficoProcessos = new ApexCharts(
@@ -159,9 +159,9 @@ function configThreads(componentes, categorias) {
   });
 
   const options = {
-    chart: { type: 'bubble', height: 350, toolbar: { show: false } },
+    chart: { type: 'scatter', height: 350, toolbar: { show: false } },
     series: [{ name: "Correlação", data: scatterData }],
-    xaxis: { title: { text: "Processos" } },
+    xaxis: { title: { text: "Processos" }, categories: false},
     yaxis: { title: { text: "Threads" } },
     dataLabels: { enabled: false }
   };
