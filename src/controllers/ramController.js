@@ -46,7 +46,9 @@ function buscarComponentes(req, res) {
     var idEmpresa = req.params.idEmpresa;
     var idMaquina = req.params.idMaquina;
     var intervalo = req.params.intervalo;
-
+    console.log(idEmpresa)
+    console.log(idMaquina)
+    console.log(intervalo)
     if (!idEmpresa || !idMaquina) {
         return res.status(400).json({ mensagem: "idEmpresa ou idMaquina inválidos" });
     }
