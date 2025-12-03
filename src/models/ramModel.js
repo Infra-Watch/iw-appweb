@@ -63,7 +63,7 @@ function previsaoUsoRamPorHora(idEmpresa, idMaquina, dias = 7) {
     return database.executar(instrucaoSql);
 }
 
-function historicoPorcentagem(idEmpresa, idMaquina, dias = 7) {
+function historicoPorcentagem(idEmpresa, idMaquina, dias = 1) {
     const instrucaoSql = `SELECT leitura AS valor, DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s') AS data_hora
         FROM registro_coleta
         WHERE fkRecurso = 1004
@@ -75,7 +75,7 @@ function historicoPorcentagem(idEmpresa, idMaquina, dias = 7) {
     return database.executar(instrucaoSql);
 }
 
-function historicoGb(idEmpresa, idMaquina, dias = 7) {
+function historicoGb(idEmpresa, idMaquina, dias = 1) {
     const instrucaoSql = `SELECT leitura AS valor, DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s') AS data_hora
         FROM registro_coleta
         WHERE fkRecurso = 1005
