@@ -84,7 +84,7 @@ function atualizarKPIs() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    kpiUso.innerHTML = `${resposta.uso_atual_porcentagem}%`
+                    kpiUso.innerHTML = `${resposta.uso_atual_porcentagem}%` 
                     kpiLeitura.innerHTML = `${resposta.velocidade_leitura_atual}mb/s | ${resposta.velocidade_leitura_media}mb/s`
                     kpiEscrita.innerHTML = `${resposta.velocidade_escrita_atual}mb/s | ${resposta.velocidade_escrita_media}mb/s`
                     kpiAlertas24h.innerHTML = `${resposta.alertas24h[0].qtd_alertas_24h} alertas`
@@ -250,6 +250,11 @@ function plotarGraficoDisco() {
             yaxis: {
                 title: {
                     text: 'Velocidade (MB/s)'
+                },
+                labels: {
+                    formatter: function (value) {
+                        return value.toFixed(2);
+                    }
                 }
             }
         };
