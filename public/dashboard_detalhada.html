@@ -2,173 +2,225 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Dashboard Detalhes | InfraWatch</title>
-    <link rel="stylesheet" href="css/dashboard_detalhada.css">
-    <link rel="icon" href="assets/imagens/logo-infrawatch.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Dashboard Detalhes | InfraWatch</title>
+<link rel="stylesheet" href="css/dashboard_detalhada.css">
+<link rel="icon" href="assets/imagens/logo-infrawatch.png">
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
 <body>
-    <!-- ===== NAVBAR LATERAL ===== -->
-    <nav class="sidebar">
-        <div class="sidebar-logo">
-            <a href="/dashboard_geral.html">
-                <img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
-            </a>
-        </div>
+<!-- ===== NAVBAR LATERAL ===== -->
+<nav class="sidebar">
+<div class="sidebar-logo">
+<a href="/dashboard_geral.html">
+<img src="./assets/imagens/logo-infrawatch.png" alt="InfraWatch">
+</a>
+</div>
 
-    <ul class="sidebar-links">
-        <li><a href="dashboard_geral.html">Painel Integral</a></li>
-        <li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
-        <li>
-            <details name="Componentes" id="componente-exibe">
-               <summary value="0">Componentes</summary>
-               <nav>
-                <ul>
-                    <a href="dashboards/cpu/cpu.html">Detalhes da CPU</a>
-                    <a href="dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
-                    <a href="dashboards/disco/disco.html">Detalhes de Disco</a>
-                    <a href="dashboards/rede/rede.html">Detalhes de Rede</a>
-                    <a href="dashboards/sistema/dashboard_sistema.html">Detalhes do Sistema</a>
-                </ul>
-               </nav>
-           </details>
-        </li>
-        <li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
-        <li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
-        </ul>
+<ul class="sidebar-links">
+<li><a href="dashboard_geral.html">Painel Integral</a></li>
+<li><a href="dashboard_detalhada.html">Painel Detalhes</a></li>
+<li>
+<details name="Componentes" id="componente-exibe">
+<summary value="0">Componentes</summary>
+<nav>
+<ul>
+<a href="dashboards/cpu/cpu.html">Detalhes da CPU</a>
+<a href="dashboards/ram/dashboard_ram.html">Detalhes da Memória RAM</a>
+<a href="dashboards/disco/disco.html">Detalhes de Disco</a>
+<a href="dashboards/rede/rede.html">Detalhes de Rede</a>
+<a href="dashboards/sistema/dashboard_sistema.html">Detalhes do Sistema</a>
+</ul>
+</nav>
+</details>
+</li>
+<li><a href="html_user_perfil_adm/gerenciamento_maquina.html">Gerenciamento de máquinas</a></li>
+<li><a href="html_user_perfil_adm/gerenciamento_acesso.html">Gerenciamento de acessos</a></li>
+</ul>
 
-        <div class="sidebar-bottom">
-            <a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
-                <h4>Suporte</h4>
-                <img id="suporte-jira" src="assets/imagens/jira.png" alt="Suporte Jira">
-            </a>
-            <p>Data: <span id="date">31/10/2025</span></p>
-        </div>
-    </nav>
+<div class="sidebar-bottom">
+<a href="https://infrawatch-sptech.atlassian.net/servicedesk/customer/portals" target="_blank">
+<h4>Suporte</h4>
+<img id="suporte-jira" src="assets/imagens/jira.png" alt="Suporte Jira">
+</a>
+<p>Data: <span id="date">31/10/2025</span></p>
+</div>
+</nav>
 
 
-    <header id="cabecalho">
-        <h1> Painel Detalhado de Máquina</h1>
-        <div id="nome_usuario">
-        </div>
-        <div id="nome_empresa"></div>
-    </header>
+<header id="cabecalho">
+<h1> Painel Detalhado de Máquina</h1>
+<div id="titulo-maq">
+<select name="maquinas" id="maquina-exibe">
+<option value="0" selected disabled>Selecione a máquina</option>
+</select>
+</div>
+<div id="nome_usuario">
+</div>
+</header>
 
-    <div id="titulo-maq">
-        <select name="maquinas" id="maquina-exibe">
-            <option value="0" selected disabled>Selecione a máquina</option>
-        </select>
-    </div>
 
-    <div id="conteudo-geral">
 
-        <!-- GRÁFICOS -->
-        <main id="main-painel-graficos">
-            <h1 id="aviso-default">Selecione uma máquina para visualizar os detalhes</h1>
-            <section class="graficos" id="graficos">
-                
-                <!-- SIMULAÇÃO CPU -->
-                <div class="graficos-componentes">
+<div id="conteudo-geral">
 
-                    <article class="card-grafico">
-                        <p> Uso de <span id="componente"> CPU </span> % </p>
-                        <div id="chart-apex-gauge-cpu"></div>
-                    </article>
+<!-- GRÁFICOS -->
+<main id="main-painel-graficos">
 
-                    <article class="card-grafico">
-                        <p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
-                        <div id="chart-apex-temp-cpu"></div>
-                    </article>
+<div id="direita">
 
-                    <article class="card-grafico">
-                        <p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
-                        <div id="chart-apex-freq-cpu"></div>
-                    </article>
+<h1 id="aviso-default">Selecione uma máquina para visualizar os detalhes</h1>
+<section class="graficos" id="graficos">
 
-                </div>
+<!-- SIMULAÇÃO CPU -->
+<div class="graficos-componentes">
 
-                <!-- SIMULAÇÃO REDE -->
-                <div class="graficos-componentes">
+<article class="grafico-gauge-chart">
+<p> Uso de <span id="componente"> CPU </span> % </p>
+<div id="chart-apex-gauge-cpu"></div>
+</article>
 
-                    <article class="grafico-gauge-chart">
-                        <p> Uso de <span id="componente"> Disco </span> % </p>
-                        <div id="chart-apex-gauge-disco"></div>
-                    </article>
+<article class="card-grafico">
+<p> Temperatura da <span id="componente"> CPU </span> (°C) </p>
+<div id="chart-apex-temp-cpu"></div>
+</article>
 
-                    <article class="card-grafico">
-                        <p> Velocidade de <span id="componente"> Disco </span> - Mbps </p>
-                        <div id="chart-apex-vel-disco"></div>
-                    </article>
+<article class="card-grafico">
+<p> Frequencia da <span id="componente"> CPU </span> (MHz) </p>
+<div id="chart-apex-freq-cpu"></div>
+</article>
 
-                    <article class="card-grafico">
-                        <p> Nível de <span id="componente"> Mbps Envidados </span> </p>
-                        <div id="chart-apex-env-mbps"></div>
-                    </article>
+</div>
 
-                </div>
+<!-- SIMULAÇÃO REDE -->
+<div class="graficos-componentes">
 
-                <!-- SIMULAÇÃO RAM -->
-                <div class="graficos-componentes">
+<article class="grafico-gauge-chart">
+<p> Uso de <span id="componente"> Disco </span> % </p>
+<div id="chart-apex-gauge-disco"></div>
+</article>
 
-                    <article class="grafico-gauge-chart">
-                        <p> Uso de <span id="componente"> RAM </span> % </p>
-                        <div id="chart-apex-gauge-ram"></div>
-                    </article>
+<article class="card-grafico">
+<p> Velocidade de <span id="componente"> Disco </span> - Mbps </p>
+<div id="chart-apex-vel-disco"></div>
+</article>
 
-                    <article class="card-grafico">
-                        <p> Memória <span id="componente"> RAM </span> - Em uso </p>
-                        <div id="chart-apex-uso-ram"></div>
-                    </article>
+<article class="card-grafico">
+<p> Nível de <span id="componente"> Mbps Envidados </span> </p>
+<div id="chart-apex-env-mbps"></div>
+</article>
 
-                    <article class="card-grafico">
-                        <p> Nível de <span id="componente"> Mbps Recebidos </span> </p>
-                        <div id="chart-apex-rec-mbps"></div>
-                    </article>
+</div>
 
-                </div>
+<!-- SIMULAÇÃO RAM -->
+<div class="graficos-componentes">
 
-            </section>
+<article class="grafico-gauge-chart">
+<p> Uso de <span id="componente"> RAM </span> % </p>
+<div id="chart-apex-gauge-ram"></div>
+</article>
 
-            <!-- ALERTAS -->
-            <section id="alertas">
+<article class="card-grafico">
+<p> Memória <span id="componente"> RAM </span> - Em uso </p>
+<div id="chart-apex-uso-ram"></div>
+</article>
 
-                <article class="kpi">
+<article class="card-grafico">
+<p> Nível de <span id="componente"> Mbps Recebidos </span> </p>
+<div id="chart-apex-rec-mbps"></div>
+</article>
 
-                    <img class="icons" src="assets/imagens/alarme.png ">
+</div>
 
-                    <div id="conteudo-kpi">
-                        <h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 1 </span> </h2>
-                        <p> Tempo: últimas 24 horas </p>
-                    </div>
+</section>
 
-                </article>
+</div>
 
-                <p>Todos os últimos alertas:</p>
+<div id="esquerda">
 
-                <div id="lista-alertas">
-                    <article class="alerta">
-                        <p>
-                            Máquina: <span id="maquina_alerta"> 3 </span> <br>
-                            Componente crítico: <span id="componente_critico"> CPU </span> <br>
-                            Registro de pico: <span id="registro_pico"> 95% </span> <br>
-                            Momento: <span id="momento_pico"> 13h53min </span>
-                        </p>
-                    </article>
-                </div>
+<!-- ALERTAS -->
+<section id="alertas">
 
-            </section>
-        </main>
+<article class="kpi">
 
-    </div>
+<img class="icons" src="assets/imagens/alarme.png ">
 
-    <script src="js/graficos.js"></script>
-    <script src="./js/sessionStorage_usage.js"></script>
-    <script src="./js/dashboard_detalhada.js"></script>
+<div id="conteudo-kpi">
+<h2> Alertas Totais: <span id="qtd_ultimos_alertas"> 1 </span> </h2>
+<p> Tempo: últimas 24 horas </p>
+</div>
+
+</article>
+
+<p id="titulo_lista_alertas">Todos os últimos alertas:</p>
+
+<div id="lista_alertas">
+
+<article class="alerta">
+<p>
+Máquina: <span id="maquina_alerta"> 3 </span> <br>
+Componente crítico: <span id="componente_critico"> CPU </span> <br>
+Registro de pico: <span id="registro_pico"> 95% </span> <br>
+Momento: <span id="momento_pico"> 13h53min </span>
+</p>
+</article>
+
+<article class="alerta">
+<p>
+Máquina: <span id="maquina_alerta"> 3 </span> <br>
+Componente crítico: <span id="componente_critico"> CPU </span> <br>
+Registro de pico: <span id="registro_pico"> 95% </span> <br>
+Momento: <span id="momento_pico"> 13h53min </span>
+</p>
+</article>
+
+
+<article class="alerta">
+<p>
+Máquina: <span id="maquina_alerta"> 3 </span> <br>
+Componente crítico: <span id="componente_critico"> CPU </span> <br>
+Registro de pico: <span id="registro_pico"> 95% </span> <br>
+Momento: <span id="momento_pico"> 13h53min </span>
+</p>
+</article>
+
+
+<article class="alerta">
+<p>
+Máquina: <span id="maquina_alerta"> 3 </span> <br>
+Componente crítico: <span id="componente_critico"> CPU </span> <br>
+Registro de pico: <span id="registro_pico"> 95% </span> <br>
+Momento: <span id="momento_pico"> 13h53min </span>
+</p>
+</article>
+
+
+<article class="alerta">
+<p>
+Máquina: <span id="maquina_alerta"> 3 </span> <br>
+Componente crítico: <span id="componente_critico"> CPU </span> <br>
+Registro de pico: <span id="registro_pico"> 95% </span> <br>
+Momento: <span id="momento_pico"> 13h53min </span>
+</p>
+</article>
+
+</div>
+
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="js/graficos.js"></script>
+<script src="./js/sessionStorage_usage.js"></script>
+<script src="./js/dashboard_detalhada.js"></script>
 </body>
 
 </html>
