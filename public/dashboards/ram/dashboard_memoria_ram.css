@@ -187,11 +187,6 @@ details nav a:hover {
     margin-left: 17vw;
     
 }
-/* .container-alertas {
-    margin-top: 2vh;
-    height: 80%;
-    width: 20%;
-} */
 
 .kpis {
     width: 100%;
@@ -256,44 +251,3 @@ details nav a:hover {
     background-color:#FFFFFF;
 }
 
-/* .kpi-alerta {
-    margin-top: 1.3vh;
-    margin-left: 0vw;
-    border-radius: 20px;
-    width: 70%;
-    height: 17%;
-    padding: 2px 6px;   
-    text-align: center; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background-color: #FFFFFF;
-}
-
-.alertas-scroll {
-    margin-top: 3vh;
-    margin-left: 0vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 64%;
-    height: 72%;
-    border-radius: 10px;
-    padding: 0.7rem 1rem;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    gap: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background-color: #FFFFFF;
-}
-
-
-.alertas {
-    margin-top: -7%;
-    padding: 30px 0;
-    width: 200px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background-color: #FFFFFF;
-} */
