@@ -10,7 +10,9 @@ const entradaMaxima = document.getElementById('kpi-entradaMaxima')
 var graficoBarras;
 var graficoHistSaida;
 var graficoHistEntrada;
-
+const plotGraficoBarras = document.querySelector("#grafico1")
+const plotHistogramaEntrada = document.querySelector("#grafico4")
+const plotHistogramaSaida = document.querySelector("#grafico3")
 var intervaloAtualizacao;
 
 window.addEventListener('load', () => {
@@ -244,7 +246,7 @@ function configBarPlot(serieEntrada, serieSaida, serieTotal, categorias) {
         }
     };
 
-    graficoBarras = new ApexCharts(document.querySelector("#grafico1"), options);
+    graficoBarras = new ApexCharts(plotGraficoBarras, options);
 }
 
 function configHistSaida(frequencia, categorias) {
@@ -292,7 +294,7 @@ function configHistSaida(frequencia, categorias) {
         }
     };
 
-    graficoHistSaida = new ApexCharts(document.querySelector("#grafico4"), options);
+    graficoHistSaida = new ApexCharts(plotHistogramaSaida, options);
 }
 
 function configHistEntrada(frequencia, categorias) {
@@ -340,7 +342,7 @@ function configHistEntrada(frequencia, categorias) {
         }
     };
 
-    graficoHistEntrada = new ApexCharts(document.querySelector("#grafico3"), options);
+    graficoHistEntrada = new ApexCharts(plotHistogramaEntrada, options);
 }
 
 function exibirMaquinas() {

@@ -28,23 +28,31 @@ function buscarPorMaquina(req, res){
         return res.status(400).json({mensagem: "idEmpresa ou idMaquina undefined"});
     }
 
-    return res.status(200).json({
-        throughput: exemploKbpsEntrada[exemploKbpsEntrada.length-1] + exemploKbpsSaida[exemploKbpsSaida.length-1],
-        saidaMedia: exemploKbpsSaida.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsSaida.length,
-        entradaMedia: exemploKbpsEntrada.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsEntrada.length,
-        saidaMaxima: Math.max(...exemploKbpsSaida),
-        entradaMaxima: Math.max(...exemploKbpsEntrada),
-        histEntrada: createHistogramData(exemploKbpsEntrada),
-        histSaida: createHistogramData(exemploKbpsSaida),
-        barras: createBarSeries(gerarDadosExemplo()),
-    });
+    // return res.status(200).json({
+    //     throughput: exemploKbpsEntrada[exemploKbpsEntrada.length-1] + exemploKbpsSaida[exemploKbpsSaida.length-1],
+    //     saidaMedia: exemploKbpsSaida.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsSaida.length,
+    //     entradaMedia: exemploKbpsEntrada.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsEntrada.length,
+    //     saidaMaxima: Math.max(...exemploKbpsSaida),
+    //     entradaMaxima: Math.max(...exemploKbpsEntrada),
+    //     histEntrada: createHistogramData(exemploKbpsEntrada),
+    //     histSaida: createHistogramData(exemploKbpsSaida),
+    //     barras: createBarSeries(gerarDadosExemplo()),
+    // });
     redeModel.buscarDadosRedePorMaquina(idEmpresa, idMaquina)
     .then((response) => {
-        console.log(response)
+        let query_status = response.pop()
+        let kpis = formatKpis(response)
         return res.status(200).json({
-            histEntrada: createHistogramData(response[0][0]),
-            histSaida: createHistogramData(response[0][1]),
-            barras: createBarSeries(response[0][2]),
+            throughput: kpis.throughput,
+            saidaMedia: kpis.saidaMedia,
+            entradaMedia: kpis.entradaMedia,
+            saidaMaxima: kpis.saidaMaxima,
+            entradaMaxima: kpis.entradaMaxima,
+            histEntrada: createHistogramData(exemploKbpsEntrada),
+            histSaida: createHistogramData(exemploKbpsSaida),
+            // histEntrada: createHistogramData(extrairLeituras(response[2])),
+            // histSaida: createHistogramData(extrairLeituras(response[3])),
+            barras: createBarSeries(response[4]),
         });
     })
     .catch((error) => {
@@ -79,28 +87,52 @@ function buscarTodas(req, res){
         return res.status(400).json({mensagem: "idEmpresa undefined"});
     }
     
-    return res.status(200).json({
-        throughput: exemploKbpsEntrada[exemploKbpsEntrada.length-1] + exemploKbpsSaida[exemploKbpsSaida.length-1],
-        saidaMedia: exemploKbpsSaida.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsSaida.length,
-        entradaMedia: exemploKbpsEntrada.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsEntrada.length,
-        saidaMaxima: Math.max(...exemploKbpsSaida),
-        entradaMaxima: Math.max(...exemploKbpsEntrada),
-        histEntrada: createHistogramData(exemploKbpsEntrada),
-        histSaida: createHistogramData(exemploKbpsSaida),
-        barras: createBarSeries(gerarDadosExemplo()),
-    });
+    // return res.status(200).json({
+    //     throughput: exemploKbpsEntrada[exemploKbpsEntrada.length-1] + exemploKbpsSaida[exemploKbpsSaida.length-1],
+    //     saidaMedia: exemploKbpsSaida.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsSaida.length,
+    //     entradaMedia: exemploKbpsEntrada.reduce((acumulador, atual) => acumulador + atual, 0)/exemploKbpsEntrada.length,
+    //     saidaMaxima: Math.max(...exemploKbpsSaida),
+    //     entradaMaxima: Math.max(...exemploKbpsEntrada),
+    //     histEntrada: createHistogramData(exemploKbpsEntrada),
+    //     histSaida: createHistogramData(exemploKbpsSaida),
+    //     barras: createBarSeries(gerarDadosExemplo()),
+    // });
     redeModel.buscarDadosRedePorEmpresa(idEmpresa)
     .then((response) => {
-        console.log(response)
+        let query_status = response.pop()
+        let kpis = formatKpis(response)
         return res.status(200).json({
-            histEntrada: createHistogramData(response[0][0]),
-            histSaida: createHistogramData(response[0][1]),
-            barras: createBarSeries(response[0][2]),
+            throughput: kpis.throughput,
+            saidaMedia: kpis.saidaMedia,
+            entradaMedia: kpis.entradaMedia,
+            saidaMaxima: kpis.saidaMaxima,
+            entradaMaxima: kpis.entradaMaxima,
+            histEntrada: createHistogramData(exemploKbpsEntrada),
+            histSaida: createHistogramData(exemploKbpsSaida),
+            // histEntrada: createHistogramData(extrairLeituras(response[2])),
+            // histSaida: createHistogramData(extrairLeituras(response[3])),
+            barras: createBarSeries(response[4]),
         });
     })
     .catch((error) => {
         res.status(500).json(error.sqlMessage)
     })
+}
+
+function extrairLeituras(arrayJson) {
+    return arrayJson
+        .filter(json => json.leitura!=null && json.leitura!=undefined && json.leitura!=0)
+        .map(json => json.leitura)
+}
+
+function formatKpis(response) {
+    return {
+        throughput: Math.round(response[0][0].throughput),
+        saidaMedia: Math.round(response[1][0].saidaMedia),
+        entradaMedia: Math.round(response[1][0].entradaMedia),
+        saidaMaxima: Math.round(response[1][0].saidaMaxima),
+        entradaMaxima: Math.round(response[1][0].entradaMaxima),
+    }
 }
 
 function createHistogramData(data, intervalo=5) {
