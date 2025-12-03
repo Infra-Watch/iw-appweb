@@ -56,38 +56,96 @@ function pegarKpis(req, res) {
 
 
 // ======= GRÁFICOS =======
-function pegarGraficos(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-    var idMaquina = req.params.idMaquina;
-    var idRecurso = req.params.idRecurso;
+// function pegarGraficos(req, res) {
+//     var idEmpresa = req.params.idEmpresa;
+//     var idMaquina = req.params.idMaquina;
 
-    if (!idEmpresa || !idMaquina || !idRecurso) {
-        return res.status(400).json({ mensagem: "idEmpresa ou idMaquina ou idRecurso estão default" });
+//     if (!idEmpresa || !idMaquina || !idRecurso) {
+//         return res.status(400).json({ mensagem: "idEmpresa ou idMaquina ou idRecurso estão default" });
+//     }
+
+//     idEmpresa = Number(idEmpresa);
+//     idMaquina = Number(idMaquina);
+//     idRecurso = Number(idRecurso);
+
+//     PPromise.all([
+//         cpuModel.temperaturaAtual(idEmpresa, idMaquina, 1001),
+//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1001),
+
+//         cpuModel.ultimaLeitura(idEmpresa, idMaquina, 1002),
+//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1002),
+
+//         cpuModel.ultimaLeitura(idEmpresa, idMaquina, 1003),
+//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1003)
+//     ])
+//         .then(([
+//             usoAtual, usoLimites,
+//             freqAtual, freqLimites,
+//             tempAtual, tempLimites
+//         ]) => {
+//             res.json({
+//                 uso: {
+//                     atual: usoAtual[0]?.leitura || 0,
+//                     limite_amarelo: usoLimites[0]?.limite_amarelo,
+//                     limite_vermelho: usoLimites[0]?.limite_vermelho
+//                 },
+//                 frequencia: {
+//                     atual: freqAtual[0]?.leitura || 0,
+//                     limite_amarelo: freqLimites[0]?.limite_amarelo,
+//                     limite_vermelho: freqLimites[0]?.limite_vermelho
+//                 },
+//                 temperatura: {
+//                     atual: tempAtual[0]?.leitura || 0,
+//                     limite_amarelo: tempLimites[0]?.limite_amarelo,
+//                     limite_vermelho: tempLimites[0]?.limite_vermelho
+//                 }
+//             });
+//         })
+
+// }
+
+function pegarGraficos(req, res) {
+    let { idEmpresa, idMaquina } = req.params;
+
+    if (!idEmpresa || !idMaquina) {
+        return res.status(400).json({
+            mensagem: "idEmpresa ou idMaquina inválidos"
+        });
     }
 
     idEmpresa = Number(idEmpresa);
     idMaquina = Number(idMaquina);
-    idRecurso = Number(idRecurso);
 
     Promise.all([
-        cpuModel.usoAtual(idEmpresa, idMaquina, idRecurso),
-        cpuModel.frequenciaAtual(idEmpresa, idMaquina, idRecurso),
-        cpuModel.temperaturaAtual(idEmpresa, idMaquina, idRecurso),
-    ]).then(([usoAtual, freqAtual, tempAtual]) => {
-
-        console.log(porcetagem_uso)
-        console.log(frequencia)
-        console.log(temperatura)
-        
-        return res.status(200).json({
-            porcetagem_uso: usoAtual[0]?.porcetagem_uso || 0,
-            frequencia: freqAtual[0]?.frequencia || 0,
-            temperatura: tempAtual[0]?.temperatura || 0
-        });
-    })
-        .catch(erro => {
-            console.error("Erro ao buscar Gráficos!", erro);
-            res.status(500).json({ erro: erro.sqlMessage || erro.message || erro });
+        cpuModel.usoAtual(idEmpresa, idMaquina),   
+        cpuModel.frequenciaAtual(idEmpresa, idMaquina),   
+        cpuModel.temperaturaAtual(idEmpresa, idMaquina)
+    ])
+        .then(([uso, freq, temp]) => {
+            res.status(200).json({
+                uso: {
+                    atual: uso[0]?.ultima_leitura || 0,
+                    limite_amarelo: uso[0]?.limite_amarelo,
+                    limite_vermelho: uso[0]?.limite_vermelho
+                },
+                frequencia: {
+                    atual: freq[0]?.ultima_leitura || 0,
+                    limite_amarelo: freq[0]?.limite_amarelo,
+                    limite_vermelho: freq[0]?.limite_vermelho
+                },
+                temperatura: {
+                    atual: temp[0]?.ultima_leitura || 0,
+                    limite_amarelo: temp[0]?.limite_amarelo,
+                    limite_vermelho: temp[0]?.limite_vermelho
+                }
+            });
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar gráficos:", erro);
+            res.status(500).json({
+                mensagem: "Erro ao consultar gráficos",
+                erro: erro.sqlMessage
+            });
         });
 }
 
