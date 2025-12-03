@@ -55,55 +55,6 @@ function pegarKpis(req, res) {
 }
 
 
-// ======= GRÁFICOS =======
-// function pegarGraficos(req, res) {
-//     var idEmpresa = req.params.idEmpresa;
-//     var idMaquina = req.params.idMaquina;
-
-//     if (!idEmpresa || !idMaquina || !idRecurso) {
-//         return res.status(400).json({ mensagem: "idEmpresa ou idMaquina ou idRecurso estão default" });
-//     }
-
-//     idEmpresa = Number(idEmpresa);
-//     idMaquina = Number(idMaquina);
-//     idRecurso = Number(idRecurso);
-
-//     PPromise.all([
-//         cpuModel.temperaturaAtual(idEmpresa, idMaquina, 1001),
-//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1001),
-
-//         cpuModel.ultimaLeitura(idEmpresa, idMaquina, 1002),
-//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1002),
-
-//         cpuModel.ultimaLeitura(idEmpresa, idMaquina, 1003),
-//         cpuModel.limitesDoRecurso(idEmpresa, idMaquina, 1003)
-//     ])
-//         .then(([
-//             usoAtual, usoLimites,
-//             freqAtual, freqLimites,
-//             tempAtual, tempLimites
-//         ]) => {
-//             res.json({
-//                 uso: {
-//                     atual: usoAtual[0]?.leitura || 0,
-//                     limite_amarelo: usoLimites[0]?.limite_amarelo,
-//                     limite_vermelho: usoLimites[0]?.limite_vermelho
-//                 },
-//                 frequencia: {
-//                     atual: freqAtual[0]?.leitura || 0,
-//                     limite_amarelo: freqLimites[0]?.limite_amarelo,
-//                     limite_vermelho: freqLimites[0]?.limite_vermelho
-//                 },
-//                 temperatura: {
-//                     atual: tempAtual[0]?.leitura || 0,
-//                     limite_amarelo: tempLimites[0]?.limite_amarelo,
-//                     limite_vermelho: tempLimites[0]?.limite_vermelho
-//                 }
-//             });
-//         })
-
-// }
-
 function pegarGraficos(req, res) {
     let { idEmpresa, idMaquina } = req.params;
 

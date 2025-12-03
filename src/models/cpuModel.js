@@ -134,9 +134,8 @@ function temperaturaAtual(idEmpresa, idMaquina) {
             FROM registro_coleta
             WHERE fkEmpresa = ${Number(idEmpresa)}
             AND fkMaquina = ${Number(idMaquina)}
-            AND fkRecurso = 1003
+            AND fkRecurso < 1003
             ORDER BY data_hora DESC
-            LIMIT 1
         ) AS rc;`;
 
     console.log("Executando (temperaturaAtual):\n" + instrucaoSql);

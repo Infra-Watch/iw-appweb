@@ -18,6 +18,35 @@ function plotarDashboard() {
         painelGeral.innerHTML = `<h1> Selecione uma máquina para visualizar os detalhes! </h1>`
         return false;
     }
+    painelGeral.innerHTML = `
+    
+    <section id="all-charts">
+
+                <!-- GRÁFICOS -->
+                <article id="vertical-graph">
+
+                    <div id="porcetagem_uso"></div>
+
+                </article>
+
+                <article id="horizontal-graphics">
+
+                    <div class="graphic">
+
+                        <div id="frequencia"></div>
+
+                    </div>
+
+                    <div class="graphic">
+                        <div id="temperatura"></div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+    `
     exibirKpis();
     carregarGraficos();
 };
@@ -129,10 +158,12 @@ function exibirKpis() {
 function carregarGraficos() {
     const idMaquina = Number(selectMaquinas.value);
 
-    fetch(`/cpu/graficos/${idEmpresa}/${idMaquina}`)
+    fetch(`/cpu/buscarGraficos/${idEmpresa}/${idMaquina}`)
         .then(res => res.ok ? res.json() : null)
         .then(json => {
             if (!json) return;
+            console.log("JSON:")
+            console.log(json)
 
             show_uso(
                 json.uso.atual,
@@ -196,13 +227,13 @@ function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
             yaxis: [
                 {
                     y: limite_amarelo_uso,
-                    borderColor: '#FFB300',
-                    label: { text: `Aquecendo (${limite_amarelo_uso}%)` }
+                    borderColor: '#E53935',
+                    label: { text: `Crítico (${limite_amarelo_uso}%)` }
                 },
                 {
                     y: limite_vermelho_uso,
-                    borderColor: '#E53935',
-                    label: { text: `Crítico (${limite_vermelho_uso}%)` }
+                    borderColor: '#FFB300',
+                    label: { text: `Aquecendo (${limite_vermelho_uso}%)` }
                 }
             ]
         }
@@ -316,7 +347,6 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
         if (freq_atual >= limite_vermelho_freq) cor = "#E53935";
 
         freq_cpu.updateOptions({ colors: [cor] });
-
         freq_cpu.updateSeries([{ data: data }]);
 
     }, 1000);
@@ -327,6 +357,7 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
 function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_temp) {
 
     let data = [temp_inicial];
+    data.push([25, 30, 40])
 
     const options_temp_cpu = {
         chart: {
@@ -394,7 +425,7 @@ function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_tem
     temp_cpu.render();
 
     setInterval(async () => {
-        const resposta = await fetch(`/cpu/temperatura/${idEmpresa}/${idMaquina}`);
+        const resposta = await fetch(`/cpu/buscarGraficos/${idEmpresa}/${idMaquina}`);
         const json = await resposta.json();
 
         const novaTemp = json.ultima_leitura;
