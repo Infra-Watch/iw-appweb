@@ -55,6 +55,7 @@ function pegarKpis(req, res) {
 }
 
 
+// GRÁFICOS
 function pegarGraficos(req, res) {
     let { idEmpresa, idMaquina } = req.params;
 
@@ -68,27 +69,15 @@ function pegarGraficos(req, res) {
     idMaquina = Number(idMaquina);
 
     Promise.all([
-        cpuModel.usoAtual(idEmpresa, idMaquina),   
-        cpuModel.frequenciaAtual(idEmpresa, idMaquina),   
+        cpuModel.usoAtual(idEmpresa, idMaquina),
+        cpuModel.frequenciaAtual(idEmpresa, idMaquina),
         cpuModel.temperaturaAtual(idEmpresa, idMaquina)
     ])
         .then(([uso, freq, temp]) => {
             res.status(200).json({
-                uso: {
-                    atual: uso[0]?.ultima_leitura || 0,
-                    limite_amarelo: uso[0]?.limite_amarelo,
-                    limite_vermelho: uso[0]?.limite_vermelho
-                },
-                frequencia: {
-                    atual: freq[0]?.ultima_leitura || 0,
-                    limite_amarelo: freq[0]?.limite_amarelo,
-                    limite_vermelho: freq[0]?.limite_vermelho
-                },
-                temperatura: {
-                    atual: temp[0]?.ultima_leitura || 0,
-                    limite_amarelo: temp[0]?.limite_amarelo,
-                    limite_vermelho: temp[0]?.limite_vermelho
-                }
+                uso: { atual: uso[0]?.ultima_leitura || 0, },
+                frequencia: { atual: freq[0]?.ultima_leitura || 0, },
+                temperatura: { atual: temp[0]?.ultima_leitura || 0, }
             });
         })
         .catch((erro) => {

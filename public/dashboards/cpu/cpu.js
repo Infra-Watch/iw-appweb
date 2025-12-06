@@ -18,9 +18,8 @@ function plotarDashboard() {
         painelGeral.innerHTML = `<h1> Selecione uma máquina para visualizar os detalhes! </h1>`
         return false;
     }
-    painelGeral.innerHTML = `
-    
-    <section id="all-charts">
+    painelGeral.innerHTML =
+        `<section id="all-charts">
 
                 <!-- GRÁFICOS -->
                 <article id="vertical-graph">
@@ -44,9 +43,8 @@ function plotarDashboard() {
 
                 </article>
 
-            </section>
+        </section>`
 
-    `
     exibirKpis();
     carregarGraficos();
 };
@@ -167,31 +165,24 @@ function carregarGraficos() {
 
             show_uso(
                 json.uso.atual,
-                json.uso.limite_amarelo,
-                json.uso.limite_vermelho
             );
 
             show_frequencia(
                 json.frequencia.atual,
-                json.frequencia.limite_amarelo,
-                json.frequencia.limite_vermelho
             );
 
             show_temperatura(
                 json.temperatura.atual,
-                json.temperatura.limite_amarelo,
-                json.temperatura.limite_vermelho
             );
         })
         .catch(console.error);
 }
 
 
-//     ---       TODOS OS GRÁFICOS     ---
-
+// ---      TODOS OS GRÁFICOS     ---
 
 // ======= GRÁFICO DE PORCETAGEM DE USO =======
-function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
+function show_uso(uso_atual) {
 
     const options_uso_cpu = {
         chart: {
@@ -226,14 +217,14 @@ function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
         annotations: {
             yaxis: [
                 {
-                    y: limite_amarelo_uso,
+                    y: 90,
                     borderColor: '#E53935',
-                    label: { text: `Crítico (${limite_amarelo_uso}%)` }
+                    label: { text: `Crítico (90%)` }
                 },
                 {
-                    y: limite_vermelho_uso,
+                    y: 85,
                     borderColor: '#FFB300',
-                    label: { text: `Aquecendo (${limite_vermelho_uso}%)` }
+                    label: { text: `Aquecendo (85%)` }
                 }
             ]
         }
@@ -248,6 +239,9 @@ function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
 
     window.graficoUso.render();
 
+
+    // console.log("empresa: " + idEmpresa + "maquina: " + idMaquina)
+
     setInterval(async () => {
         const resposta = await fetch(`/cpu/kpis/${idEmpresa}/${idMaquina}`);
         const json = await resposta.json();
@@ -255,8 +249,8 @@ function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
         const novoUso = json.ultima_leitura;
 
         let cor = "#00E676";
-        if (novoUso >= limite_amarelo_uso && novoUso < limite_vermelho_uso) cor = "#FFB300";
-        if (novoUso >= limite_vermelho_uso) cor = "#E53935";
+        if (novoUso >= 85 && novoUso < 90) cor = "#FFB300";
+        if (novoUso >= 90) cor = "#E53935";
 
         window.graficoUso.updateOptions({ colors: [cor] });
         window.graficoUso.updateSeries([{ data: [novoUso] }]);
@@ -265,7 +259,7 @@ function show_uso(uso_atual, limite_amarelo_uso, limite_vermelho_uso) {
 
 
 // ======= GRÁFICO DE FREQUÊNCIA =======
-function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelho_freq) {
+function show_frequencia(frequencia_inicial) {
 
     let data = [{
         x: Date.now(),
@@ -306,20 +300,20 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
 
         yaxis: {
             min: 0,
-            max: 100
+            max: 4000
         },
 
         annotations: {
             yaxis: [
                 {
-                    y: limite_amarelo_freq,
+                    y: 3000,
                     borderColor: '#FFB300',
-                    label: { text: `Aquecendo (${limite_amarelo_freq}%)` }
+                    label: { text: `Aquecendo (${3000} Hz)` }
                 },
                 {
-                    y: limite_vermelho_freq,
+                    y: 3500,
                     borderColor: '#E53935',
-                    label: { text: `Crítico (${limite_vermelho_freq}%)` }
+                    label: { text: `Crítico (${3500} Hz)` }
                 }
             ]
         }
@@ -333,6 +327,7 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
     freq_cpu.render();
 
     setInterval(async () => {
+        // const resposta = await fetch(`/cpu/kpis/${idEmpresa}/${idMaquina}`);
         const resposta = await fetch(`/cpu/kpis/${idEmpresa}/${idMaquina}`);
         const json = await resposta.json();
 
@@ -343,8 +338,8 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
         if (data.length > 60) data.shift();
 
         let cor = "#00E676";
-        if (freq_atual >= limite_amarelo_freq && freq_atual < limite_vermelho_freq) cor = "#FFB300";
-        if (freq_atual >= limite_vermelho_freq) cor = "#E53935";
+        if (freq_atual >= 3000 && freq_atual < 3500) cor = "#FFB300";
+        if (freq_atual >= 3500) cor = "#E53935";
 
         freq_cpu.updateOptions({ colors: [cor] });
         freq_cpu.updateSeries([{ data: data }]);
@@ -354,10 +349,9 @@ function show_frequencia(frequencia_inicial, limite_amarelo_freq, limite_vermelh
 
 
 // ======= GRÁFICO TEMPERATURA =======
-function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_temp) {
+function show_temperatura(temp_inicial) {
 
     let data = [temp_inicial];
-    data.push([25, 30, 40])
 
     const options_temp_cpu = {
         chart: {
@@ -393,7 +387,7 @@ function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_tem
         xaxis: { labels: { show: false } },
 
         yaxis: {
-            min: 20,
+            min: 15,
             max: 100,
             tickAmount: 5,
             labels: { formatter: v => v + "°C" }
@@ -404,14 +398,14 @@ function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_tem
         annotations: {
             yaxis: [
                 {
-                    y: limite_amarelo_temp,
+                    y: 80,
                     borderColor: '#FFB300',
-                    label: { text: `Aquecendo (${limite_amarelo_temp}°C)` }
+                    label: { text: `Aquecendo (80°C)` }
                 },
                 {
-                    y: limite_vermelho_temp,
+                    y: 90,
                     borderColor: '#E53935',
-                    label: { text: `Crítico (${limite_vermelho_temp}°C)` }
+                    label: { text: `Crítico (90°C)` }
                 }
             ]
         }
@@ -431,8 +425,8 @@ function show_temperatura(temp_inicial, limite_amarelo_temp, limite_vermelho_tem
         const novaTemp = json.ultima_leitura;
 
         let cor = "#00E676";
-        if (novaTemp >= limite_amarelo_temp && novaTemp < limite_vermelho_temp) cor = "#FFB300";
-        if (novaTemp >= limite_vermelho_temp) cor = "#E53935";
+        if (novaTemp >= 80 && novaTemp < 90) cor = "#FFB300";
+        if (novaTemp >= 90) cor = "#E53935";
 
         temp_cpu.updateOptions({ colors: [cor] });
 
